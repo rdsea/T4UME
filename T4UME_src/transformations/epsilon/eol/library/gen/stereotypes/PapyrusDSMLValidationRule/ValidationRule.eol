@@ -1,0 +1,499 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with ValidationRule.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package ValidationRulesAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isValidationRule()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with ValidationRule.
+*/ 
+operation Element isValidationRule() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isValidationRule() : Boolean in ValidationRule.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "ValidationRule");
+}
+
+
+//getters
+/*
+Returns a Set of severity of stereotype ValidationRule.
+*/ 
+operation Element getSeverityOfValidationRuleAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ValidationRule"), "severity");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of mode of stereotype ValidationRule.
+*/ 
+operation Element getModeOfValidationRuleAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ValidationRule"), "mode");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isEnabledByDefault of stereotype ValidationRule.
+*/ 
+operation Element getIsEnabledByDefaultOfValidationRuleAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ValidationRule"), "isEnabledByDefault");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of statusCode of stereotype ValidationRule.
+*/ 
+operation Element getStatusCodeOfValidationRuleAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ValidationRule"), "statusCode");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of message of stereotype ValidationRule.
+*/ 
+operation Element getMessageOfValidationRuleAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ValidationRule"), "message");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of description of stereotype ValidationRule.
+*/ 
+operation Element getDescriptionOfValidationRuleAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ValidationRule"), "description");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of target of stereotype ValidationRule.
+*/ 
+operation Element getTargetOfValidationRuleAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ValidationRule"), "target");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of class of stereotype ValidationRule.
+*/ 
+operation Element getClassOfValidationRuleAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ValidationRule"), "class");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of id of stereotype ValidationRule.
+*/ 
+operation Element getIdOfValidationRuleAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ValidationRule"), "id");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property ValidationRule::severity	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@3117a4a6 (name: Severity, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setSeverityProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_papyrusDSMLValidationRule = Profile.all.selectOne(e|e.name = "PapyrusDSMLValidationRule");
+		
+		var stereotype = current_papyrusDSMLValidationRule.getValidationRuleStereotype();
+		var property = current_papyrusDSMLValidationRule.getSeverityProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property ValidationRule::mode	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@782dc710 (name: Mode, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setModeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_papyrusDSMLValidationRule = Profile.all.selectOne(e|e.name = "PapyrusDSMLValidationRule");
+		
+		var stereotype = current_papyrusDSMLValidationRule.getValidationRuleStereotype();
+		var property = current_papyrusDSMLValidationRule.getModeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property ValidationRule::isEnabledByDefault	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@2b0084a9 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsEnabledByDefaultProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_papyrusDSMLValidationRule = Profile.all.selectOne(e|e.name = "PapyrusDSMLValidationRule");
+		
+		var stereotype = current_papyrusDSMLValidationRule.getValidationRuleStereotype();
+		var property = current_papyrusDSMLValidationRule.getIsEnabledByDefaultProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property ValidationRule::statusCode	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@12fe2319 (name: Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setStatusCodeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_papyrusDSMLValidationRule = Profile.all.selectOne(e|e.name = "PapyrusDSMLValidationRule");
+		
+		var stereotype = current_papyrusDSMLValidationRule.getValidationRuleStereotype();
+		var property = current_papyrusDSMLValidationRule.getStatusCodeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property ValidationRule::message	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@6f2a8bc8 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setMessageProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_papyrusDSMLValidationRule = Profile.all.selectOne(e|e.name = "PapyrusDSMLValidationRule");
+		
+		var stereotype = current_papyrusDSMLValidationRule.getValidationRuleStereotype();
+		var property = current_papyrusDSMLValidationRule.getMessageProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property ValidationRule::description	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@6f2a8bc8 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setDescriptionProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_papyrusDSMLValidationRule = Profile.all.selectOne(e|e.name = "PapyrusDSMLValidationRule");
+		
+		var stereotype = current_papyrusDSMLValidationRule.getValidationRuleStereotype();
+		var property = current_papyrusDSMLValidationRule.getDescriptionProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property ValidationRule::target	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@6f2a8bc8 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setTargetProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_papyrusDSMLValidationRule = Profile.all.selectOne(e|e.name = "PapyrusDSMLValidationRule");
+		
+		var stereotype = current_papyrusDSMLValidationRule.getValidationRuleStereotype();
+		var property = current_papyrusDSMLValidationRule.getTargetProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property ValidationRule::class	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@6f2a8bc8 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setClassProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_papyrusDSMLValidationRule = Profile.all.selectOne(e|e.name = "PapyrusDSMLValidationRule");
+		
+		var stereotype = current_papyrusDSMLValidationRule.getValidationRuleStereotype();
+		var property = current_papyrusDSMLValidationRule.getClassProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property ValidationRule::id	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@6f2a8bc8 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIdProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_papyrusDSMLValidationRule = Profile.all.selectOne(e|e.name = "PapyrusDSMLValidationRule");
+		
+		var stereotype = current_papyrusDSMLValidationRule.getValidationRuleStereotype();
+		var property = current_papyrusDSMLValidationRule.getIdProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get severity Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSeverityPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var severityProperty = allAttributes.selectOne(s|s.name = "severity");
+	return severityProperty;
+}
+
+//--get mode Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getModePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var modeProperty = allAttributes.selectOne(s|s.name = "mode");
+	return modeProperty;
+}
+
+//--get isEnabledByDefault Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsEnabledByDefaultPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isEnabledByDefaultProperty = allAttributes.selectOne(s|s.name = "isEnabledByDefault");
+	return isEnabledByDefaultProperty;
+}
+
+//--get statusCode Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getStatusCodePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var statusCodeProperty = allAttributes.selectOne(s|s.name = "statusCode");
+	return statusCodeProperty;
+}
+
+//--get message Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getMessagePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var messageProperty = allAttributes.selectOne(s|s.name = "message");
+	return messageProperty;
+}
+
+//--get description Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDescriptionPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var descriptionProperty = allAttributes.selectOne(s|s.name = "description");
+	return descriptionProperty;
+}
+
+//--get target Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getTargetPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var targetProperty = allAttributes.selectOne(s|s.name = "target");
+	return targetProperty;
+}
+
+//--get class Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getClassPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var classProperty = allAttributes.selectOne(s|s.name = "class");
+	return classProperty;
+}
+
+//--get id Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIdPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var idProperty = allAttributes.selectOne(s|s.name = "id");
+	return idProperty;
+}
+
+
+/*
+Check if a Set of severity of stereotype ValidationRule is empty.
+*/ 
+operation Element isSeverityOfValidationRuleEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ValidationRule"), "severity");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of mode of stereotype ValidationRule is empty.
+*/ 
+operation Element isModeOfValidationRuleEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ValidationRule"), "mode");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isEnabledByDefault of stereotype ValidationRule is empty.
+*/ 
+operation Element isIsEnabledByDefaultOfValidationRuleEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ValidationRule"), "isEnabledByDefault");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of statusCode of stereotype ValidationRule is empty.
+*/ 
+operation Element isStatusCodeOfValidationRuleEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ValidationRule"), "statusCode");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of message of stereotype ValidationRule is empty.
+*/ 
+operation Element isMessageOfValidationRuleEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ValidationRule"), "message");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of description of stereotype ValidationRule is empty.
+*/ 
+operation Element isDescriptionOfValidationRuleEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ValidationRule"), "description");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of target of stereotype ValidationRule is empty.
+*/ 
+operation Element isTargetOfValidationRuleEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ValidationRule"), "target");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of class of stereotype ValidationRule is empty.
+*/ 
+operation Element isClassOfValidationRuleEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ValidationRule"), "class");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of id of stereotype ValidationRule is empty.
+*/ 
+operation Element isIdOfValidationRuleEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ValidationRule"), "id");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

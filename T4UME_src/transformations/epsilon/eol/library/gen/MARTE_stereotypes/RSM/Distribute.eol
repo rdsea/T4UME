@@ -1,0 +1,403 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with Distribute.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package DistributesAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isDistribute()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with Distribute.
+*/ 
+operation Element isDistribute() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isDistribute() : Boolean in Distribute.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "Distribute");
+}
+
+
+//getters
+/*
+Returns a Set of patternShape of stereotype Distribute.
+*/ 
+operation Element getPatternShapeOfDistributeAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Distribute"), "patternShape");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of repetitionSpace of stereotype Distribute.
+*/ 
+operation Element getRepetitionSpaceOfDistributeAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Distribute"), "repetitionSpace");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of fromTiler of stereotype Distribute.
+*/ 
+operation Element getFromTilerOfDistributeAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Distribute"), "fromTiler");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of toTiler of stereotype Distribute.
+*/ 
+operation Element getToTilerOfDistributeAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Distribute"), "toTiler");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of kind of stereotype Distribute.
+*/ 
+operation Element getKindOfDistributeAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Distribute"), "kind");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of nature of stereotype Distribute.
+*/ 
+operation Element getNatureOfDistributeAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Distribute"), "nature");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of impliedConstraint of stereotype Distribute.
+*/ 
+operation Element getImpliedConstraintOfDistributeAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Distribute"), "impliedConstraint");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property Distribute::patternShape	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@45287faf (name: ShapeSpecification, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setPatternShapeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_rSM = Profile.all.selectOne(e|e.name = "RSM");
+		
+		var stereotype = current_rSM.getDistributeStereotype();
+		var property = current_rSM.getPatternShapeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Distribute::repetitionSpace	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@45287faf (name: ShapeSpecification, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setRepetitionSpaceProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_rSM = Profile.all.selectOne(e|e.name = "RSM");
+		
+		var stereotype = current_rSM.getDistributeStereotype();
+		var property = current_rSM.getRepetitionSpaceProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Distribute::fromTiler	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@6fec5db2 (name: TilerSpecification, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setFromTilerProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_rSM = Profile.all.selectOne(e|e.name = "RSM");
+		
+		var stereotype = current_rSM.getDistributeStereotype();
+		var property = current_rSM.getFromTilerProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Distribute::toTiler	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@6fec5db2 (name: TilerSpecification, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setToTilerProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_rSM = Profile.all.selectOne(e|e.name = "RSM");
+		
+		var stereotype = current_rSM.getDistributeStereotype();
+		var property = current_rSM.getToTilerProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Distribute::kind	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@2aa0a837 (name: AllocationKind, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setKindProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_rSM = Profile.all.selectOne(e|e.name = "RSM");
+		
+		var stereotype = current_rSM.getDistributeStereotype();
+		var property = current_rSM.getKindProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Distribute::nature	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@2b312bdb (name: AllocationNature, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setNatureProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_rSM = Profile.all.selectOne(e|e.name = "RSM");
+		
+		var stereotype = current_rSM.getDistributeStereotype();
+		var property = current_rSM.getNatureProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Distribute::impliedConstraint	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@1cbd4369 (name: NfpConstraint, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setImpliedConstraintProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_rSM = Profile.all.selectOne(e|e.name = "RSM");
+		
+		var stereotype = current_rSM.getDistributeStereotype();
+		var property = current_rSM.getImpliedConstraintProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get patternShape Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getPatternShapePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var patternShapeProperty = allAttributes.selectOne(s|s.name = "patternShape");
+	return patternShapeProperty;
+}
+
+//--get repetitionSpace Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getRepetitionSpacePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var repetitionSpaceProperty = allAttributes.selectOne(s|s.name = "repetitionSpace");
+	return repetitionSpaceProperty;
+}
+
+//--get fromTiler Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getFromTilerPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var fromTilerProperty = allAttributes.selectOne(s|s.name = "fromTiler");
+	return fromTilerProperty;
+}
+
+//--get toTiler Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getToTilerPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var toTilerProperty = allAttributes.selectOne(s|s.name = "toTiler");
+	return toTilerProperty;
+}
+
+//--get kind Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getKindPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var kindProperty = allAttributes.selectOne(s|s.name = "kind");
+	return kindProperty;
+}
+
+//--get nature Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getNaturePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var natureProperty = allAttributes.selectOne(s|s.name = "nature");
+	return natureProperty;
+}
+
+//--get impliedConstraint Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getImpliedConstraintPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var impliedConstraintProperty = allAttributes.selectOne(s|s.name = "impliedConstraint");
+	return impliedConstraintProperty;
+}
+
+
+/*
+Check if a Set of patternShape of stereotype Distribute is empty.
+*/ 
+operation Element isPatternShapeOfDistributeEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Distribute"), "patternShape");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of repetitionSpace of stereotype Distribute is empty.
+*/ 
+operation Element isRepetitionSpaceOfDistributeEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Distribute"), "repetitionSpace");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of fromTiler of stereotype Distribute is empty.
+*/ 
+operation Element isFromTilerOfDistributeEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Distribute"), "fromTiler");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of toTiler of stereotype Distribute is empty.
+*/ 
+operation Element isToTilerOfDistributeEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Distribute"), "toTiler");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of kind of stereotype Distribute is empty.
+*/ 
+operation Element isKindOfDistributeEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Distribute"), "kind");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of nature of stereotype Distribute is empty.
+*/ 
+operation Element isNatureOfDistributeEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Distribute"), "nature");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of impliedConstraint of stereotype Distribute is empty.
+*/ 
+operation Element isImpliedConstraintOfDistributeEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Distribute"), "impliedConstraint");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

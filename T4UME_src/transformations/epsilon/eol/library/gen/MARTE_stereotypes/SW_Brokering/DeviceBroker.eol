@@ -1,0 +1,883 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with DeviceBroker.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package DeviceBrokersAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isDeviceBroker()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with DeviceBroker.
+*/ 
+operation Element isDeviceBroker() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isDeviceBroker() : Boolean in DeviceBroker.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "DeviceBroker");
+}
+
+
+//getters
+/*
+Returns a Set of accessPolicy of stereotype DeviceBroker.
+*/ 
+operation Element getAccessPolicyOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "accessPolicy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isBuffered of stereotype DeviceBroker.
+*/ 
+operation Element getIsBufferedOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "isBuffered");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of devices of stereotype DeviceBroker.
+*/ 
+operation Element getDevicesOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "devices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of closeServices of stereotype DeviceBroker.
+*/ 
+operation Element getCloseServicesOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "closeServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of controlServices of stereotype DeviceBroker.
+*/ 
+operation Element getControlServicesOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "controlServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of openServices of stereotype DeviceBroker.
+*/ 
+operation Element getOpenServicesOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "openServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of readServices of stereotype DeviceBroker.
+*/ 
+operation Element getReadServicesOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "readServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of writeServices of stereotype DeviceBroker.
+*/ 
+operation Element getWriteServicesOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "writeServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of identifierElements of stereotype DeviceBroker.
+*/ 
+operation Element getIdentifierElementsOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "identifierElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of stateElements of stereotype DeviceBroker.
+*/ 
+operation Element getStateElementsOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "stateElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of memorySizeFootprint of stereotype DeviceBroker.
+*/ 
+operation Element getMemorySizeFootprintOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "memorySizeFootprint");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of createServices of stereotype DeviceBroker.
+*/ 
+operation Element getCreateServicesOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "createServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of deleteServices of stereotype DeviceBroker.
+*/ 
+operation Element getDeleteServicesOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "deleteServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of initializeServices of stereotype DeviceBroker.
+*/ 
+operation Element getInitializeServicesOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "initializeServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of resMult of stereotype DeviceBroker.
+*/ 
+operation Element getResMultOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "resMult");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isProtected of stereotype DeviceBroker.
+*/ 
+operation Element getIsProtectedOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "isProtected");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isActive of stereotype DeviceBroker.
+*/ 
+operation Element getIsActiveOfDeviceBrokerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "isActive");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property DeviceBroker::accessPolicy	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@426a055a (name: AccessPolicyKind, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setAccessPolicyProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getAccessPolicyProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property DeviceBroker::isBuffered	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsBufferedProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getIsBufferedProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property DeviceBroker::devices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setDevicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getDevicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property DeviceBroker::closeServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setCloseServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getCloseServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property DeviceBroker::controlServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setControlServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getControlServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property DeviceBroker::openServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setOpenServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getOpenServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property DeviceBroker::readServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setReadServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getReadServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property DeviceBroker::writeServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setWriteServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getWriteServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property DeviceBroker::identifierElements	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setIdentifierElementsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getIdentifierElementsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property DeviceBroker::stateElements	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setStateElementsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getStateElementsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property DeviceBroker::memorySizeFootprint	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setMemorySizeFootprintProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getMemorySizeFootprintProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property DeviceBroker::createServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setCreateServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getCreateServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property DeviceBroker::deleteServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setDeleteServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getDeleteServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property DeviceBroker::initializeServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setInitializeServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getInitializeServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property DeviceBroker::resMult	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@2ddf45fe (name: NFP_Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setResMultProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getResMultProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property DeviceBroker::isProtected	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsProtectedProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getIsProtectedProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property DeviceBroker::isActive	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsActiveProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Brokering = Profile.all.selectOne(e|e.name = "SW_Brokering");
+		
+		var stereotype = current_sW_Brokering.getDeviceBrokerStereotype();
+		var property = current_sW_Brokering.getIsActiveProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get accessPolicy Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getAccessPolicyPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var accessPolicyProperty = allAttributes.selectOne(s|s.name = "accessPolicy");
+	return accessPolicyProperty;
+}
+
+//--get isBuffered Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsBufferedPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isBufferedProperty = allAttributes.selectOne(s|s.name = "isBuffered");
+	return isBufferedProperty;
+}
+
+//--get devices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDevicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var devicesProperty = allAttributes.selectOne(s|s.name = "devices");
+	return devicesProperty;
+}
+
+//--get closeServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getCloseServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var closeServicesProperty = allAttributes.selectOne(s|s.name = "closeServices");
+	return closeServicesProperty;
+}
+
+//--get controlServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getControlServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var controlServicesProperty = allAttributes.selectOne(s|s.name = "controlServices");
+	return controlServicesProperty;
+}
+
+//--get openServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getOpenServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var openServicesProperty = allAttributes.selectOne(s|s.name = "openServices");
+	return openServicesProperty;
+}
+
+//--get readServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getReadServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var readServicesProperty = allAttributes.selectOne(s|s.name = "readServices");
+	return readServicesProperty;
+}
+
+//--get writeServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getWriteServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var writeServicesProperty = allAttributes.selectOne(s|s.name = "writeServices");
+	return writeServicesProperty;
+}
+
+//--get identifierElements Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIdentifierElementsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var identifierElementsProperty = allAttributes.selectOne(s|s.name = "identifierElements");
+	return identifierElementsProperty;
+}
+
+//--get stateElements Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getStateElementsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var stateElementsProperty = allAttributes.selectOne(s|s.name = "stateElements");
+	return stateElementsProperty;
+}
+
+//--get memorySizeFootprint Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getMemorySizeFootprintPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var memorySizeFootprintProperty = allAttributes.selectOne(s|s.name = "memorySizeFootprint");
+	return memorySizeFootprintProperty;
+}
+
+//--get createServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getCreateServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var createServicesProperty = allAttributes.selectOne(s|s.name = "createServices");
+	return createServicesProperty;
+}
+
+//--get deleteServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDeleteServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var deleteServicesProperty = allAttributes.selectOne(s|s.name = "deleteServices");
+	return deleteServicesProperty;
+}
+
+//--get initializeServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getInitializeServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var initializeServicesProperty = allAttributes.selectOne(s|s.name = "initializeServices");
+	return initializeServicesProperty;
+}
+
+//--get resMult Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getResMultPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var resMultProperty = allAttributes.selectOne(s|s.name = "resMult");
+	return resMultProperty;
+}
+
+//--get isProtected Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsProtectedPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isProtectedProperty = allAttributes.selectOne(s|s.name = "isProtected");
+	return isProtectedProperty;
+}
+
+//--get isActive Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsActivePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isActiveProperty = allAttributes.selectOne(s|s.name = "isActive");
+	return isActiveProperty;
+}
+
+
+/*
+Check if a Set of accessPolicy of stereotype DeviceBroker is empty.
+*/ 
+operation Element isAccessPolicyOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "accessPolicy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isBuffered of stereotype DeviceBroker is empty.
+*/ 
+operation Element isIsBufferedOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "isBuffered");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of devices of stereotype DeviceBroker is empty.
+*/ 
+operation Element isDevicesOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "devices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of closeServices of stereotype DeviceBroker is empty.
+*/ 
+operation Element isCloseServicesOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "closeServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of controlServices of stereotype DeviceBroker is empty.
+*/ 
+operation Element isControlServicesOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "controlServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of openServices of stereotype DeviceBroker is empty.
+*/ 
+operation Element isOpenServicesOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "openServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of readServices of stereotype DeviceBroker is empty.
+*/ 
+operation Element isReadServicesOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "readServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of writeServices of stereotype DeviceBroker is empty.
+*/ 
+operation Element isWriteServicesOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "writeServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of identifierElements of stereotype DeviceBroker is empty.
+*/ 
+operation Element isIdentifierElementsOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "identifierElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of stateElements of stereotype DeviceBroker is empty.
+*/ 
+operation Element isStateElementsOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "stateElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of memorySizeFootprint of stereotype DeviceBroker is empty.
+*/ 
+operation Element isMemorySizeFootprintOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "memorySizeFootprint");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of createServices of stereotype DeviceBroker is empty.
+*/ 
+operation Element isCreateServicesOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "createServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of deleteServices of stereotype DeviceBroker is empty.
+*/ 
+operation Element isDeleteServicesOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "deleteServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of initializeServices of stereotype DeviceBroker is empty.
+*/ 
+operation Element isInitializeServicesOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "initializeServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of resMult of stereotype DeviceBroker is empty.
+*/ 
+operation Element isResMultOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "resMult");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isProtected of stereotype DeviceBroker is empty.
+*/ 
+operation Element isIsProtectedOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "isProtected");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isActive of stereotype DeviceBroker is empty.
+*/ 
+operation Element isIsActiveOfDeviceBrokerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("DeviceBroker"), "isActive");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

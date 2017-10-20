@@ -1,0 +1,129 @@
+// Check if the stereotype is applicable
+// to the Element on which it is invoked
+operation Element isStereotypeStringApplicable(name : String) : Boolean {
+	var stereotype : Stereotype;
+	
+	// Try to find an existing stereotype with this name
+	stereotype = Stereotype.allInstances.selectOne(s|s.name = name);
+	
+	// If there is no existing stereotype
+	// with that name, create one
+	if (not stereotype.isDefined()){
+		stereotype = Stereotype.createInstance();
+		stereotype.name = name;
+		stereotype.namespace = self.namespace;
+	}
+
+	var bool = false;
+	if(self.isStereotypeApplicable(stereotype)){
+		 bool = true;
+	}
+	return bool;	
+}
+
+// Check if the stereotype is applied
+// to the Element on which it is invoked
+operation Element isStereotypeStringApplied(name : String) : Boolean {
+	var stereotype : Stereotype;
+	
+	// Try to find an existing stereotype with this name
+	stereotype = Stereotype.allInstances.selectOne(s|s.name = name);
+	
+	// If there is no existing stereotype
+	// with that name, create one
+	if (not stereotype.isDefined()){
+		stereotype = Stereotype.createInstance();
+		stereotype.name = name;
+		stereotype.namespace = self.namespace;
+	}
+	var bool = false;
+	if(self.isStereotypeApplied(stereotype)){
+		 bool = true;
+	}
+	return bool;	
+}
+
+operation Element hasStereotype(stereotypeName : String) : Boolean {
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: hasStereotype() in element.eol");
+	}
+	return self.getAppliedStereotypes()->exists(s | s.name = stereotypeName);
+}
+
+
+// Attaches a stereotype with the specified name
+// to the Model Element on which it is invoked
+operation Element attachStereotype(name : String) {
+	var stereotype : Stereotype;
+	
+	// Try to find an existing stereotype with this name
+	stereotype = Stereotype.allInstances.selectOne(s|s.name = name);
+	
+	// If there is no existing stereotype
+	// with that name, create one
+	if (not stereotype.isDefined()){
+		stereotype = Stereotype.createInstance();
+		stereotype.name = name;
+		stereotype.namespace = self.namespace;
+	}
+	self.applyStereotype(stereotype);
+}
+
+/*
+Returns a Set of Property defined by the given stereotype.
+*/
+@cached 
+operation Element getStereotypeAttributes(stereotype : Stereotype) : Set(Property){
+	var stereotypeAttr = stereotype.allAttributes();
+	var returnValue : Set(Property) = new Set(Property);
+	
+	for(attr in stereotypeAttr){
+		if(not attr.name.startsWith("base_"))
+		{ 
+			returnValue.add(attr);
+		}
+	}
+	return returnValue;	
+}
+
+/*
+Check the type of the base element.
+*/ 
+operation Element isInstanceSpecification() : Boolean {
+
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isInstanceOfMetaclass() : Boolean");
+	}
+	var eclass_name = self.type.name;
+	if (eclass_name = "InstanceSpecification"){
+		return true;
+	}
+	return false;
+}
+/*
+Check the type of the base element.
+*/ 
+operation Element isClass() : Boolean {
+
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isInstanceOfMetaclass() : Boolean");
+	}
+	var eclass_name = self.type.name;
+	if (eclass_name = "Class"){
+		return true;
+	}
+	return false;
+}
+
+operation Element getStereotype(stereotypeName : String) : Stereotype {
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: getStereotype() in element.eol");
+	}
+
+	return self.getAppliedStereotypes()->select(s | s.name = stereotypeName)->first();
+}
+

@@ -1,0 +1,595 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with HwI_O.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package HwI_OsAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isHwI_O()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with HwI_O.
+*/ 
+operation Element isHwI_O() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isHwI_O() : Boolean in HwI_O.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "HwI_O");
+}
+
+
+//getters
+/*
+Returns a Set of description of stereotype HwI_O.
+*/ 
+operation Element getDescriptionOfHwI_OAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("HwI_O"), "description");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of frequency of stereotype HwI_O.
+*/ 
+operation Element getFrequencyOfHwI_OAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("HwI_O"), "frequency");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of endPoints of stereotype HwI_O.
+*/ 
+operation Element getEndPointsOfHwI_OAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("HwI_O"), "endPoints");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of p_HW_Services of stereotype HwI_O.
+*/ 
+operation Element getP_HW_ServicesOfHwI_OAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("HwI_O"), "p_HW_Services");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of r_HW_Services of stereotype HwI_O.
+*/ 
+operation Element getR_HW_ServicesOfHwI_OAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("HwI_O"), "r_HW_Services");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of ownedHW of stereotype HwI_O.
+*/ 
+operation Element getOwnedHWOfHwI_OAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("HwI_O"), "ownedHW");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of resMult of stereotype HwI_O.
+*/ 
+operation Element getResMultOfHwI_OAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("HwI_O"), "resMult");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isProtected of stereotype HwI_O.
+*/ 
+operation Element getIsProtectedOfHwI_OAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("HwI_O"), "isProtected");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isActive of stereotype HwI_O.
+*/ 
+operation Element getIsActiveOfHwI_OAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("HwI_O"), "isActive");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of speedFactor of stereotype HwI_O.
+*/ 
+operation Element getSpeedFactorOfHwI_OAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("HwI_O"), "speedFactor");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of mainScheduler of stereotype HwI_O.
+*/ 
+operation Element getMainSchedulerOfHwI_OAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("HwI_O"), "mainScheduler");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property HwI_O::description	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@393616c1 (name: NFP_String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setDescriptionProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hwDevice = Profile.all.selectOne(e|e.name = "HwDevice");
+		
+		var stereotype = current_hwDevice.getHwI_OStereotype();
+		var property = current_hwDevice.getDescriptionProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property HwI_O::frequency	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@582547c6 (name: NFP_Frequency, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setFrequencyProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hwDevice = Profile.all.selectOne(e|e.name = "HwDevice");
+		
+		var stereotype = current_hwDevice.getHwI_OStereotype();
+		var property = current_hwDevice.getFrequencyProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property HwI_O::endPoints	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@38491707 (name: HwEndPoint, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setEndPointsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hwDevice = Profile.all.selectOne(e|e.name = "HwDevice");
+		
+		var stereotype = current_hwDevice.getHwI_OStereotype();
+		var property = current_hwDevice.getEndPointsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property HwI_O::p_HW_Services	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@1beb8ffd (name: HwResourceService, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setP_HW_ServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hwDevice = Profile.all.selectOne(e|e.name = "HwDevice");
+		
+		var stereotype = current_hwDevice.getHwI_OStereotype();
+		var property = current_hwDevice.getP_HW_ServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property HwI_O::r_HW_Services	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@1beb8ffd (name: HwResourceService, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setR_HW_ServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hwDevice = Profile.all.selectOne(e|e.name = "HwDevice");
+		
+		var stereotype = current_hwDevice.getHwI_OStereotype();
+		var property = current_hwDevice.getR_HW_ServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property HwI_O::ownedHW	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@36a523d (name: HwResource, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setOwnedHWProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hwDevice = Profile.all.selectOne(e|e.name = "HwDevice");
+		
+		var stereotype = current_hwDevice.getHwI_OStereotype();
+		var property = current_hwDevice.getOwnedHWProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property HwI_O::resMult	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@2ddf45fe (name: NFP_Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setResMultProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hwDevice = Profile.all.selectOne(e|e.name = "HwDevice");
+		
+		var stereotype = current_hwDevice.getHwI_OStereotype();
+		var property = current_hwDevice.getResMultProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property HwI_O::isProtected	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsProtectedProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hwDevice = Profile.all.selectOne(e|e.name = "HwDevice");
+		
+		var stereotype = current_hwDevice.getHwI_OStereotype();
+		var property = current_hwDevice.getIsProtectedProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property HwI_O::isActive	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsActiveProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hwDevice = Profile.all.selectOne(e|e.name = "HwDevice");
+		
+		var stereotype = current_hwDevice.getHwI_OStereotype();
+		var property = current_hwDevice.getIsActiveProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property HwI_O::speedFactor	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setSpeedFactorProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hwDevice = Profile.all.selectOne(e|e.name = "HwDevice");
+		
+		var stereotype = current_hwDevice.getHwI_OStereotype();
+		var property = current_hwDevice.getSpeedFactorProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property HwI_O::mainScheduler	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@401e2d5b (name: Scheduler, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setMainSchedulerProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hwDevice = Profile.all.selectOne(e|e.name = "HwDevice");
+		
+		var stereotype = current_hwDevice.getHwI_OStereotype();
+		var property = current_hwDevice.getMainSchedulerProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get description Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDescriptionPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var descriptionProperty = allAttributes.selectOne(s|s.name = "description");
+	return descriptionProperty;
+}
+
+//--get frequency Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getFrequencyPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var frequencyProperty = allAttributes.selectOne(s|s.name = "frequency");
+	return frequencyProperty;
+}
+
+//--get endPoints Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getEndPointsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var endPointsProperty = allAttributes.selectOne(s|s.name = "endPoints");
+	return endPointsProperty;
+}
+
+//--get p_HW_Services Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getP_HW_ServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var p_HW_ServicesProperty = allAttributes.selectOne(s|s.name = "p_HW_Services");
+	return p_HW_ServicesProperty;
+}
+
+//--get r_HW_Services Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getR_HW_ServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var r_HW_ServicesProperty = allAttributes.selectOne(s|s.name = "r_HW_Services");
+	return r_HW_ServicesProperty;
+}
+
+//--get ownedHW Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getOwnedHWPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var ownedHWProperty = allAttributes.selectOne(s|s.name = "ownedHW");
+	return ownedHWProperty;
+}
+
+//--get resMult Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getResMultPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var resMultProperty = allAttributes.selectOne(s|s.name = "resMult");
+	return resMultProperty;
+}
+
+//--get isProtected Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsProtectedPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isProtectedProperty = allAttributes.selectOne(s|s.name = "isProtected");
+	return isProtectedProperty;
+}
+
+//--get isActive Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsActivePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isActiveProperty = allAttributes.selectOne(s|s.name = "isActive");
+	return isActiveProperty;
+}
+
+//--get speedFactor Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSpeedFactorPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var speedFactorProperty = allAttributes.selectOne(s|s.name = "speedFactor");
+	return speedFactorProperty;
+}
+
+//--get mainScheduler Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getMainSchedulerPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var mainSchedulerProperty = allAttributes.selectOne(s|s.name = "mainScheduler");
+	return mainSchedulerProperty;
+}
+
+
+/*
+Check if a Set of description of stereotype HwI_O is empty.
+*/ 
+operation Element isDescriptionOfHwI_OEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("HwI_O"), "description");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of frequency of stereotype HwI_O is empty.
+*/ 
+operation Element isFrequencyOfHwI_OEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("HwI_O"), "frequency");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of endPoints of stereotype HwI_O is empty.
+*/ 
+operation Element isEndPointsOfHwI_OEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("HwI_O"), "endPoints");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of p_HW_Services of stereotype HwI_O is empty.
+*/ 
+operation Element isP_HW_ServicesOfHwI_OEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("HwI_O"), "p_HW_Services");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of r_HW_Services of stereotype HwI_O is empty.
+*/ 
+operation Element isR_HW_ServicesOfHwI_OEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("HwI_O"), "r_HW_Services");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of ownedHW of stereotype HwI_O is empty.
+*/ 
+operation Element isOwnedHWOfHwI_OEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("HwI_O"), "ownedHW");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of resMult of stereotype HwI_O is empty.
+*/ 
+operation Element isResMultOfHwI_OEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("HwI_O"), "resMult");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isProtected of stereotype HwI_O is empty.
+*/ 
+operation Element isIsProtectedOfHwI_OEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("HwI_O"), "isProtected");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isActive of stereotype HwI_O is empty.
+*/ 
+operation Element isIsActiveOfHwI_OEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("HwI_O"), "isActive");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of speedFactor of stereotype HwI_O is empty.
+*/ 
+operation Element isSpeedFactorOfHwI_OEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("HwI_O"), "speedFactor");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of mainScheduler of stereotype HwI_O is empty.
+*/ 
+operation Element isMainSchedulerOfHwI_OEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("HwI_O"), "mainScheduler");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

@@ -1,0 +1,15 @@
+i have to read. because i think generating docker file is for preparing elements 
+(so it is good when we dont have elements in the repository) 
+but if we have then we dont need. 
+so maybe it will be useful for the future work.
+
+the flow is: from model -[extraction tool]-> json -[configuration and generation tool]-> 
+(i)docker files if needed, 
+(ii)yaml - [deployment tool] --> 
+so we need to separate extraction tool from configuration and generation tool to enable flexbility
+i think let us focus on figures 5 and 6, section 4.1 (extract information from models), 
+and section 5.1 (explain the use cases).
+it means we complete the first version of "extraction tool", 
+then we will focus on the "configuration/generation tool" for yml 
+(we do not focus on generating Docker file in this paper - 
+you can use it for the sinc model in the future)

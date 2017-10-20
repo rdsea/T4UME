@@ -1,0 +1,595 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with Scheduler.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package SchedulersAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isScheduler()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with Scheduler.
+*/ 
+operation Element isScheduler() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isScheduler() : Boolean in Scheduler.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "Scheduler");
+}
+
+
+//getters
+/*
+Returns a Set of isPreemptible of stereotype Scheduler.
+*/ 
+operation Element getIsPreemptibleOfSchedulerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Scheduler"), "isPreemptible");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of schedPolicy of stereotype Scheduler.
+*/ 
+operation Element getSchedPolicyOfSchedulerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Scheduler"), "schedPolicy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of otherSchedPolicy of stereotype Scheduler.
+*/ 
+operation Element getOtherSchedPolicyOfSchedulerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Scheduler"), "otherSchedPolicy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of schedule of stereotype Scheduler.
+*/ 
+operation Element getScheduleOfSchedulerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Scheduler"), "schedule");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of processingUnits of stereotype Scheduler.
+*/ 
+operation Element getProcessingUnitsOfSchedulerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Scheduler"), "processingUnits");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of host of stereotype Scheduler.
+*/ 
+operation Element getHostOfSchedulerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Scheduler"), "host");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of protectedSharedResources of stereotype Scheduler.
+*/ 
+operation Element getProtectedSharedResourcesOfSchedulerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Scheduler"), "protectedSharedResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of schedulableResources of stereotype Scheduler.
+*/ 
+operation Element getSchedulableResourcesOfSchedulerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Scheduler"), "schedulableResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of resMult of stereotype Scheduler.
+*/ 
+operation Element getResMultOfSchedulerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Scheduler"), "resMult");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isProtected of stereotype Scheduler.
+*/ 
+operation Element getIsProtectedOfSchedulerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Scheduler"), "isProtected");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isActive of stereotype Scheduler.
+*/ 
+operation Element getIsActiveOfSchedulerAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Scheduler"), "isActive");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property Scheduler::isPreemptible	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsPreemptibleProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gRM = Profile.all.selectOne(e|e.name = "GRM");
+		
+		var stereotype = current_gRM.getSchedulerStereotype();
+		var property = current_gRM.getIsPreemptibleProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Scheduler::schedPolicy	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@30a591bc (name: SchedPolicyKind, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setSchedPolicyProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gRM = Profile.all.selectOne(e|e.name = "GRM");
+		
+		var stereotype = current_gRM.getSchedulerStereotype();
+		var property = current_gRM.getSchedPolicyProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Scheduler::otherSchedPolicy	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@270530c6 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setOtherSchedPolicyProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gRM = Profile.all.selectOne(e|e.name = "GRM");
+		
+		var stereotype = current_gRM.getSchedulerStereotype();
+		var property = current_gRM.getOtherSchedPolicyProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Scheduler::schedule	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@734af66a (name: ScheduleSpecification, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setScheduleProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gRM = Profile.all.selectOne(e|e.name = "GRM");
+		
+		var stereotype = current_gRM.getSchedulerStereotype();
+		var property = current_gRM.getScheduleProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Scheduler::processingUnits	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@2bf03d4 (name: ProcessingResource, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setProcessingUnitsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gRM = Profile.all.selectOne(e|e.name = "GRM");
+		
+		var stereotype = current_gRM.getSchedulerStereotype();
+		var property = current_gRM.getProcessingUnitsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Scheduler::host	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@69d8584e (name: ComputingResource, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setHostProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gRM = Profile.all.selectOne(e|e.name = "GRM");
+		
+		var stereotype = current_gRM.getSchedulerStereotype();
+		var property = current_gRM.getHostProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Scheduler::protectedSharedResources	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@167eeeec (name: MutualExclusionResource, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setProtectedSharedResourcesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gRM = Profile.all.selectOne(e|e.name = "GRM");
+		
+		var stereotype = current_gRM.getSchedulerStereotype();
+		var property = current_gRM.getProtectedSharedResourcesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Scheduler::schedulableResources	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@326fe4b0 (name: SchedulableResource, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setSchedulableResourcesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gRM = Profile.all.selectOne(e|e.name = "GRM");
+		
+		var stereotype = current_gRM.getSchedulerStereotype();
+		var property = current_gRM.getSchedulableResourcesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Scheduler::resMult	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@2ddf45fe (name: NFP_Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setResMultProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gRM = Profile.all.selectOne(e|e.name = "GRM");
+		
+		var stereotype = current_gRM.getSchedulerStereotype();
+		var property = current_gRM.getResMultProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Scheduler::isProtected	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsProtectedProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gRM = Profile.all.selectOne(e|e.name = "GRM");
+		
+		var stereotype = current_gRM.getSchedulerStereotype();
+		var property = current_gRM.getIsProtectedProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Scheduler::isActive	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsActiveProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gRM = Profile.all.selectOne(e|e.name = "GRM");
+		
+		var stereotype = current_gRM.getSchedulerStereotype();
+		var property = current_gRM.getIsActiveProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get isPreemptible Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsPreemptiblePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isPreemptibleProperty = allAttributes.selectOne(s|s.name = "isPreemptible");
+	return isPreemptibleProperty;
+}
+
+//--get schedPolicy Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSchedPolicyPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var schedPolicyProperty = allAttributes.selectOne(s|s.name = "schedPolicy");
+	return schedPolicyProperty;
+}
+
+//--get otherSchedPolicy Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getOtherSchedPolicyPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var otherSchedPolicyProperty = allAttributes.selectOne(s|s.name = "otherSchedPolicy");
+	return otherSchedPolicyProperty;
+}
+
+//--get schedule Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSchedulePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var scheduleProperty = allAttributes.selectOne(s|s.name = "schedule");
+	return scheduleProperty;
+}
+
+//--get processingUnits Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getProcessingUnitsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var processingUnitsProperty = allAttributes.selectOne(s|s.name = "processingUnits");
+	return processingUnitsProperty;
+}
+
+//--get host Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getHostPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var hostProperty = allAttributes.selectOne(s|s.name = "host");
+	return hostProperty;
+}
+
+//--get protectedSharedResources Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getProtectedSharedResourcesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var protectedSharedResourcesProperty = allAttributes.selectOne(s|s.name = "protectedSharedResources");
+	return protectedSharedResourcesProperty;
+}
+
+//--get schedulableResources Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSchedulableResourcesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var schedulableResourcesProperty = allAttributes.selectOne(s|s.name = "schedulableResources");
+	return schedulableResourcesProperty;
+}
+
+//--get resMult Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getResMultPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var resMultProperty = allAttributes.selectOne(s|s.name = "resMult");
+	return resMultProperty;
+}
+
+//--get isProtected Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsProtectedPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isProtectedProperty = allAttributes.selectOne(s|s.name = "isProtected");
+	return isProtectedProperty;
+}
+
+//--get isActive Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsActivePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isActiveProperty = allAttributes.selectOne(s|s.name = "isActive");
+	return isActiveProperty;
+}
+
+
+/*
+Check if a Set of isPreemptible of stereotype Scheduler is empty.
+*/ 
+operation Element isIsPreemptibleOfSchedulerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Scheduler"), "isPreemptible");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of schedPolicy of stereotype Scheduler is empty.
+*/ 
+operation Element isSchedPolicyOfSchedulerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Scheduler"), "schedPolicy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of otherSchedPolicy of stereotype Scheduler is empty.
+*/ 
+operation Element isOtherSchedPolicyOfSchedulerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Scheduler"), "otherSchedPolicy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of schedule of stereotype Scheduler is empty.
+*/ 
+operation Element isScheduleOfSchedulerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Scheduler"), "schedule");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of processingUnits of stereotype Scheduler is empty.
+*/ 
+operation Element isProcessingUnitsOfSchedulerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Scheduler"), "processingUnits");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of host of stereotype Scheduler is empty.
+*/ 
+operation Element isHostOfSchedulerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Scheduler"), "host");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of protectedSharedResources of stereotype Scheduler is empty.
+*/ 
+operation Element isProtectedSharedResourcesOfSchedulerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Scheduler"), "protectedSharedResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of schedulableResources of stereotype Scheduler is empty.
+*/ 
+operation Element isSchedulableResourcesOfSchedulerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Scheduler"), "schedulableResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of resMult of stereotype Scheduler is empty.
+*/ 
+operation Element isResMultOfSchedulerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Scheduler"), "resMult");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isProtected of stereotype Scheduler is empty.
+*/ 
+operation Element isIsProtectedOfSchedulerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Scheduler"), "isProtected");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isActive of stereotype Scheduler is empty.
+*/ 
+operation Element isIsActiveOfSchedulerEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Scheduler"), "isActive");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

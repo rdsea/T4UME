@@ -1,0 +1,211 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with IngressEgress.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package IngressEgresssAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isIngressEgress()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with IngressEgress.
+*/ 
+operation Element isIngressEgress() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isIngressEgress() : Boolean in IngressEgress.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "IngressEgress");
+}
+
+
+//getters
+/*
+Returns a Set of type of stereotype IngressEgress.
+*/ 
+operation Element getTypeOfIngressEgressAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("IngressEgress"), "type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of configuration of stereotype IngressEgress.
+*/ 
+operation Element getConfigurationOfIngressEgressAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("IngressEgress"), "configuration");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of description of stereotype IngressEgress.
+*/ 
+operation Element getDescriptionOfIngressEgressAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("IngressEgress"), "description");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property IngressEgress::type	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@27941790 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setTypeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getIngressEgressStereotype();
+		var property = current_infrastructureUncertaintyProfile.getTypeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property IngressEgress::configuration	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@27941790 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setConfigurationProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getIngressEgressStereotype();
+		var property = current_infrastructureUncertaintyProfile.getConfigurationProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property IngressEgress::description	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@27941790 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setDescriptionProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getIngressEgressStereotype();
+		var property = current_infrastructureUncertaintyProfile.getDescriptionProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get type Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getTypePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var typeProperty = allAttributes.selectOne(s|s.name = "type");
+	return typeProperty;
+}
+
+//--get configuration Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getConfigurationPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var configurationProperty = allAttributes.selectOne(s|s.name = "configuration");
+	return configurationProperty;
+}
+
+//--get description Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDescriptionPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var descriptionProperty = allAttributes.selectOne(s|s.name = "description");
+	return descriptionProperty;
+}
+
+
+/*
+Check if a Set of type of stereotype IngressEgress is empty.
+*/ 
+operation Element isTypeOfIngressEgressEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("IngressEgress"), "type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of configuration of stereotype IngressEgress is empty.
+*/ 
+operation Element isConfigurationOfIngressEgressEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("IngressEgress"), "configuration");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of description of stereotype IngressEgress is empty.
+*/ 
+operation Element isDescriptionOfIngressEgressEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("IngressEgress"), "description");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

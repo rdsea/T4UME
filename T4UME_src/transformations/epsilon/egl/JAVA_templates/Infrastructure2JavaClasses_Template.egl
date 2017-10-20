@@ -1,0 +1,1695 @@
+[%
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+//*************************************************
+// This template generate a JSON representation of the IoT Clound infrastructure architecture
+// The template uses EOL libraries. We have distinct libraries for each stereotype of the applied profiles.
+// UML Model elements can be managed by Eclipse UML API. Therefore operations not defined in EOL libraries
+// are native operations from the Eclipse UML API.
+//*************************************************
+
+//*****************COMMMENTS**********************
+// We plan to generate the EGL file automatically with higher order transformations,
+// i.e., a EGL file that generate the this EGL template by acccessing the generated EOL library for stereotypes.
+//*************************************************
+
+//*****************COMMMENTS**********************
+// We plan to reuse the GSON library to as JSON emitter. It can be done by setting up a pretty printer using
+// GSON API. However, this choice can further complicate the emitter template with additional statements that
+// are in contrast with the declarative nature of a EPSILON EGL templates.
+// Indeed GSON can be directly invoked only at finest grain. 
+// Invoking GSON on bigger variables. For example, the second statement below
+//
+// var virtual_gateways = aPackage.VirtualGatewaysAsSetOfClass();
+// var virtual_gateways_json = aPackage.JSONVirtualGatewaysAsSetOfClass();
+//
+// generate only the EPSILON interal string representation of a Set 
+// (see stereotype library generation template)
+// 
+// while we need to further elaborate data obtained from EPSILON execution within EGL files
+// that can be considered pretty printer templates.
+// Therefore using EGL and GSON API at the finest grain are alternative solutions. 
+//*************************************************
+
+
+//****************EOL LIBRARIES*********************
+//Libraries from /gen folder are generated via EGL templates that generate EOL files.
+//Operations from utestlibrary.eol are deprecated but still necessary
+//Libraries connect to native objects from external APIs like EclipseUML and Google GSON
+//*************************************************
+
+
+
+//import "../../eol/library/utilities.eol";
+import "../../eol/library/gen/profiles/InfrastructureCPSProfile.eol";
+import "../../eol/library/gen/stereotypes/InfrastructureCPSProfile/VirtualSensor.eol";
+import "../../eol/library/gen/stereotypes/InfrastructureCPSProfile/VirtualActuator.eol";
+import "../../eol/library/gen/stereotypes/InfrastructureCPSProfile/VirtualGateway.eol";
+import "../../eol/library/gen/stereotypes/InfrastructureCPSProfile/Communication.eol";
+import "../../eol/library/gen/stereotypes/InfrastructureCPSProfile/VirtualUnit.eol";
+import "../../eol/library/gen/stereotypes/InfrastructureCPSProfile/Unit.eol";
+import "../../eol/library/gen/stereotypes/InfrastructureCPSProfile/SoftwareDefinedCapability.eol";
+import "../../eol/library/gen/stereotypes/InfrastructureCPSProfile/CloudService.eol";
+import "../../eol/library/gen/stereotypes/InfrastructureCPSProfile/StorageConfiguration.eol";
+import "../../eol/library/gen/stereotypes/InfrastructureCPSProfile/ComputingConfiguration.eol";
+import "../../eol/library/gen/stereotypes/InfrastructureCPSProfile/CommunicationConfiguration.eol";
+import "../../eol/library/gen/stereotypes/InfrastructureCPSProfile/CloudProvider.eol";
+import "../../eol/library/gen/stereotypes/InfrastructureCPSProfile/TestConfiguration.eol";
+import "../../eol/library/gen/stereotypes/InfrastructureCPSProfile/Actuator.eol";
+import "../../eol/library/gen/stereotypes/InfrastructureCPSProfile/Sensor.eol";
+import "../../eol/library/gen/stereotypes/InfrastructureCPSProfile/SoftwareDefinedMetric.eol";
+import "../../eol/library/gen/enumerations/InfrastructureCPSProfile/ProtocolType.eol";
+
+//*************************************************
+
+//*************************************************
+// Global variables
+//*************************************************
+var showEmpty = true;
+var plugin_id = "at.ac.tuwien.dsg.T4UME";
+var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+var UMLUtil = plugin.getUMLUtil();
+
+
+var virtual_units = aPackage.VirtualUnitsAsSet();
+var virtual_units_class = new Set;
+var virtual_units_instancespecification = new Set;
+for (iterator in virtual_units) { 
+	if (iterator.isInstanceSpecification()) {
+		virtual_units_instancespecification.add(iterator);
+	}
+	if (iterator.isClass()) {
+		virtual_units_class.add(iterator);
+	}
+}
+//only of type VirtualActuator no supertypes or subtypes
+var virtual_actuators = aPackage.VirtualActuatorsAsSet();
+var virtual_actuators_class = new Set;
+var virtual_actuators_instancespecification = new Set;
+for (iterator in virtual_actuators) { 
+	if (iterator.isInstanceSpecification()) {
+		virtual_actuators_instancespecification.add(iterator);
+	}
+	if (iterator.isClass()) {
+		virtual_actuators_class.add(iterator);
+	}
+}
+//only of type Actuator no supertypes or subtypes
+var actuators = aPackage.ActuatorsAsSet();
+var actuators_class = new Set;
+var actuators_instancespecification = new Set;
+for (iterator in actuators) { 
+	if (iterator.isInstanceSpecification()) {
+		actuators_instancespecification.add(iterator);
+	}
+	if (iterator.isClass()) {
+		actuators_class.add(iterator);
+	}
+}
+//only of type VirtualSensor no supertypes or subtypes	
+var virtual_sensors = aPackage.VirtualSensorsAsSet();
+var virtual_sensors_class = new Set;
+var virtual_sensors_instancespecification = new Set;
+for (iterator in virtual_sensors) { 
+	if (iterator.isInstanceSpecification()) {
+		virtual_sensors_instancespecification.add(iterator);
+	}
+	if (iterator.isClass()) {
+		virtual_sensors_class.add(iterator);
+		//(iterator).println();
+	}
+}
+
+//only of type Sensor no supertypes	or subtypes
+var sensors = aPackage.SensorsAsSet();
+var sensors_class = new Set;
+var sensors_instancespecification = new Set;
+for (iterator in sensors) { 
+	if (iterator.isInstanceSpecification()) {
+		sensors_instancespecification.add(iterator);
+		//(iterator).println();
+	}
+	if (iterator.isClass()) {
+		sensors_class.add(iterator);
+	}
+}
+
+//only of type VirtualGateway no supertypes	or subtypes
+var virtual_gateways = aPackage.VirtualGatewaysAsSet();
+var virtual_gateways_class = new Set;
+var virtual_gateways_instancespecification = new Set;
+for (iterator in virtual_gateways) { 
+	if (iterator.isInstanceSpecification()) {
+		virtual_gateways_instancespecification.add(iterator);
+	}
+	if (iterator.isClass()) {
+		virtual_gateways_class.add(iterator);
+	}
+}
+
+//only of type Communication no supertypes or subtypes
+var communications = aPackage.CommunicationsAsSet();
+var communications_class = new Set;
+var communications_instancespecification = new Set;
+for (iterator in communications) { 
+	if (iterator.isInstanceSpecification()) {
+		communications_instancespecification.add(iterator);
+	}
+	if (iterator.isClass()) {
+		communications_class.add(iterator);
+	}
+}
+
+
+//only of type CloudService no supertypes or subtypes
+var cloud_services = aPackage.CloudServicesAsSet();
+var cloud_services_class = new Set;
+var cloud_services_instancespecification = new Set;
+for (iterator in cloud_services) { 
+	if (iterator.isInstanceSpecification()) {
+		cloud_services_instancespecification.add(iterator);
+	}
+	if (iterator.isClass()) {
+		cloud_services_class.add(iterator);
+	}
+}
+//only of type Test Configurations no supertypes or subtypes
+var test_configurations = aPackage.TestConfigurationsAsSet();
+var test_configurations_class = new Set;
+var test_configurations_instancespecification = new Set;
+for (iterator in test_configurations) { 
+	if (iterator.isInstanceSpecification()) {
+		test_configurations_instancespecification.add(iterator);
+	}
+	if (iterator.isClass()) {
+		test_configurations_class.add(iterator);
+	}
+}
+//only of type Communication Configurations no supertypes or subtypes
+var communication_configurations = aPackage.CommunicationConfigurationsAsSet();
+var communication_configurations_class = new Set;
+var communication_configurations_instancespecification = new Set;
+for (iterator in communication_configurations) { 
+	if (iterator.isInstanceSpecification()) {
+		communication_configurations_instancespecification.add(iterator);
+	}
+	if (iterator.isClass()) {
+		communication_configurations_class.add(iterator);
+	}
+}
+//only of type Storage Configurations no supertypes or subtypes
+var storage_configurations = aPackage.StorageConfigurationsAsSet();
+var storage_configurations_class = new Set;
+var storage_configurations_instancespecification = new Set;
+for (iterator in storage_configurations) { 
+	if (iterator.isInstanceSpecification()) {
+		storage_configurations_instancespecification.add(iterator);
+	}
+	if (iterator.isClass()) {
+		storage_configurations_class.add(iterator);
+	}
+}
+//only of type Computing Configurations no supertypes or subtypes
+var computing_configurations = aPackage.ComputingConfigurationsAsSet();
+var computing_configurations_class = new Set;
+var computing_configurations_instancespecification = new Set;
+for (iterator in computing_configurations) { 
+	if (iterator.isInstanceSpecification()) {
+		computing_configurations_instancespecification.add(iterator);
+	}
+	if (iterator.isClass()) {
+		computing_configurations_class.add(iterator);
+	}
+}
+//all units	of any type as Set then no duplicates, not ordered
+
+var allUnits = Unit.all.asSet();
+var target_packages = aPackage.getTargetPackageOfInfrastructureAsSet();
+
+%]
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+package [%=target_packages.asSequence().get(0)%];
+
+import at.ac.tuwien.dsg.rdsea.t4ume.java2json.uml.profiles.infrastructurecpsprofile.stereotypes.pojos.*;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Iterator;
+
+
+
+
+
+public class  [%=aPackage.name.replaceAll("\\s+","")%]{
+
+	//*************************************************
+	// Global variables
+	//*************************************************
+	private boolean showEmpty = true;
+	private List<Object> all_pojos = new ArrayList<Object>();
+	private List<Object> all_virtual_sensors = new ArrayList<Object>();
+	private List<Object> all_virtual_gateways = new ArrayList<Object>();
+	private List<Object> all_virtual_actuators = new ArrayList<Object>();
+	private List<Object> all_sensors = new ArrayList<Object>();
+	private List<Object> all_actuators = new ArrayList<Object>();
+	private List<Object> all_communications = new ArrayList<Object>();
+	private List<Object> all_communication_configurations = new ArrayList<Object>();
+	private List<Object> all_computing_configurations = new ArrayList<Object>();
+	private List<Object> all_storage_configurations = new ArrayList<Object>();
+	private List<Object> all_cloud_services = new ArrayList<Object>();
+
+	private List<Object> all_pojos_je = new ArrayList<Object>();
+	private List<Object> all_virtual_sensors_je = new ArrayList<Object>();
+	private List<Object> all_virtual_gateways_je = new ArrayList<Object>();
+	private List<Object> all_virtual_actuators_je = new ArrayList<Object>();
+	private List<Object> all_sensors_je = new ArrayList<Object>();
+	private List<Object> all_actuators_je = new ArrayList<Object>();
+	private List<Object> all_communications_je = new ArrayList<Object>();
+	private List<Object> all_communication_configurations_je = new ArrayList<Object>();
+	private List<Object> all_computing_configurations_je = new ArrayList<Object>();
+	private List<Object> all_storage_configurations_je = new ArrayList<Object>();
+	private List<Object> all_cloud_services_je = new ArrayList<Object>();
+
+	private List<Object> all_pojos_jo = new ArrayList<Object>();
+	private List<Object> all_virtual_sensors_jo = new ArrayList<Object>();
+	private List<Object> all_virtual_gateways_jo = new ArrayList<Object>();
+	private List<Object> all_virtual_actuators_jo = new ArrayList<Object>();
+	private List<Object> all_sensors_jo = new ArrayList<Object>();
+	private List<Object> all_actuators_jo = new ArrayList<Object>();
+	private List<Object> all_communications_jo = new ArrayList<Object>();
+	private List<Object> all_communication_configurations_jo = new ArrayList<Object>();
+	private List<Object> all_computing_configurations_jo = new ArrayList<Object>();
+	private List<Object> all_storage_configurations_jo = new ArrayList<Object>();
+	private List<Object> all_cloud_services_jo = new ArrayList<Object>();
+
+	private List<Object> all_pojos_string = new ArrayList<Object>();
+	private List<Object> all_virtual_sensors_string = new ArrayList<Object>();
+	private List<Object> all_virtual_gateways_string = new ArrayList<Object>();
+	private List<Object> all_virtual_actuators_string = new ArrayList<Object>();
+	private List<Object> all_sensors_string = new ArrayList<Object>();
+	private List<Object> all_actuators_string = new ArrayList<Object>();
+	private List<Object> all_communications_string = new ArrayList<Object>();
+	private List<Object> all_communication_configurations_string = new ArrayList<Object>();
+	private List<Object> all_computing_configurations_string = new ArrayList<Object>();
+	private List<Object> all_storage_configurations_string = new ArrayList<Object>();
+	private List<Object> all_cloud_services_string = new ArrayList<Object>();
+	
+	public static void main(String[] args) {
+
+	    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	    JsonParser jp = new JsonParser();
+	    
+		[%=aPackage.name.replaceAll("\\s+","")%] [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%] = new [%=aPackage.name.replaceAll("\\s+","")%]();
+
+//*************************************************
+//Cloud Services
+//*************************************************
+[%   
+//*************************************************
+//cloud_services
+//*************************************************
+	var cloud_services_counter = 1;  
+    for(elem in cloud_services_instancespecification.sortBy(l|l.name)){
+    	
+    	//(elem.getClassifiers().get(0)).println();
+    	//(elem.type).println();
+%]
+//*************************************************
+//Cloud Service [%=elem.name%]
+//*************************************************
+		CloudService cloud_service_[%=elem.name%]_[%=cloud_services_counter%] = new CloudService();
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_pojos.add(cloud_service_[%=elem.name%]_[%=cloud_services_counter%]);
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_cloud_services.add(cloud_service_[%=elem.name%]_[%=cloud_services_counter%]);
+
+[%    
+		var name_value = null;
+		var id_value = null;
+		
+		var cloudprovider_stereo_applications = new Set; 
+		var serviceType_stereo_applications = new Set; 
+		var dataProvider_stereo_applications = new Set; 
+		var computingConfigs_stereo_applications = new Set; 
+		var storageConfigs_stereo_applications = new Set; 
+		var communicationConfigs_stereo_applications = new Set;  
+		
+		var cloudprovider_value = new Set; 
+		var serviceType_value = new Set; 
+		var dataProvider_value = new Set; 
+		var computingConfigs_value = new Set; 
+		var storageConfigs_value = new Set; 
+		var communicationConfigs_value = new Set;  
+	
+		var cloudprovider_baseElement = null; 
+		var serviceType_baseElement = null; 
+		var dataProvider_baseElement = null; 
+		var computingConfigs_baseElement = null; 
+		var storageConfigs_baseElement = null; 
+		var communicationConfigs_baseElement = null; 
+		
+		     
+    	name_value = elem.name; 
+		id_value = elem.id; 
+%]
+		cloud_service_[%=elem.name%]_[%=cloud_services_counter%].addId("[%=elem.id%]");
+		cloud_service_[%=elem.name%]_[%=cloud_services_counter%].setName("[%=elem.getClassifiers().get(0).getName()%]");
+[%			
+    	cloudprovider_stereo_applications = elem.getCloudProviderOfCloudServiceAsSet();
+		serviceType_stereo_applications = elem.getServiceTypeOfCloudServiceAsSet();
+		dataProvider_stereo_applications = elem.getDataProviderOfCloudServiceAsSet();
+		
+		computingConfigs_stereo_applications = elem.getComputingConfigsOfCloudServiceAsSet();
+		storageConfigs_stereo_applications = elem.getStorageConfigsOfCloudServiceAsSet();
+		communicationConfigs_stereo_applications = elem.getCommunicationConfigsOfCloudServiceAsSet(); 
+
+		
+		for (service_type_elem in serviceType_stereo_applications) {
+
+%]
+		cloud_service_[%=elem.name%]_[%=cloud_services_counter%].addServiceType("[%=service_type_elem.name%]");
+[%		
+		}
+			
+		for (cloud_provider_elem in cloudprovider_stereo_applications) {
+
+%]
+		cloud_service_[%=elem.name%]_[%=cloud_services_counter%].addCloudProvider("[%=cloudprovider_baseElement%]");
+[%		
+		}
+		for (data_provider_elem in dataProvider_stereo_applications) {
+			//(data_provider_elem).println();
+%]
+		cloud_service_[%=elem.name%]_[%=cloud_services_counter%].addDataProvider("[%=data_provider_elem%]");
+[%		
+		}
+		for (computing_config_elem in computingConfigs_stereo_applications) {
+			computingConfigs_baseElement = computing_config_elem.getBaseElementOfComputingConfiguration();
+			//(computing_config_elem).println();
+%]
+		cloud_service_[%=elem.name%]_[%=cloud_services_counter%].addComputingConfigs("[%=computingConfigs_baseElement.getName()%]");
+[%		
+		}
+		for (storage_config_elem in storageConfigs_stereo_applications) {
+			storageConfigs_baseElement = storage_config_elem.getBaseElementOfStorageConfiguration();
+			//(storage_config_elem).println();
+%]
+		cloud_service_[%=elem.name%]_[%=cloud_services_counter%].addStorageConfigs("[%=storageConfigs_baseElement.getName()%]");
+[%		
+		}
+		for (communication_config_elem in communicationConfigs_stereo_applications) {
+			//(storage_config_elem).println();
+			communicationConfigs_baseElement = UMLUtil.getBaseElement(communication_config_elem);
+%]
+		cloud_service_[%=elem.name%]_[%=cloud_services_counter%].addCommunicationConfigs("[%=communicationConfigs_baseElement.getName()%]");
+[%		
+		}
+%]
+		//*************************************************
+		//Json Conversion
+		//*************************************************		
+	    JsonElement cloud_service_[%=elem.name%]_[%=cloud_services_counter%]_je = gson.toJsonTree(cloud_service_[%=elem.name%]_[%=cloud_services_counter%]);
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_cloud_services_je.add(cloud_service_[%=elem.name%]_[%=cloud_services_counter%]_je);
+	    
+	    JsonObject cloud_service_[%=elem.name%]_[%=cloud_services_counter%]_jo = new JsonObject();
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_cloud_services_jo.add(cloud_service_[%=elem.name%]_[%=cloud_services_counter%]_jo);
+	    
+	    cloud_service_[%=elem.name%]_[%=cloud_services_counter%]_jo.add("[%=elem.name%]", cloud_service_[%=elem.name%]_[%=cloud_services_counter%]_je);
+
+[%		
+    	cloud_services_counter++; 	
+	}
+    %]
+    
+
+
+
+//*************************************************
+//Virtual Sensors
+//*************************************************
+
+
+
+[%   
+//*************************************************
+//virtual_sensors
+//*************************************************
+	var virtual_sensors_counter = 1;  
+    for(elem in virtual_sensors_instancespecification.sortBy(l|l.name)){
+    
+%]
+
+//*************************************************
+//Virtual Sensor [%=elem.name%]
+//*************************************************
+		VirtualSensor virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%] = new VirtualSensor();
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_pojos.add(virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%]);
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_sensors.add(virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%]);
+
+
+[%    
+		var name_value = null;
+		var id_value = null;
+		
+		var swCapabilities_stereo_applications = new Set; 
+		var swMetrics_stereo_applications = new Set; 
+		var virtualActuators_stereo_applications = new Set; 
+		var ownedVirtualUnits_stereo_applications = new Set; 
+		var locations_stereo_applications = new Set; 
+		var descriptions_stereo_applications = new Set;  
+		var ownedUnits_stereo_applications = new Set;  
+		var hasTimestampMechanism_stereo_applications = new Set;  
+		var timestampMaxLatency_stereo_applications = new Set;  
+		var ownedVirtualUnits_stereo_applications = new Set;  
+		var deployedOn_stereo_applications = new Set;  
+
+		var swCapabilities_value = new Set; 
+		var swMetrics_value = new Set; 
+		var virtualActuators_value = new Set; 
+		var ownedVirtualUnits_value = new Set; 
+		var locations_value = new Set; 
+		var descriptions_value = new Set;  
+		var ownedUnits_value = new Set;  
+		var hasTimestampMechanism_value = new Set;  
+		var timestampMaxLatency_value = new Set;  
+		var ownedVirtualUnits_value = new Set;  
+		var deployedOn_value = new Set;  
+
+		var swCapabilities_baseElement = null; 
+		var swMetrics_baseElement = null; 
+		var virtualActuators_baseElement = null; 
+		var ownedVirtualUnits_baseElement = null; 
+		var locations_baseElement = null; 
+		var descriptions_baseElement = null;  
+		var ownedUnits_baseElement = null;  
+		var hasTimestampMechanism_baseElement = null;  
+		var timestampMaxLatency_baseElement = null;  
+		var ownedVirtualUnits_baseElement = null;  
+		var deployedOn_baseElement = null;  
+
+//get and generate values from the UML Model Element     
+    	name_value = elem.name; 
+		id_value = elem.id; 
+
+%]
+		virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%].addId("[%=elem.id%]");
+		virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%].setName("[%=elem.getClassifiers().get(0).getName()%]");	
+[%	
+
+//get and generate values from the stereotype application on the UML Model Element     
+		swCapabilities_stereo_applications = elem.getSwCapabilitiesOfVirtualSensorAsSet(); 
+		swMetrics_stereo_applications = elem.getSwMetricsOfVirtualSensorAsSet();
+		virtualActuators_stereo_applications = elem.getVirtualActuatorsOfVirtualSensorAsSet(); 
+		ownedVirtualUnits_stereo_applications = elem.getOwnedVirtualUnitsOfVirtualSensorAsSet(); 
+		locations_stereo_applications = elem.getLocationOfVirtualSensorAsSet(); 
+		descriptions_stereo_applications = elem.getDescriptionOfVirtualSensorAsSet();  
+		ownedUnits_stereo_applications = elem.getOwnedUnitsOfVirtualSensorAsSet();  
+		hasTimestampMechanism_stereo_applications = elem.getHasTimestampMechanismOfVirtualSensorAsSet();  
+		timestampMaxLatency_stereo_applications = elem.getTimestampMaxLatencyOfVirtualSensorAsSet();  
+		deployedOn_stereo_applications = elem.getDeployedOnOfVirtualSensorAsSet();  
+
+
+		for (sw_capability_elem in swCapabilities_stereo_applications) {
+			swCapabilities_baseElement = sw_capability_elem.getBaseElementOfSoftwareDefinedCapability();
+			//(sw_capability_elem).println();
+%]
+		virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%].addSwCapabilities("[%=swCapabilities_baseElement.getName()%]");
+[%	
+		}
+		for (sw_metric_elem in swMetrics_stereo_applications) {
+			swMetrics_baseElement = sw_metric_elem.getBaseElementOfSoftwareDefinedMetric();
+%]
+		virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%].addSwMetrics("[%=swMetrics_baseElement.getName()%]");
+[%	
+		}
+		for (virtual_actuator_elem in virtualActuators_stereo_applications) {
+			virtualActuators_baseElement = virtual_actuator_elem.getBaseElementOfVirtualActuator();
+%]
+		virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%].addVirtualActuators("[%=virtualActuators_baseElement.getName()%]");
+[%	
+		}
+		for (owned_virtual_unit_elem in ownedVirtualUnits_stereo_applications) {
+			ownedVirtualUnits_baseElement = owned_virtual_unit_elem.getBaseElementOfVirtualUnit();
+%]
+		virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%].addOwnedVirtualUnits("[%=ownedVirtualUnits_baseElement.getName()%]");
+[%		
+		}
+		for (location_elem in locations_stereo_applications) {
+			//(location_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%].addLocation("[%=location_elem%]");
+[%		
+		}
+		for (description_elem in descriptions_stereo_applications) {
+			//(description_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%].addDescription("[%=description_elem%]");
+[%		
+		}
+		for (owned_unit_elem in ownedUnits_stereo_applications) {
+			ownedUnits_baseElement = UMLUtil.getBaseElement(owned_unit_elem);
+%]
+		virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%].addOwnedUnits("[%=ownedUnits_baseElement.getName()%]");
+[%		
+		}
+		for (hasTimestampMechanism_elem in hasTimestampMechanism_stereo_applications) {
+			//(hasTimestampMechanism_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%].addHasTimestampMechanism("[%=hasTimestampMechanism_elem%]");
+[%		
+		}
+		for (timestampMaxLatency_elem in timestampMaxLatency_stereo_applications) {
+			//(timestampMaxLatency_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%].addTimestampMaxLatency("[%=timestampMaxLatency_elem%]");
+[%		
+		}
+		for (deployed_on_elem in deployedOn_stereo_applications) {
+			deployedOn_baseElement = deployed_on_elem.getBaseElementOfSensor();
+%]
+		virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%].addDeployedOn("[%=deployedOn_baseElement.getName()%]");
+[%		
+		}
+%]
+		//*************************************************
+		//Json Conversion
+		//*************************************************		
+	    JsonElement virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%]_je = gson.toJsonTree(virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%]);
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_sensors_je.add(virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%]_je);
+	    
+	    JsonObject virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%]_jo = new JsonObject();
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_sensors_jo.add(virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%]_jo);
+	    
+	    virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%]_jo.add("[%=elem.name%]", virtual_sensor_[%=elem.name%]_[%=virtual_sensors_counter%]_je);
+
+[%		
+    	virtual_sensors_counter++; 	
+	}
+    %]
+
+
+//*************************************************
+//Virtual Gateways
+//*************************************************
+
+
+
+[%   
+//*************************************************
+//virtual_gateways
+//*************************************************
+	var virtual_gateways_counter = 1;  
+    for(elem in virtual_gateways_instancespecification.sortBy(l|l.name)){
+    
+%]
+
+//*************************************************
+//Virtual Gateway [%=elem.name%]
+//*************************************************
+		VirtualGateway virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%] = new VirtualGateway();
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_pojos.add(virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%]);
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_gateways.add(virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%]);
+
+
+[%    
+		var name_value = null;
+		var id_value = null;
+		
+		var swCapabilities_stereo_applications = new Set; 
+		var swMetrics_stereo_applications = new Set; 
+		var virtualActuators_stereo_applications = new Set; 
+		var ownedVirtualUnits_stereo_applications = new Set; 
+		var locations_stereo_applications = new Set; 
+		var descriptions_stereo_applications = new Set;  
+		var ownedUnits_stereo_applications = new Set;  
+		var hasTimestampMechanism_stereo_applications = new Set;  
+		var timestampMaxLatency_stereo_applications = new Set;  
+		var ownedVirtualUnits_stereo_applications = new Set;  
+
+		var swCapabilities_value = new Set; 
+		var swMetrics_value = new Set; 
+		var virtualActuators_value = new Set; 
+		var ownedVirtualUnits_value = new Set; 
+		var locations_value = new Set; 
+		var descriptions_value = new Set;  
+		var ownedUnits_value = new Set;  
+		var hasTimestampMechanism_value = new Set;  
+		var timestampMaxLatency_value = new Set;  
+		var ownedVirtualUnits_value = new Set;  
+
+		var swCapabilities_baseElement = null; 
+		var swMetrics_baseElement = null; 
+		var virtualActuators_baseElement = null; 
+		var ownedVirtualUnits_baseElement = null; 
+		var locations_baseElement = null; 
+		var descriptions_baseElement = null;  
+		var ownedUnits_baseElement = null;  
+		var hasTimestampMechanism_baseElement = null;  
+		var timestampMaxLatency_baseElement = null;  
+		var ownedVirtualUnits_baseElement = null;  
+
+//get and generate values from the UML Model Element     
+    	name_value = elem.name; 
+		id_value = elem.id; 
+
+%]
+		virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%].addId("[%=elem.id%]");
+		virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%].setName("[%=elem.getClassifiers().get(0).getName()%]");	
+[%	
+
+//get and generate values from the stereotype application on the UML Model Element     
+		//swMetrics_stereo_applications = elem.getSwMetricsOfVirtualGatewayAsSet();
+		virtualActuators_stereo_applications = elem.getVirtualActuatorsOfVirtualGatewayAsSet(); 
+		ownedVirtualUnits_stereo_applications = elem.getOwnedVirtualUnitsOfVirtualGatewayAsSet(); 
+		locations_stereo_applications = elem.getLocationOfVirtualGatewayAsSet(); 
+		descriptions_stereo_applications = elem.getDescriptionOfVirtualGatewayAsSet();  
+		ownedUnits_stereo_applications = elem.getOwnedUnitsOfVirtualGatewayAsSet();  
+		hasTimestampMechanism_stereo_applications = elem.getHasTimestampMechanismOfVirtualGatewayAsSet();  
+		timestampMaxLatency_stereo_applications = elem.getTimestampMaxLatencyOfVirtualGatewayAsSet();  
+
+
+		for (virtual_actuator_elem in virtualActuators_stereo_applications) {
+			virtualActuators_baseElement = virtual_actuator_elem.getBaseElementOfVirtualActuator();
+%]
+		virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%].addVirtualActuators("[%=virtualActuators_baseElement.getName()%]");
+[%	
+		}
+		for (owned_virtual_unit_elem in ownedVirtualUnits_stereo_applications) {
+			ownedVirtualUnits_baseElement = owned_virtual_unit_elem.getBaseElementOfVirtualUnit();
+%]
+		virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%].addOwnedVirtualUnits("[%=ownedVirtualUnits_baseElement.getName()%]");
+[%		
+		}
+		for (location_elem in locations_stereo_applications) {
+			//(location_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%].addLocation("[%=location_elem%]");
+[%		
+		}
+		for (description_elem in descriptions_stereo_applications) {
+			//(description_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%].addDescription("[%=description_elem%]");
+[%		
+		}
+		for (owned_unit_elem in ownedUnits_stereo_applications) {
+			ownedUnits_baseElement = owned_unit_elem.getBaseElementOfUnit();
+%]
+		virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%].addOwnedUnits("[%=ownedUnits_baseElement.getName()%]");
+[%		
+		}
+		for (hasTimestampMechanism_elem in hasTimestampMechanism_stereo_applications) {
+			//(hasTimestampMechanism_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%].addHasTimestampMechanism("[%=hasTimestampMechanism_elem%]");
+[%		
+		}
+		for (timestampMaxLatency_elem in timestampMaxLatency_stereo_applications) {
+			//(timestampMaxLatency_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%].addTimestampMaxLatency("[%=timestampMaxLatency_elem%]");
+[%		
+		}
+%]
+		//*************************************************
+		//Json Conversion
+		//*************************************************		
+	    JsonElement virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%]_je = gson.toJsonTree(virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%]);
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_gateways_je.add(virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%]_je);
+	    
+	    JsonObject virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%]_jo = new JsonObject();
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_gateways_jo.add(virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%]_jo);
+	    
+	    virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%]_jo.add("[%=elem.name%]", virtual_gateway_[%=elem.name%]_[%=virtual_gateways_counter%]_je);
+
+[%		
+    	virtual_gateways_counter++; 	
+	}
+    %]
+
+[%   
+//*************************************************
+//sensors
+//*************************************************
+	var sensors_counter = 1;  
+    for(elem in sensors_instancespecification.sortBy(l|l.name)){
+    
+%]
+
+//*************************************************
+//Sensor [%=elem.name%]
+//*************************************************
+		Sensor sensor_[%=elem.name%]_[%=sensors_counter%] = new Sensor();
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_pojos.add(sensor_[%=elem.name%]_[%=sensors_counter%]);
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_sensors.add(sensor_[%=elem.name%]_[%=sensors_counter%]);
+
+[%    
+		var name_value = null;
+		var id_value = null;
+		
+		var swCapabilities_stereo_applications = new Set; 
+		var swMetrics_stereo_applications = new Set; 
+		var virtualActuators_stereo_applications = new Set; 
+		var ownedVirtualUnits_stereo_applications = new Set; 
+		var locations_stereo_applications = new Set; 
+		var descriptions_stereo_applications = new Set;  
+		var ownedUnits_stereo_applications = new Set;  
+		var hasTimestampMechanism_stereo_applications = new Set;  
+		var timestampMaxLatency_stereo_applications = new Set;  
+		var ownedVirtualUnits_stereo_applications = new Set;  
+
+		var swCapabilities_value = new Set; 
+		var swMetrics_value = new Set; 
+		var virtualActuators_value = new Set; 
+		var ownedVirtualUnits_value = new Set; 
+		var locations_value = new Set; 
+		var descriptions_value = new Set;  
+		var ownedUnits_value = new Set;  
+		var hasTimestampMechanism_value = new Set;  
+		var timestampMaxLatency_value = new Set;  
+		var ownedVirtualUnits_value = new Set;  
+
+		var swCapabilities_baseElement = null; 
+		var swMetrics_baseElement = null; 
+		var virtualActuators_baseElement = null; 
+		var ownedVirtualUnits_baseElement = null; 
+		var locations_baseElement = null; 
+		var descriptions_baseElement = null;  
+		var ownedUnits_baseElement = null;  
+		var hasTimestampMechanism_baseElement = null;  
+		var timestampMaxLatency_baseElement = null;  
+		var ownedVirtualUnits_baseElement = null;  
+
+//get and generate values from the UML Model Element     
+    	name_value = elem.name; 
+		id_value = elem.id; 
+
+%]
+		sensor_[%=elem.name%]_[%=sensors_counter%].addId("[%=elem.id%]");
+		sensor_[%=elem.name%]_[%=sensors_counter%].setName("[%=elem.getClassifiers().get(0).getName()%]");	
+[%	
+
+//get and generate values from the stereotype application on the UML Model Element     
+		//swCapabilities_stereo_applications = elem.getSwCapabilitiesOfSensorAsSet(); 
+		//swMetrics_stereo_applications = elem.getSwMetricsOfSensorAsSet();
+		//virtualActuators_stereo_applications = elem.getVirtualActuatorsOfSensorAsSet(); 
+		//ownedVirtualUnits_stereo_applications = elem.getOwnedVirtualUnitsOfSensorAsSet(); 
+		locations_stereo_applications = elem.getLocationOfSensorAsSet(); 
+		descriptions_stereo_applications = elem.getDescriptionOfSensorAsSet();  
+		ownedUnits_stereo_applications = elem.getOwnedUnitsOfSensorAsSet();  
+		hasTimestampMechanism_stereo_applications = elem.getHasTimestampMechanismOfSensorAsSet();  
+		timestampMaxLatency_stereo_applications = elem.getTimestampMaxLatencyOfSensorAsSet();  
+
+
+
+		for (location_elem in locations_stereo_applications) {
+			//(location_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		sensor_[%=elem.name%]_[%=sensors_counter%].addLocation("[%=location_elem%]");
+[%		
+		}
+		for (description_elem in descriptions_stereo_applications) {
+			//(description_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		sensor_[%=elem.name%]_[%=sensors_counter%].addDescription("[%=description_elem%]");
+[%		
+		}
+		for (owned_unit_elem in ownedUnits_stereo_applications) {
+			ownedUnits_baseElement = owned_unit_elem.getBaseElementOfUnit();
+%]
+		sensor_[%=elem.name%]_[%=sensors_counter%].addOwnedUnits("[%=ownedUnits_baseElement.getName()%]");
+[%		
+		}
+		for (hasTimestampMechanism_elem in hasTimestampMechanism_stereo_applications) {
+			//(hasTimestampMechanism_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		sensor_[%=elem.name%]_[%=sensors_counter%].addHasTimestampMechanism("[%=hasTimestampMechanism_elem%]");
+[%		
+		}
+		for (timestampMaxLatency_elem in timestampMaxLatency_stereo_applications) {
+			//(timestampMaxLatency_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		sensor_[%=elem.name%]_[%=sensors_counter%].addTimestampMaxLatency("[%=timestampMaxLatency_elem%]");
+[%		
+		}
+%]
+		//*************************************************
+		//Json Conversion
+		//*************************************************		
+	    JsonElement sensor_[%=elem.name%]_[%=sensors_counter%]_je = gson.toJsonTree(sensor_[%=elem.name%]_[%=sensors_counter%]);
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_sensors_je.add(sensor_[%=elem.name%]_[%=sensors_counter%]_je);
+	    
+	    JsonObject sensor_[%=elem.name%]_[%=sensors_counter%]_jo = new JsonObject();
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_sensors_jo.add(sensor_[%=elem.name%]_[%=sensors_counter%]_jo);
+	    
+	    sensor_[%=elem.name%]_[%=sensors_counter%]_jo.add("[%=elem.name%]", sensor_[%=elem.name%]_[%=sensors_counter%]_je);
+
+[%		
+    	sensors_counter++; 	
+	}
+    %]
+    
+[%
+//*************************************************
+//actuators
+//*************************************************
+	var actuators_counter = 1;  
+    for(elem in actuators_instancespecification.sortBy(l|l.name)){
+    
+%]
+
+//*************************************************
+//Actuator [%=elem.name%]
+//*************************************************
+		Actuator actuator_[%=elem.name%]_[%=actuators_counter%] = new Actuator();
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_pojos.add(actuator_[%=elem.name%]_[%=actuators_counter%]);
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_actuators.add(actuator_[%=elem.name%]_[%=actuators_counter%]);
+
+[%    
+		var name_value = null;
+		var id_value = null;
+		
+		var swCapabilities_stereo_applications = new Set; 
+		var swMetrics_stereo_applications = new Set; 
+		var virtualActuators_stereo_applications = new Set; 
+		var ownedVirtualUnits_stereo_applications = new Set; 
+		var locations_stereo_applications = new Set; 
+		var descriptions_stereo_applications = new Set;  
+		var ownedUnits_stereo_applications = new Set;  
+		var hasTimestampMechanism_stereo_applications = new Set;  
+		var timestampMaxLatency_stereo_applications = new Set;  
+		var ownedVirtualUnits_stereo_applications = new Set;  
+
+		var swCapabilities_value = new Set; 
+		var swMetrics_value = new Set; 
+		var virtualActuators_value = new Set; 
+		var ownedVirtualUnits_value = new Set; 
+		var locations_value = new Set; 
+		var descriptions_value = new Set;  
+		var ownedUnits_value = new Set;  
+		var hasTimestampMechanism_value = new Set;  
+		var timestampMaxLatency_value = new Set;  
+		var ownedVirtualUnits_value = new Set;  
+
+		var swCapabilities_baseElement = null; 
+		var swMetrics_baseElement = null; 
+		var virtualActuators_baseElement = null; 
+		var ownedVirtualUnits_baseElement = null; 
+		var locations_baseElement = null; 
+		var descriptions_baseElement = null;  
+		var ownedUnits_baseElement = null;  
+		var hasTimestampMechanism_baseElement = null;  
+		var timestampMaxLatency_baseElement = null;  
+		var ownedVirtualUnits_baseElement = null;  
+
+//get and generate values from the UML Model Element     
+    	name_value = elem.name; 
+		id_value = elem.id; 
+
+%]
+		actuator_[%=elem.name%]_[%=actuators_counter%].addId("[%=elem.id%]");
+		actuator_[%=elem.name%]_[%=actuators_counter%].setName("[%=elem.getClassifiers().get(0).getName()%]");	
+[%	
+
+//get and generate values from the stereotype application on the UML Model Element     
+		swCapabilities_stereo_applications = elem.getSwCapabilitiesOfActuatorAsSet(); 
+		swMetrics_stereo_applications = elem.getSwMetricsOfActuatorAsSet();
+		virtualActuators_stereo_applications = elem.getVirtualActuatorsOfActuatorAsSet(); 
+		ownedVirtualUnits_stereo_applications = elem.getOwnedVirtualUnitsOfActuatorAsSet(); 
+		locations_stereo_applications = elem.getLocationOfActuatorAsSet(); 
+		descriptions_stereo_applications = elem.getDescriptionOfActuatorAsSet();  
+		ownedUnits_stereo_applications = elem.getOwnedUnitsOfActuatorAsSet();  
+		hasTimestampMechanism_stereo_applications = elem.getHasTimestampMechanismOfActuatorAsSet();  
+		timestampMaxLatency_stereo_applications = elem.getTimestampMaxLatencyOfActuatorAsSet();  
+
+
+		for (sw_capability_elem in swCapabilities_stereo_applications) {
+			swCapabilities_baseElement = sw_capability_elem.getBaseElementOfSoftwareDefinedCapability();
+%]
+		actuator_[%=elem.name%]_[%=actuators_counter%].addSwCapabilities("[%=swCapabilities_baseElement.getName()%]");
+[%	
+		}
+		for (sw_metric_elem in swMetrics_stereo_applications) {
+			swMetrics_baseElement = sw_metric_elem.getBaseElementOfSoftwareDefinedMetric();
+%]
+		actuator_[%=elem.name%]_[%=actuators_counter%].addSwMetrics("[%=swMetrics_baseElement.getName()%]");
+[%	
+		}
+		for (virtual_actuator_elem in virtualActuators_stereo_applications) {
+			virtualActuators_baseElement = virtual_actuator_elem.getBaseElementOfVirtualActuator();
+%]
+		actuator_[%=elem.name%]_[%=actuators_counter%].addVirtualActuators("[%=virtualActuators_baseElement.getName()%]");
+[%	
+		}
+		for (owned_virtual_unit_elem in ownedVirtualUnits_stereo_applications) {
+			ownedVirtualUnits_baseElement = owned_virtual_unit_elem.getBaseElementOfVirtualUnit();
+%]
+		actuator_[%=elem.name%]_[%=actuators_counter%].addOwnedVirtualUnits("[%=ownedVirtualUnits_baseElement.getName()%]");
+[%		
+		}
+		for (location_elem in locations_stereo_applications) {
+			//(location_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		actuator_[%=elem.name%]_[%=actuators_counter%].addLocation("[%=location_elem%]");
+[%		
+		}
+		for (description_elem in descriptions_stereo_applications) {
+			//(description_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		actuator_[%=elem.name%]_[%=actuators_counter%].addDescription("[%=description_elem%]");
+[%		
+		}
+		for (owned_unit_elem in ownedUnits_stereo_applications) {
+			ownedUnits_baseElement = owned_unit_elem.getBaseElementOfUnit();
+%]
+		actuator_[%=elem.name%]_[%=actuators_counter%].addOwnedUnits("[%=ownedUnits_baseElement.getName()%]");
+[%		
+		}
+		for (hasTimestampMechanism_elem in hasTimestampMechanism_stereo_applications) {
+			//(hasTimestampMechanism_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		actuator_[%=elem.name%]_[%=actuators_counter%].addHasTimestampMechanism("[%=hasTimestampMechanism_elem%]");
+[%		
+		}
+		for (timestampMaxLatency_elem in timestampMaxLatency_stereo_applications) {
+			//(timestampMaxLatency_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		actuator_[%=elem.name%]_[%=actuators_counter%].addTimestampMaxLatency("[%=timestampMaxLatency_elem%]");
+[%		
+		}
+%]
+		//*************************************************
+		//Json Conversion
+		//*************************************************		
+	    JsonElement actuator_[%=elem.name%]_[%=actuators_counter%]_je = gson.toJsonTree(actuator_[%=elem.name%]_[%=actuators_counter%]);
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_actuators_je.add(actuator_[%=elem.name%]_[%=actuators_counter%]_je);
+	    
+	    JsonObject actuator_[%=elem.name%]_[%=actuators_counter%]_jo = new JsonObject();
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_actuators_jo.add(actuator_[%=elem.name%]_[%=actuators_counter%]_jo);
+	    
+	    actuator_[%=elem.name%]_[%=actuators_counter%]_jo.add("[%=elem.name%]", actuator_[%=elem.name%]_[%=actuators_counter%]_je);
+
+[%		
+   	actuators_counter++; 	
+	}
+    %]
+
+//*************************************************
+//Virtual Actuators
+//*************************************************
+
+
+
+[%   
+//*************************************************
+//virtual_actuators
+//*************************************************
+	var virtual_actuators_counter = 1;  
+    for(elem in virtual_actuators_instancespecification.sortBy(l|l.name)){
+    
+%]
+
+//*************************************************
+//Virtual Actuator [%=elem.name%]
+//*************************************************
+		VirtualActuator virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%] = new VirtualActuator();
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_pojos.add(virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%]);
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_actuators.add(virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%]);
+
+[%    
+		var name_value = null;
+		var id_value = null;
+		
+		var swCapabilities_stereo_applications = new Set; 
+		var swMetrics_stereo_applications = new Set; 
+		var virtualActuators_stereo_applications = new Set; 
+		var ownedVirtualUnits_stereo_applications = new Set; 
+		var locations_stereo_applications = new Set; 
+		var descriptions_stereo_applications = new Set;  
+		var ownedUnits_stereo_applications = new Set;  
+		var hasTimestampMechanism_stereo_applications = new Set;  
+		var timestampMaxLatency_stereo_applications = new Set;  
+		var ownedVirtualUnits_stereo_applications = new Set;  
+
+		var swCapabilities_value = new Set; 
+		var swMetrics_value = new Set; 
+		var virtualActuators_value = new Set; 
+		var ownedVirtualUnits_value = new Set; 
+		var locations_value = new Set; 
+		var descriptions_value = new Set;  
+		var ownedUnits_value = new Set;  
+		var hasTimestampMechanism_value = new Set;  
+		var timestampMaxLatency_value = new Set;  
+		var ownedVirtualUnits_value = new Set;  
+
+		var swCapabilities_baseElement = null; 
+		var swMetrics_baseElement = null; 
+		var virtualActuators_baseElement = null; 
+		var ownedVirtualUnits_baseElement = null; 
+		var locations_baseElement = null; 
+		var descriptions_baseElement = null;  
+		var ownedUnits_baseElement = null;  
+		var hasTimestampMechanism_baseElement = null;  
+		var timestampMaxLatency_baseElement = null;  
+		var ownedVirtualUnits_baseElement = null;  
+
+//get and generate values from the UML Model Element     
+    	name_value = elem.name; 
+		id_value = elem.id; 
+
+%]
+		virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%].addId("[%=elem.id%]");
+		virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%].setName("[%=elem.getClassifiers().get(0).getName()%]");	
+[%	
+
+//get and generate values from the stereotype application on the UML Model Element     
+		swCapabilities_stereo_applications = elem.getSwCapabilitiesOfVirtualActuatorAsSet(); 
+		swMetrics_stereo_applications = elem.getSwMetricsOfVirtualActuatorAsSet();
+		virtualActuators_stereo_applications = elem.getVirtualActuatorsOfVirtualActuatorAsSet(); 
+		ownedVirtualUnits_stereo_applications = elem.getOwnedVirtualUnitsOfVirtualActuatorAsSet(); 
+		locations_stereo_applications = elem.getLocationOfVirtualActuatorAsSet(); 
+		descriptions_stereo_applications = elem.getDescriptionOfVirtualActuatorAsSet();  
+		ownedUnits_stereo_applications = elem.getOwnedUnitsOfVirtualActuatorAsSet();  
+		hasTimestampMechanism_stereo_applications = elem.getHasTimestampMechanismOfVirtualActuatorAsSet();  
+		timestampMaxLatency_stereo_applications = elem.getTimestampMaxLatencyOfVirtualActuatorAsSet();  
+
+
+		for (sw_capability_elem in swCapabilities_stereo_applications) {
+			swCapabilities_baseElement = sw_capability_elem.getBaseElementOfSoftwareDefinedCapability();
+%]
+		virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%].addSwCapabilities("[%=swCapabilities_baseElement.getName()%]");
+[%	
+		}
+		for (sw_metric_elem in swMetrics_stereo_applications) {
+			swMetrics_baseElement = sw_metric_elem.getBaseElementOfSoftwareDefinedMetric();
+%]
+		virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%].addSwMetrics("[%=swMetrics_baseElement.getName()%]");
+[%	
+		}
+		for (virtual_actuator_elem in virtualActuators_stereo_applications) {
+			virtualActuators_baseElement = virtual_actuator_elem.getBaseElementOfVirtualActuator();
+%]
+		virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%].addVirtualActuators("[%=virtualActuators_baseElement.getName()%]");
+[%	
+		}
+		for (owned_virtual_unit_elem in ownedVirtualUnits_stereo_applications) {
+			ownedVirtualUnits_baseElement = owned_virtual_unit_elem.getBaseElementOfVirtualUnit();
+%]
+		virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%].addOwnedVirtualUnits("[%=ownedVirtualUnits_baseElement.getName()%]");
+[%		
+		}
+		for (location_elem in locations_stereo_applications) {
+			//(location_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%].addLocation("[%=location_elem%]");
+[%		
+		}
+		for (description_elem in descriptions_stereo_applications) {
+			//(description_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%].addDescription("[%=description_elem%]");
+[%		
+		}
+		for (owned_unit_elem in ownedUnits_stereo_applications) {
+			ownedUnits_baseElement = owned_unit_elem.getBaseElementOfUnit();
+%]
+		virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%].addOwnedUnits("[%=ownedUnits_baseElement.getName()%]");
+[%		
+		}
+		for (hasTimestampMechanism_elem in hasTimestampMechanism_stereo_applications) {
+			//(hasTimestampMechanism_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%].addHasTimestampMechanism("[%=hasTimestampMechanism_elem%]");
+[%		
+		}
+		for (timestampMaxLatency_elem in timestampMaxLatency_stereo_applications) {
+			//(timestampMaxLatency_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%].addTimestampMaxLatency("[%=timestampMaxLatency_elem%]");
+[%		
+		}
+%]
+		//*************************************************
+		//Json Conversion
+		//*************************************************		
+	    JsonElement virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%]_je = gson.toJsonTree(virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%]);
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_actuators_je.add(virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%]_je);
+	    
+	    JsonObject virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%]_jo = new JsonObject();
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_actuators_jo.add(virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%]_jo);
+	    
+	    virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%]_jo.add("[%=elem.name%]", virtual_actuator_[%=elem.name%]_[%=virtual_actuators_counter%]_je);
+
+[%		
+    	virtual_actuators_counter++; 	
+	}
+    %]
+
+//*************************************************
+//Communications
+//*************************************************
+
+
+
+[%   
+//*************************************************
+//communications
+//*************************************************
+	var communications_counter = 1;  
+    for(elem in communications_instancespecification.sortBy(l|l.name)){
+    
+%]
+
+//*************************************************
+//Communication [%=elem.name%]
+//*************************************************
+		Communication communication_[%=elem.name%]_[%=communications_counter%] = new Communication();
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_pojos.add(communication_[%=elem.name%]_[%=communications_counter%]);
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_communications.add(communication_[%=elem.name%]_[%=communications_counter%]);
+
+[%    
+		var name_value = null;
+		var id_value = null;
+				
+		
+		var communicationConfigs_stereo_applications = new Set;
+		var ownedVirtualUnits_stereo_applications = new Set; 
+		var locations_stereo_applications = new Set; 
+		var descriptions_stereo_applications = new Set;  
+		var ownedUnits_stereo_applications = new Set;  
+		var hasTimestampMechanism_stereo_applications = new Set;  
+		var timestampMaxLatency_stereo_applications = new Set;  
+		var ownedVirtualUnits_stereo_applications = new Set;  
+
+		var communicationConfigs_value = new Set;
+		var ownedVirtualUnits_value = new Set; 
+		var locations_value = new Set; 
+		var descriptions_value = new Set;  
+		var ownedUnits_value = new Set;  
+		var hasTimestampMechanism_value = new Set;  
+		var timestampMaxLatency_value = new Set;  
+		var ownedVirtualUnits_value = new Set;  
+
+		var communicationConfigs_baseElement = null;
+		var ownedVirtualUnits_baseElement = null; 
+		var locations_baseElement = null; 
+		var descriptions_baseElement = null;  
+		var ownedUnits_baseElement = null;  
+		var hasTimestampMechanism_baseElement = null;  
+		var timestampMaxLatency_baseElement = null;  
+		var ownedVirtualUnits_baseElement = null; 
+		
+		 
+
+//get and generate values from the UML Model Element     
+    	name_value = elem.name; 
+		id_value = elem.id; 
+
+%]
+		communication_[%=elem.name%]_[%=communications_counter%].addId("[%=elem.id%]");
+		communication_[%=elem.name%]_[%=communications_counter%].setName("[%=elem.getClassifiers().get(0).getName()%]");	
+[%	
+
+	
+
+
+//get and generate values from the stereotype application on the UML Model Element     
+		communicationConfigs_stereo_applications = elem.getCommunicationConfigsOfCommunicationAsSet(); 
+		ownedVirtualUnits_stereo_applications = elem.getOwnedVirtualUnitsOfCommunicationAsSet(); 
+		locations_stereo_applications = elem.getLocationOfCommunicationAsSet(); 
+		descriptions_stereo_applications = elem.getDescriptionOfCommunicationAsSet();  
+		ownedUnits_stereo_applications = elem.getOwnedUnitsOfCommunicationAsSet();  
+		hasTimestampMechanism_stereo_applications = elem.getHasTimestampMechanismOfCommunicationAsSet();  
+		timestampMaxLatency_stereo_applications = elem.getTimestampMaxLatencyOfCommunicationAsSet();  
+
+		for (communication_config_elem in communicationConfigs_stereo_applications) {
+			communicationConfigs_baseElement = UMLUtil.getBaseElement(communication_config_elem);
+%]
+		communication_[%=elem.name%]_[%=communications_counter%].addCommunicationConfigs("[%=communicationConfigs_baseElement.getName()%]");
+[%		
+		}
+
+		for (owned_virtual_unit_elem in ownedVirtualUnits_stereo_applications) {
+			ownedVirtualUnits_baseElement = owned_virtual_unit_elem.getBaseElementOfVirtualUnit();
+%]
+		communication_[%=elem.name%]_[%=communications_counter%].addOwnedVirtualUnits("[%=ownedVirtualUnits_baseElement.getName()%]");
+[%		
+		}
+		for (location_elem in locations_stereo_applications) {
+			//(location_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		communication_[%=elem.name%]_[%=communications_counter%].addLocation("[%=location_elem%]");
+[%		
+		}
+		for (description_elem in descriptions_stereo_applications) {
+			//(description_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		communication_[%=elem.name%]_[%=communications_counter%].addDescription("[%=description_elem%]");
+[%		
+		}
+		for (owned_unit_elem in ownedUnits_stereo_applications) {
+			ownedUnits_baseElement = owned_unit_elem.getBaseElementOfUnit();
+%]
+		communication_[%=elem.name%]_[%=communications_counter%].addOwnedUnits("[%=ownedUnits_baseElement.getName()%]");
+[%		
+		}
+		for (hasTimestampMechanism_elem in hasTimestampMechanism_stereo_applications) {
+			//(hasTimestampMechanism_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		communication_[%=elem.name%]_[%=communications_counter%].addHasTimestampMechanism("[%=hasTimestampMechanism_elem%]");
+[%		
+		}
+		for (timestampMaxLatency_elem in timestampMaxLatency_stereo_applications) {
+			//(timestampMaxLatency_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		communication_[%=elem.name%]_[%=communications_counter%].addTimestampMaxLatency("[%=timestampMaxLatency_elem%]");
+[%		
+		}
+
+%]
+		//*************************************************
+		//Json Conversion
+		//*************************************************		
+	    JsonElement communication_[%=elem.name%]_[%=communications_counter%]_je = gson.toJsonTree(communication_[%=elem.name%]_[%=communications_counter%]);
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_communications_je.add(communication_[%=elem.name%]_[%=communications_counter%]_je);
+	    
+	    JsonObject communication_[%=elem.name%]_[%=communications_counter%]_jo = new JsonObject();
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_communications_jo.add(communication_[%=elem.name%]_[%=communications_counter%]_jo);
+	    
+	    communication_[%=elem.name%]_[%=communications_counter%]_jo.add("[%=elem.name%]", communication_[%=elem.name%]_[%=communications_counter%]_je);
+
+[%		
+    	communications_counter++; 	
+	}
+    %]
+
+
+//*************************************************
+//communication_configurations
+//*************************************************
+[%  
+	var communication_configurations_counter = 1;  
+    for(elem in communication_configurations_instancespecification.sortBy(l|l.name)){
+    	//(elem).println();
+%]
+
+//*************************************************
+//Communication Configuration [%=elem.name%]
+//*************************************************
+		CommunicationConfiguration communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%] = new CommunicationConfiguration();
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_pojos.add(communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%]);
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_communication_configurations.add(communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%]);
+
+[%    
+		var name_value = null;
+		var id_value = null;
+				
+		
+		var protocolType_stereo_applications = new Set;
+		var clientID_stereo_applications = new Set; 
+		var serverIP_stereo_applications = new Set; 
+		var portNumber_stereo_applications = new Set;  
+		var topics_stereo_applications = new Set;  
+		var qosLevel_stereo_applications = new Set;  
+		var keepAlive_stereo_applications = new Set;  
+
+		var protocolType_stereo_value = new Set;
+		var clientID_stereo_value = new Set; 
+		var serverIP_stereo_value = new Set; 
+		var portNumber_stereo_value = new Set;  
+		var topics_stereo_value = new Set;  
+		var qosLevel_stereo_value = new Set;  
+		var keepAlive_stereo_value = new Set;  
+		 
+		var protocolType_stereo_baseElement = null;
+		var clientID_stereo_baseElement = null; 
+		var serverIP_stereo_baseElement = null; 
+		var portNumber_stereo_baseElement = null;  
+		var topics_stereo_baseElement = null;  
+		var qosLevel_stereo_baseElement = null;  
+		var keepAlive_stereo_baseElement = null;  		
+		 
+
+//get and generate values from the UML Model Element     
+    	name_value = elem.name; 
+		id_value = elem.id; 
+
+%]
+		communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%].addId("[%=elem.id%]");
+		communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%].setName("[%=elem.getClassifiers().get(0).getName()%]");	
+[%	
+
+//get and generate values from the stereotype application on the UML Model Element     
+		protocolType_stereo_applications = elem.getProtocolTypeOfCommunicationConfigurationAsSet();
+		clientID_stereo_applications = elem.getClientIDOfCommunicationConfigurationAsSet(); 
+		serverIP_stereo_applications = elem.getServerIPOfCommunicationConfigurationAsSet(); 
+		portNumber_stereo_applications = elem.getPortNumberOfCommunicationConfigurationAsSet();  
+		topics_stereo_applications = elem.getTopicsOfCommunicationConfigurationAsSet();  
+		qosLevel_stereo_applications = elem.getQosLevelOfCommunicationConfigurationAsSet();  
+		keepAlive_stereo_applications = elem.getKeepAliveOfCommunicationConfigurationAsSet();
+		
+		//(protocolType_stereo_applications).println();  
+		for (protocol_type_elem in protocolType_stereo_applications) {
+			//(protocol_type_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%].addProtocolType("[%=protocol_type_elem.name%]");
+[%		
+		}
+		for (client_id_elem in clientID_stereo_applications) {
+			//(client_id_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%].addClientID("[%=client_id_elem%]");
+[%		
+		}	    
+		for (port_number_elem in portNumber_stereo_applications) {
+			//(port_number_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%].addPortNumber("[%=port_number_elem%]");
+[%		
+		}	
+		
+		for (server_ip_elem in serverIP_stereo_applications) {
+			//(server_ip_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%].addServerIP("[%=server_ip_elem%]");
+[%		
+		}	
+		
+		for (topic_elem in topics_stereo_applications) {
+			//(topic_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%].addTopics("[%=topic_elem%]");
+[%		
+		}	
+		
+		for (qos_level_elem in qosLevel_stereo_applications) {
+			//(qos_level_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%].addQosLevel("[%=qos_level_elem%]");
+[%		
+		}	
+		
+		for (keep_alive_elem in keepAlive_stereo_applications) {
+			//(keep_alive_elem).println();
+			//ownedVirtualUnits_baseElement = location_elem;
+%]
+		communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%].addKeepAlive("[%=keep_alive_elem%]");
+[%		
+		}
+%]
+		//*************************************************
+		//Json Conversion
+		//*************************************************		
+	    JsonElement communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%]_je = gson.toJsonTree(communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%]);
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_communication_configurations_je.add(communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%]_je);
+	    
+	    JsonObject communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%]_jo = new JsonObject();
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_communication_configurations_jo.add(communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%]_jo);
+	    
+	    communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%]_jo.add("[%=elem.name%]", communication_configuration_[%=elem.name%]_[%=communication_configurations_counter%]_je);
+
+[%		
+
+    	communication_configurations_counter++; 	
+	}
+    %]
+
+
+
+//*************************************************
+//computing_configurations
+//*************************************************
+[%  
+	var computing_configurations_counter = 1;  
+    for(elem in computing_configurations_instancespecification.sortBy(l|l.name)){
+    	//(elem).println();
+%]
+
+//*************************************************
+//Computing Configuration [%=elem.name%]
+//*************************************************
+		ComputingConfiguration computing_configuration_[%=elem.name%]_[%=computing_configurations_counter%] = new ComputingConfiguration();
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_pojos.add(computing_configuration_[%=elem.name%]_[%=computing_configurations_counter%]);
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_computing_configurations.add(computing_configuration_[%=elem.name%]_[%=computing_configurations_counter%]);
+
+[%    
+		var name_value = null;
+		var id_value = null;
+
+//get and generate values from the UML Model Element     
+    	name_value = elem.name; 
+		id_value = elem.id; 
+
+%]
+		computing_configuration_[%=elem.name%]_[%=computing_configurations_counter%].addId("[%=elem.id%]");
+		computing_configuration_[%=elem.name%]_[%=computing_configurations_counter%].setName("[%=elem.getClassifiers().get(0).getName()%]");	
+
+		//*************************************************
+		//Json Conversion
+		//*************************************************		
+	    JsonElement computing_configuration_[%=elem.name%]_[%=computing_configurations_counter%]_je = gson.toJsonTree(computing_configuration_[%=elem.name%]_[%=computing_configurations_counter%]);
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_computing_configurations_je.add(computing_configuration_[%=elem.name%]_[%=computing_configurations_counter%]_je);
+	    
+	    JsonObject computing_configuration_[%=elem.name%]_[%=computing_configurations_counter%]_jo = new JsonObject();
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_computing_configurations_jo.add(computing_configuration_[%=elem.name%]_[%=computing_configurations_counter%]_jo);
+	    
+	    computing_configuration_[%=elem.name%]_[%=computing_configurations_counter%]_jo.add("[%=elem.name%]", computing_configuration_[%=elem.name%]_[%=computing_configurations_counter%]_je);
+
+[%		
+
+    	computing_configurations_counter++; 	
+	}
+    %]
+
+
+//*************************************************
+//storage_configurations
+//*************************************************
+[%  
+	var storage_configurations_counter = 1;  
+    for(elem in storage_configurations_instancespecification.sortBy(l|l.name)){
+    	//(elem).println();
+%]
+
+//*************************************************
+//Storage Configuration [%=elem.name%]
+//*************************************************
+		StorageConfiguration storage_configuration_[%=elem.name%]_[%=storage_configurations_counter%] = new StorageConfiguration();
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_pojos.add(storage_configuration_[%=elem.name%]_[%=storage_configurations_counter%]);
+		[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_storage_configurations.add(storage_configuration_[%=elem.name%]_[%=storage_configurations_counter%]);
+
+[%    
+		var name_value = null;
+		var id_value = null;
+				
+		
+		 
+
+//get and generate values from the UML Model Element     
+    	name_value = elem.name; 
+		id_value = elem.id; 
+
+%]
+		storage_configuration_[%=elem.name%]_[%=storage_configurations_counter%].addId("[%=elem.id%]");
+		storage_configuration_[%=elem.name%]_[%=storage_configurations_counter%].setName("[%=elem.getClassifiers().get(0).getName()%]");	
+
+		//*************************************************
+		//Json Conversion
+		//*************************************************		
+	    JsonElement storage_configuration_[%=elem.name%]_[%=storage_configurations_counter%]_je = gson.toJsonTree(storage_configuration_[%=elem.name%]_[%=storage_configurations_counter%]);
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_storage_configurations_je.add(storage_configuration_[%=elem.name%]_[%=storage_configurations_counter%]_je);
+	    
+	    JsonObject storage_configuration_[%=elem.name%]_[%=storage_configurations_counter%]_jo = new JsonObject();
+	    [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_storage_configurations_jo.add(storage_configuration_[%=elem.name%]_[%=storage_configurations_counter%]_jo);
+	    
+	    storage_configuration_[%=elem.name%]_[%=storage_configurations_counter%]_jo.add("[%=elem.name%]", storage_configuration_[%=elem.name%]_[%=storage_configurations_counter%]_je);
+
+[%		
+
+    	storage_configurations_counter++; 	
+	}
+    %]
+
+		JsonElement je = null;
+		String je_string = null;
+		//*************************************************
+		//Serialization of Cloud Services
+		//*************************************************    
+
+		for (Iterator iterator = [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_cloud_services_jo.iterator(); iterator.hasNext();) {
+			JsonObject elem = (JsonObject) iterator.next();
+			je = jp.parse(elem.toString());
+			[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_cloud_services_je.add(je);
+			je_string = gson.toJson(je);
+			[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_cloud_services_string.add(je_string);
+			System.out.println(je_string);			
+		}
+
+		//*************************************************
+		//Serialization of Virtual Sensors
+		//*************************************************    
+		
+		for (Iterator iterator = [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_sensors_jo.iterator(); iterator.hasNext();) {
+			JsonObject elem = (JsonObject) iterator.next();
+			je = jp.parse(elem.toString());
+			[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_sensors_je.add(je);
+			je_string = gson.toJson(je);
+			[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_sensors_string.add(je_string);
+			System.out.println(je_string);			
+		}
+		
+		//*************************************************
+		//Serialization of Sensors
+		//*************************************************    
+		
+		for (Iterator iterator = [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_sensors_jo.iterator(); iterator.hasNext();) {
+			JsonObject elem = (JsonObject) iterator.next();
+			je = jp.parse(elem.toString());
+			[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_sensors_je.add(je);
+			je_string = gson.toJson(je);
+			[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_sensors_string.add(je_string);
+			System.out.println(je_string);			
+		}
+
+		//*************************************************
+		//Serialization of Virtual Gateways
+		//*************************************************    
+		
+		for (Iterator iterator = [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_gateways_jo.iterator(); iterator.hasNext();) {
+			JsonObject elem = (JsonObject) iterator.next();
+			je = jp.parse(elem.toString());
+			[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_gateways_je.add(je);
+			je_string = gson.toJson(je);
+			[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_gateways_string.add(je_string);
+			System.out.println(je_string);			
+		}	
+		
+		//*************************************************
+		//Serialization of Virtual Actuator
+		//*************************************************    
+		
+		for (Iterator iterator = [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_actuators_jo.iterator(); iterator.hasNext();) {
+			JsonObject elem = (JsonObject) iterator.next();
+			je = jp.parse(elem.toString());
+			[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_actuators_je.add(je);
+			je_string = gson.toJson(je);
+			[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_virtual_actuators_string.add(je_string);
+			System.out.println(je_string);			
+		}
+		
+		//*************************************************
+		//Serialization of Actuator
+		//*************************************************    
+		
+		for (Iterator iterator = [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_actuators_jo.iterator(); iterator.hasNext();) {
+			JsonObject elem = (JsonObject) iterator.next();
+			je = jp.parse(elem.toString());
+			[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_actuators_je.add(je);
+			je_string = gson.toJson(je);
+			[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_actuators_string.add(je_string);
+			System.out.println(je_string);			
+		}
+				
+		//*************************************************
+		//Serialization of Communication
+		//*************************************************    
+		
+		for (Iterator iterator = [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_communications_jo.iterator(); iterator.hasNext();) {
+			JsonObject elem = (JsonObject) iterator.next();
+			je = jp.parse(elem.toString());
+			[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_communications_je.add(je);
+			je_string = gson.toJson(je);
+			[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_communications_string.add(je_string);
+			System.out.println(je_string);			
+		}	
+
+		//*************************************************
+		//Serialization of Communication Configuration
+		//*************************************************    
+		
+		for (Iterator iterator = [%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_communication_configurations_jo.iterator(); iterator.hasNext();) {
+			JsonObject elem = (JsonObject) iterator.next();
+			je = jp.parse(elem.toString());
+			[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_communication_configurations_je.add(je);
+			je_string = gson.toJson(je);
+			[%=aPackage.name.replaceAll("\\s+","").firstToLowerCase()%].all_communication_configurations_string.add(je_string);
+			System.out.println(je_string);			
+		}	
+
+		
+	}
+	
+	
+}

@@ -1,0 +1,1002 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+import "../../utilities.eol";
+
+//stereotype libraries
+import	"../stereotypes/HwTiming/HwTimingResource.eol";
+import	"../stereotypes/HwTiming/HwClock.eol";
+import	"../stereotypes/HwTiming/HwTimer.eol";
+
+
+@cached
+operation Profile getHwTiming() : Profile {
+	return self;
+}
+
+
+@cached
+operation Profile getEnumerations() : Set {
+	var enumerations = self.getOwnedTypes().select(e|e.isTypeOf(Enumeration));
+	return enumerations;
+}
+
+
+//enumeration operations
+@cached
+operation Profile getConstraintKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConstraintKind");
+	return enum;
+}
+@cached
+operation Profile getAllocationNatureEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AllocationNature");
+	return enum;
+}
+@cached
+operation Profile getAllocationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AllocationKind");
+	return enum;
+}
+@cached
+operation Profile getAllocationEndKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AllocationEndKind");
+	return enum;
+}
+@cached
+operation Profile getAssignmentNatureEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AssignmentNature");
+	return enum;
+}
+@cached
+operation Profile getAssignmentKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AssignmentKind");
+	return enum;
+}
+@cached
+operation Profile getCallConcurrencyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "CallConcurrencyKind");
+	return enum;
+}
+@cached
+operation Profile getPoolMgtPolicyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PoolMgtPolicyKind");
+	return enum;
+}
+@cached
+operation Profile getSynchronizationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "SynchronizationKind");
+	return enum;
+}
+@cached
+operation Profile getExecutionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ExecutionKind");
+	return enum;
+}
+@cached
+operation Profile getConcurrencyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConcurrencyKind");
+	return enum;
+}
+@cached
+operation Profile getISA_TypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ISA_Type");
+	return enum;
+}
+@cached
+operation Profile getPLD_TechnologyEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PLD_Technology");
+	return enum;
+}
+@cached
+operation Profile getPLD_ClassEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PLD_Class");
+	return enum;
+}
+@cached
+operation Profile getRepl_PolicyEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "Repl_Policy");
+	return enum;
+}
+@cached
+operation Profile getWritePolicyEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "WritePolicy");
+	return enum;
+}
+@cached
+operation Profile getCacheTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "CacheType");
+	return enum;
+}
+@cached
+operation Profile getROM_TypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ROM_Type");
+	return enum;
+}
+@cached
+operation Profile getComponentKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ComponentKind");
+	return enum;
+}
+@cached
+operation Profile getConditionTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConditionType");
+	return enum;
+}
+@cached
+operation Profile getComponentStateEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ComponentState");
+	return enum;
+}
+@cached
+operation Profile getInterruptKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "InterruptKind");
+	return enum;
+}
+@cached
+operation Profile getAccessPolicyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AccessPolicyKind");
+	return enum;
+}
+@cached
+operation Profile getQueuePolicyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "QueuePolicyKind");
+	return enum;
+}
+@cached
+operation Profile getMessageResourceKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "MessageResourceKind");
+	return enum;
+}
+@cached
+operation Profile getNotificationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "NotificationKind");
+	return enum;
+}
+@cached
+operation Profile getNotificationResourceKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "NotificationResourceKind");
+	return enum;
+}
+@cached
+operation Profile getMutualExclusionResourceKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "MutualExclusionResourceKind");
+	return enum;
+}
+@cached
+operation Profile getConcurrentAccessProtocolKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConcurrentAccessProtocolKind");
+	return enum;
+}
+@cached
+operation Profile getFlowDirectionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "FlowDirectionKind");
+	return enum;
+}
+@cached
+operation Profile getClientServerKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ClientServerKind");
+	return enum;
+}
+@cached
+operation Profile getPortSpecificationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PortSpecificationKind");
+	return enum;
+}
+@cached
+operation Profile getDataPoolOrderingKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "DataPoolOrderingKind");
+	return enum;
+}
+@cached
+operation Profile getLaxityKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "LaxityKind");
+	return enum;
+}
+@cached
+operation Profile getOptimallityCriterionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "OptimallityCriterionKind");
+	return enum;
+}
+@cached
+operation Profile getVariableDirectionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "VariableDirectionKind");
+	return enum;
+}
+@cached
+operation Profile getContentKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ContentKind");
+	return enum;
+}
+@cached
+operation Profile getFeatureKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "FeatureKind");
+	return enum;
+}
+@cached
+operation Profile getVisibilityKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "VisibilityKind");
+	return enum;
+}
+@cached
+operation Profile getExpansionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ExpansionKind");
+	return enum;
+}
+@cached
+operation Profile getObjectNodeOrderingKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ObjectNodeOrderingKind");
+	return enum;
+}
+@cached
+operation Profile getAggregationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AggregationKind");
+	return enum;
+}
+@cached
+operation Profile getCallConcurrencyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "CallConcurrencyKind");
+	return enum;
+}
+@cached
+operation Profile getParameterDirectionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ParameterDirectionKind");
+	return enum;
+}
+@cached
+operation Profile getParameterEffectKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ParameterEffectKind");
+	return enum;
+}
+@cached
+operation Profile getVisibilityKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "VisibilityKind");
+	return enum;
+}
+@cached
+operation Profile getInteractionOperatorKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "InteractionOperatorKind");
+	return enum;
+}
+@cached
+operation Profile getMessageKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "MessageKind");
+	return enum;
+}
+@cached
+operation Profile getMessageSortEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "MessageSort");
+	return enum;
+}
+@cached
+operation Profile getPseudostateKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PseudostateKind");
+	return enum;
+}
+@cached
+operation Profile getTransitionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TransitionKind");
+	return enum;
+}
+@cached
+operation Profile getConnectorKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConnectorKind");
+	return enum;
+}
+@cached
+operation Profile getTimeUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TimeUnitKind");
+	return enum;
+}
+@cached
+operation Profile getPowerUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PowerUnitKind");
+	return enum;
+}
+@cached
+operation Profile getFrequencyUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "FrequencyUnitKind");
+	return enum;
+}
+@cached
+operation Profile getDataSizeUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "DataSizeUnitKind");
+	return enum;
+}
+@cached
+operation Profile getDataTxRateUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "DataTxRateUnitKind");
+	return enum;
+}
+@cached
+operation Profile getEnergyUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "EnergyUnitKind");
+	return enum;
+}
+@cached
+operation Profile getLengthUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "LengthUnitKind");
+	return enum;
+}
+@cached
+operation Profile getAreaUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AreaUnitKind");
+	return enum;
+}
+@cached
+operation Profile getWeightUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "WeightUnitKind");
+	return enum;
+}
+@cached
+operation Profile getSchedPolicyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "SchedPolicyKind");
+	return enum;
+}
+@cached
+operation Profile getProtectProtocolKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ProtectProtocolKind");
+	return enum;
+}
+@cached
+operation Profile getPeriodicServerKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PeriodicServerKind");
+	return enum;
+}
+@cached
+operation Profile getTransmModeKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TransmModeKind");
+	return enum;
+}
+@cached
+operation Profile getSourceKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "SourceKind");
+	return enum;
+}
+@cached
+operation Profile getDirectionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "DirectionKind");
+	return enum;
+}
+@cached
+operation Profile getStatisticalQualifierKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "StatisticalQualifierKind");
+	return enum;
+}
+@cached
+operation Profile getTimeNatureKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TimeNatureKind");
+	return enum;
+}
+@cached
+operation Profile getTimeInterpretationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TimeInterpretationKind");
+	return enum;
+}
+@cached
+operation Profile getEventKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "EventKind");
+	return enum;
+}
+@cached
+operation Profile getTimeStandardKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TimeStandardKind");
+	return enum;
+}
+@cached
+operation Profile getTUKEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TUK");
+	return enum;
+}
+@cached
+operation Profile getTimeUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TimeUnitKind");
+	return enum;
+}
+@cached
+operation Profile getLogicalTimeUnitEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "LogicalTimeUnit");
+	return enum;
+}
+@cached
+operation Profile getConstraintKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConstraintKind");
+	return enum;
+}
+@cached
+operation Profile getAllocationNatureEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AllocationNature");
+	return enum;
+}
+@cached
+operation Profile getAllocationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AllocationKind");
+	return enum;
+}
+@cached
+operation Profile getAllocationEndKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AllocationEndKind");
+	return enum;
+}
+@cached
+operation Profile getAssignmentNatureEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AssignmentNature");
+	return enum;
+}
+@cached
+operation Profile getAssignmentKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AssignmentKind");
+	return enum;
+}
+@cached
+operation Profile getCallConcurrencyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "CallConcurrencyKind");
+	return enum;
+}
+@cached
+operation Profile getPoolMgtPolicyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PoolMgtPolicyKind");
+	return enum;
+}
+@cached
+operation Profile getSynchronizationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "SynchronizationKind");
+	return enum;
+}
+@cached
+operation Profile getExecutionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ExecutionKind");
+	return enum;
+}
+@cached
+operation Profile getConcurrencyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConcurrencyKind");
+	return enum;
+}
+@cached
+operation Profile getISA_TypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ISA_Type");
+	return enum;
+}
+@cached
+operation Profile getPLD_TechnologyEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PLD_Technology");
+	return enum;
+}
+@cached
+operation Profile getPLD_ClassEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PLD_Class");
+	return enum;
+}
+@cached
+operation Profile getRepl_PolicyEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "Repl_Policy");
+	return enum;
+}
+@cached
+operation Profile getWritePolicyEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "WritePolicy");
+	return enum;
+}
+@cached
+operation Profile getCacheTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "CacheType");
+	return enum;
+}
+@cached
+operation Profile getROM_TypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ROM_Type");
+	return enum;
+}
+@cached
+operation Profile getComponentKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ComponentKind");
+	return enum;
+}
+@cached
+operation Profile getConditionTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConditionType");
+	return enum;
+}
+@cached
+operation Profile getComponentStateEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ComponentState");
+	return enum;
+}
+@cached
+operation Profile getInterruptKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "InterruptKind");
+	return enum;
+}
+@cached
+operation Profile getAccessPolicyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AccessPolicyKind");
+	return enum;
+}
+@cached
+operation Profile getQueuePolicyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "QueuePolicyKind");
+	return enum;
+}
+@cached
+operation Profile getMessageResourceKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "MessageResourceKind");
+	return enum;
+}
+@cached
+operation Profile getNotificationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "NotificationKind");
+	return enum;
+}
+@cached
+operation Profile getNotificationResourceKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "NotificationResourceKind");
+	return enum;
+}
+@cached
+operation Profile getMutualExclusionResourceKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "MutualExclusionResourceKind");
+	return enum;
+}
+@cached
+operation Profile getConcurrentAccessProtocolKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConcurrentAccessProtocolKind");
+	return enum;
+}
+@cached
+operation Profile getFlowDirectionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "FlowDirectionKind");
+	return enum;
+}
+@cached
+operation Profile getClientServerKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ClientServerKind");
+	return enum;
+}
+@cached
+operation Profile getPortSpecificationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PortSpecificationKind");
+	return enum;
+}
+@cached
+operation Profile getDataPoolOrderingKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "DataPoolOrderingKind");
+	return enum;
+}
+@cached
+operation Profile getLaxityKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "LaxityKind");
+	return enum;
+}
+@cached
+operation Profile getOptimallityCriterionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "OptimallityCriterionKind");
+	return enum;
+}
+@cached
+operation Profile getVariableDirectionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "VariableDirectionKind");
+	return enum;
+}
+
+//stereotype operations
+
+@cached
+operation Profile getHwTimingResourceStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var hwTimingResourceStereotype = ownedStereotypes.selectOne(s|s.name = "HwTimingResource");
+	return hwTimingResourceStereotype;
+}
+
+@cached
+operation Profile getHwClockStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var hwClockStereotype = ownedStereotypes.selectOne(s|s.name = "HwClock");
+	return hwClockStereotype;
+}
+
+@cached
+operation Profile getHwTimerStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var hwTimerStereotype = ownedStereotypes.selectOne(s|s.name = "HwTimer");
+	return hwTimerStereotype;
+}
+
+
+	
+operation Package getHwTimingResourceSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("HwTimingResource")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getHwTimingResourceSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwTimingResource")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Property annotated with HwTimingResource.
+*/ 
+operation Package getHwTimingResourcePropertySet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwTimingResource")){
+			if(son.type.getName()="Property"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of InstanceSpecification annotated with HwTimingResource.
+*/ 
+operation Package getHwTimingResourceInstanceSpecificationSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwTimingResource")){
+			if(son.type.getName()="InstanceSpecification"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Classifier annotated with HwTimingResource.
+*/ 
+operation Package getHwTimingResourceClassifierSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwTimingResource")){
+			if(son.type.getName()="Classifier"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Lifeline annotated with HwTimingResource.
+*/ 
+operation Package getHwTimingResourceLifelineSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwTimingResource")){
+			if(son.type.getName()="Lifeline"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of ConnectableElement annotated with HwTimingResource.
+*/ 
+operation Package getHwTimingResourceConnectableElementSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwTimingResource")){
+			if(son.type.getName()="ConnectableElement"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getHwClockSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("HwClock")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getHwClockSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwClock")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Property annotated with HwClock.
+*/ 
+operation Package getHwClockPropertySet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwClock")){
+			if(son.type.getName()="Property"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of InstanceSpecification annotated with HwClock.
+*/ 
+operation Package getHwClockInstanceSpecificationSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwClock")){
+			if(son.type.getName()="InstanceSpecification"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Classifier annotated with HwClock.
+*/ 
+operation Package getHwClockClassifierSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwClock")){
+			if(son.type.getName()="Classifier"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Lifeline annotated with HwClock.
+*/ 
+operation Package getHwClockLifelineSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwClock")){
+			if(son.type.getName()="Lifeline"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of ConnectableElement annotated with HwClock.
+*/ 
+operation Package getHwClockConnectableElementSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwClock")){
+			if(son.type.getName()="ConnectableElement"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getHwTimerSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("HwTimer")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getHwTimerSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwTimer")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Property annotated with HwTimer.
+*/ 
+operation Package getHwTimerPropertySet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwTimer")){
+			if(son.type.getName()="Property"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of InstanceSpecification annotated with HwTimer.
+*/ 
+operation Package getHwTimerInstanceSpecificationSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwTimer")){
+			if(son.type.getName()="InstanceSpecification"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Classifier annotated with HwTimer.
+*/ 
+operation Package getHwTimerClassifierSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwTimer")){
+			if(son.type.getName()="Classifier"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Lifeline annotated with HwTimer.
+*/ 
+operation Package getHwTimerLifelineSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwTimer")){
+			if(son.type.getName()="Lifeline"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of ConnectableElement annotated with HwTimer.
+*/ 
+operation Package getHwTimerConnectableElementSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("HwTimer")){
+			if(son.type.getName()="ConnectableElement"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+
+
+
+
+

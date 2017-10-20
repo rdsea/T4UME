@@ -1,0 +1,1123 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with SwMutualExclusionResource.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package SwMutualExclusionResourcesAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isSwMutualExclusionResource()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with SwMutualExclusionResource.
+*/ 
+operation Element isSwMutualExclusionResource() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isSwMutualExclusionResource() : Boolean in SwMutualExclusionResource.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "SwMutualExclusionResource");
+}
+
+
+//getters
+/*
+Returns a Set of mechanism of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getMechanismOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "mechanism");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of concurrentAccessProtocol of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getConcurrentAccessProtocolOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "concurrentAccessProtocol");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of accessTokenElements of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getAccessTokenElementsOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "accessTokenElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of releaseServices of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getReleaseServicesOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "releaseServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of acquireServices of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getAcquireServicesOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "acquireServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isIntraMemoryPartitionInteraction of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getIsIntraMemoryPartitionInteractionOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "isIntraMemoryPartitionInteraction");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of waitingQueuePolicy of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getWaitingQueuePolicyOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "waitingQueuePolicy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of waitingQueueCapacity of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getWaitingQueueCapacityOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "waitingQueueCapacity");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of waitingPolicyElements of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getWaitingPolicyElementsOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "waitingPolicyElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of identifierElements of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getIdentifierElementsOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "identifierElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of stateElements of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getStateElementsOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "stateElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of memorySizeFootprint of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getMemorySizeFootprintOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "memorySizeFootprint");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of createServices of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getCreateServicesOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "createServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of deleteServices of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getDeleteServicesOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "deleteServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of initializeServices of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getInitializeServicesOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "initializeServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of resMult of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getResMultOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "resMult");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isProtected of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getIsProtectedOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "isProtected");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isActive of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getIsActiveOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "isActive");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of protectKind of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getProtectKindOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "protectKind");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of ceiling of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getCeilingOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "ceiling");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of otherProtectProtocol of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getOtherProtectProtocolOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "otherProtectProtocol");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of scheduler of stereotype SwMutualExclusionResource.
+*/ 
+operation Element getSchedulerOfSwMutualExclusionResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "scheduler");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property SwMutualExclusionResource::mechanism	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@39aacce8 (name: MutualExclusionResourceKind, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setMechanismProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getMechanismProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::concurrentAccessProtocol	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@1d43cbfc (name: ConcurrentAccessProtocolKind, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setConcurrentAccessProtocolProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getConcurrentAccessProtocolProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::accessTokenElements	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setAccessTokenElementsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getAccessTokenElementsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::releaseServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setReleaseServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getReleaseServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::acquireServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setAcquireServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getAcquireServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::isIntraMemoryPartitionInteraction	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@538507e2 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsIntraMemoryPartitionInteractionProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getIsIntraMemoryPartitionInteractionProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::waitingQueuePolicy	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@24d5b9d4 (name: QueuePolicyKind, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setWaitingQueuePolicyProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getWaitingQueuePolicyProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::waitingQueueCapacity	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@59aa4234 (name: Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setWaitingQueueCapacityProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getWaitingQueueCapacityProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::waitingPolicyElements	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setWaitingPolicyElementsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getWaitingPolicyElementsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::identifierElements	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setIdentifierElementsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getIdentifierElementsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::stateElements	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setStateElementsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getStateElementsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::memorySizeFootprint	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setMemorySizeFootprintProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getMemorySizeFootprintProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::createServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setCreateServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getCreateServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::deleteServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setDeleteServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getDeleteServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::initializeServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setInitializeServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getInitializeServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::resMult	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@2ddf45fe (name: NFP_Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setResMultProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getResMultProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::isProtected	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsProtectedProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getIsProtectedProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::isActive	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsActiveProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getIsActiveProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::protectKind	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@2d7ebca4 (name: ProtectProtocolKind, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setProtectKindProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getProtectKindProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::ceiling	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@2ddf45fe (name: NFP_Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setCeilingProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getCeilingProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::otherProtectProtocol	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@270530c6 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setOtherProtectProtocolProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getOtherProtectProtocolProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwMutualExclusionResource::scheduler	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@401e2d5b (name: Scheduler, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setSchedulerProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Interaction = Profile.all.selectOne(e|e.name = "SW_Interaction");
+		
+		var stereotype = current_sW_Interaction.getSwMutualExclusionResourceStereotype();
+		var property = current_sW_Interaction.getSchedulerProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get mechanism Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getMechanismPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var mechanismProperty = allAttributes.selectOne(s|s.name = "mechanism");
+	return mechanismProperty;
+}
+
+//--get concurrentAccessProtocol Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getConcurrentAccessProtocolPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var concurrentAccessProtocolProperty = allAttributes.selectOne(s|s.name = "concurrentAccessProtocol");
+	return concurrentAccessProtocolProperty;
+}
+
+//--get accessTokenElements Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getAccessTokenElementsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var accessTokenElementsProperty = allAttributes.selectOne(s|s.name = "accessTokenElements");
+	return accessTokenElementsProperty;
+}
+
+//--get releaseServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getReleaseServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var releaseServicesProperty = allAttributes.selectOne(s|s.name = "releaseServices");
+	return releaseServicesProperty;
+}
+
+//--get acquireServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getAcquireServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var acquireServicesProperty = allAttributes.selectOne(s|s.name = "acquireServices");
+	return acquireServicesProperty;
+}
+
+//--get isIntraMemoryPartitionInteraction Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsIntraMemoryPartitionInteractionPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isIntraMemoryPartitionInteractionProperty = allAttributes.selectOne(s|s.name = "isIntraMemoryPartitionInteraction");
+	return isIntraMemoryPartitionInteractionProperty;
+}
+
+//--get waitingQueuePolicy Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getWaitingQueuePolicyPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var waitingQueuePolicyProperty = allAttributes.selectOne(s|s.name = "waitingQueuePolicy");
+	return waitingQueuePolicyProperty;
+}
+
+//--get waitingQueueCapacity Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getWaitingQueueCapacityPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var waitingQueueCapacityProperty = allAttributes.selectOne(s|s.name = "waitingQueueCapacity");
+	return waitingQueueCapacityProperty;
+}
+
+//--get waitingPolicyElements Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getWaitingPolicyElementsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var waitingPolicyElementsProperty = allAttributes.selectOne(s|s.name = "waitingPolicyElements");
+	return waitingPolicyElementsProperty;
+}
+
+//--get identifierElements Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIdentifierElementsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var identifierElementsProperty = allAttributes.selectOne(s|s.name = "identifierElements");
+	return identifierElementsProperty;
+}
+
+//--get stateElements Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getStateElementsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var stateElementsProperty = allAttributes.selectOne(s|s.name = "stateElements");
+	return stateElementsProperty;
+}
+
+//--get memorySizeFootprint Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getMemorySizeFootprintPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var memorySizeFootprintProperty = allAttributes.selectOne(s|s.name = "memorySizeFootprint");
+	return memorySizeFootprintProperty;
+}
+
+//--get createServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getCreateServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var createServicesProperty = allAttributes.selectOne(s|s.name = "createServices");
+	return createServicesProperty;
+}
+
+//--get deleteServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDeleteServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var deleteServicesProperty = allAttributes.selectOne(s|s.name = "deleteServices");
+	return deleteServicesProperty;
+}
+
+//--get initializeServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getInitializeServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var initializeServicesProperty = allAttributes.selectOne(s|s.name = "initializeServices");
+	return initializeServicesProperty;
+}
+
+//--get resMult Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getResMultPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var resMultProperty = allAttributes.selectOne(s|s.name = "resMult");
+	return resMultProperty;
+}
+
+//--get isProtected Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsProtectedPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isProtectedProperty = allAttributes.selectOne(s|s.name = "isProtected");
+	return isProtectedProperty;
+}
+
+//--get isActive Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsActivePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isActiveProperty = allAttributes.selectOne(s|s.name = "isActive");
+	return isActiveProperty;
+}
+
+//--get protectKind Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getProtectKindPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var protectKindProperty = allAttributes.selectOne(s|s.name = "protectKind");
+	return protectKindProperty;
+}
+
+//--get ceiling Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getCeilingPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var ceilingProperty = allAttributes.selectOne(s|s.name = "ceiling");
+	return ceilingProperty;
+}
+
+//--get otherProtectProtocol Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getOtherProtectProtocolPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var otherProtectProtocolProperty = allAttributes.selectOne(s|s.name = "otherProtectProtocol");
+	return otherProtectProtocolProperty;
+}
+
+//--get scheduler Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSchedulerPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var schedulerProperty = allAttributes.selectOne(s|s.name = "scheduler");
+	return schedulerProperty;
+}
+
+
+/*
+Check if a Set of mechanism of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isMechanismOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "mechanism");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of concurrentAccessProtocol of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isConcurrentAccessProtocolOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "concurrentAccessProtocol");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of accessTokenElements of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isAccessTokenElementsOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "accessTokenElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of releaseServices of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isReleaseServicesOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "releaseServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of acquireServices of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isAcquireServicesOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "acquireServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isIntraMemoryPartitionInteraction of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isIsIntraMemoryPartitionInteractionOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "isIntraMemoryPartitionInteraction");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of waitingQueuePolicy of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isWaitingQueuePolicyOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "waitingQueuePolicy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of waitingQueueCapacity of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isWaitingQueueCapacityOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "waitingQueueCapacity");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of waitingPolicyElements of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isWaitingPolicyElementsOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "waitingPolicyElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of identifierElements of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isIdentifierElementsOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "identifierElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of stateElements of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isStateElementsOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "stateElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of memorySizeFootprint of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isMemorySizeFootprintOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "memorySizeFootprint");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of createServices of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isCreateServicesOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "createServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of deleteServices of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isDeleteServicesOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "deleteServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of initializeServices of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isInitializeServicesOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "initializeServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of resMult of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isResMultOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "resMult");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isProtected of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isIsProtectedOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "isProtected");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isActive of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isIsActiveOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "isActive");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of protectKind of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isProtectKindOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "protectKind");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of ceiling of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isCeilingOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "ceiling");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of otherProtectProtocol of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isOtherProtectProtocolOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "otherProtectProtocol");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of scheduler of stereotype SwMutualExclusionResource is empty.
+*/ 
+operation Element isSchedulerOfSwMutualExclusionResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwMutualExclusionResource"), "scheduler");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

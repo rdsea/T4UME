@@ -1,0 +1,499 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with ClockType.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package ClockTypesAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isClockType()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with ClockType.
+*/ 
+operation Element isClockType() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isClockType() : Boolean in ClockType.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "ClockType");
+}
+
+
+//getters
+/*
+Returns a Set of nature of stereotype ClockType.
+*/ 
+operation Element getNatureOfClockTypeAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ClockType"), "nature");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of unitType of stereotype ClockType.
+*/ 
+operation Element getUnitTypeOfClockTypeAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ClockType"), "unitType");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isLogical of stereotype ClockType.
+*/ 
+operation Element getIsLogicalOfClockTypeAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ClockType"), "isLogical");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of resolAttr of stereotype ClockType.
+*/ 
+operation Element getResolAttrOfClockTypeAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ClockType"), "resolAttr");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of maxValAttr of stereotype ClockType.
+*/ 
+operation Element getMaxValAttrOfClockTypeAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ClockType"), "maxValAttr");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of offsetAttr of stereotype ClockType.
+*/ 
+operation Element getOffsetAttrOfClockTypeAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ClockType"), "offsetAttr");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of getTime of stereotype ClockType.
+*/ 
+operation Element getGetTimeOfClockTypeAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ClockType"), "getTime");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of setTime of stereotype ClockType.
+*/ 
+operation Element getSetTimeOfClockTypeAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ClockType"), "setTime");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of indexToValue of stereotype ClockType.
+*/ 
+operation Element getIndexToValueOfClockTypeAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("ClockType"), "indexToValue");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property ClockType::nature	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@71cbc1af (name: TimeNatureKind, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setNatureProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_time = Profile.all.selectOne(e|e.name = "Time");
+		
+		var stereotype = current_time.getClockTypeStereotype();
+		var property = current_time.getNatureProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property ClockType::unitType	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@3e7695d4 (name: Enumeration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setUnitTypeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_time = Profile.all.selectOne(e|e.name = "Time");
+		
+		var stereotype = current_time.getClockTypeStereotype();
+		var property = current_time.getUnitTypeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property ClockType::isLogical	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsLogicalProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_time = Profile.all.selectOne(e|e.name = "Time");
+		
+		var stereotype = current_time.getClockTypeStereotype();
+		var property = current_time.getIsLogicalProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property ClockType::resolAttr	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@1d0898cc (name: Property, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setResolAttrProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_time = Profile.all.selectOne(e|e.name = "Time");
+		
+		var stereotype = current_time.getClockTypeStereotype();
+		var property = current_time.getResolAttrProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property ClockType::maxValAttr	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@1d0898cc (name: Property, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setMaxValAttrProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_time = Profile.all.selectOne(e|e.name = "Time");
+		
+		var stereotype = current_time.getClockTypeStereotype();
+		var property = current_time.getMaxValAttrProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property ClockType::offsetAttr	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@1d0898cc (name: Property, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setOffsetAttrProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_time = Profile.all.selectOne(e|e.name = "Time");
+		
+		var stereotype = current_time.getClockTypeStereotype();
+		var property = current_time.getOffsetAttrProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property ClockType::getTime	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@3cc90f1e (name: Operation, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setGetTimeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_time = Profile.all.selectOne(e|e.name = "Time");
+		
+		var stereotype = current_time.getClockTypeStereotype();
+		var property = current_time.getGetTimeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property ClockType::setTime	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@3cc90f1e (name: Operation, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setSetTimeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_time = Profile.all.selectOne(e|e.name = "Time");
+		
+		var stereotype = current_time.getClockTypeStereotype();
+		var property = current_time.getSetTimeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property ClockType::indexToValue	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@3cc90f1e (name: Operation, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setIndexToValueProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_time = Profile.all.selectOne(e|e.name = "Time");
+		
+		var stereotype = current_time.getClockTypeStereotype();
+		var property = current_time.getIndexToValueProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get nature Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getNaturePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var natureProperty = allAttributes.selectOne(s|s.name = "nature");
+	return natureProperty;
+}
+
+//--get unitType Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getUnitTypePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var unitTypeProperty = allAttributes.selectOne(s|s.name = "unitType");
+	return unitTypeProperty;
+}
+
+//--get isLogical Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsLogicalPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isLogicalProperty = allAttributes.selectOne(s|s.name = "isLogical");
+	return isLogicalProperty;
+}
+
+//--get resolAttr Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getResolAttrPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var resolAttrProperty = allAttributes.selectOne(s|s.name = "resolAttr");
+	return resolAttrProperty;
+}
+
+//--get maxValAttr Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getMaxValAttrPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var maxValAttrProperty = allAttributes.selectOne(s|s.name = "maxValAttr");
+	return maxValAttrProperty;
+}
+
+//--get offsetAttr Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getOffsetAttrPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var offsetAttrProperty = allAttributes.selectOne(s|s.name = "offsetAttr");
+	return offsetAttrProperty;
+}
+
+//--get getTime Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getGetTimePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var getTimeProperty = allAttributes.selectOne(s|s.name = "getTime");
+	return getTimeProperty;
+}
+
+//--get setTime Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSetTimePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var setTimeProperty = allAttributes.selectOne(s|s.name = "setTime");
+	return setTimeProperty;
+}
+
+//--get indexToValue Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIndexToValuePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var indexToValueProperty = allAttributes.selectOne(s|s.name = "indexToValue");
+	return indexToValueProperty;
+}
+
+
+/*
+Check if a Set of nature of stereotype ClockType is empty.
+*/ 
+operation Element isNatureOfClockTypeEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ClockType"), "nature");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of unitType of stereotype ClockType is empty.
+*/ 
+operation Element isUnitTypeOfClockTypeEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ClockType"), "unitType");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isLogical of stereotype ClockType is empty.
+*/ 
+operation Element isIsLogicalOfClockTypeEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ClockType"), "isLogical");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of resolAttr of stereotype ClockType is empty.
+*/ 
+operation Element isResolAttrOfClockTypeEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ClockType"), "resolAttr");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of maxValAttr of stereotype ClockType is empty.
+*/ 
+operation Element isMaxValAttrOfClockTypeEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ClockType"), "maxValAttr");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of offsetAttr of stereotype ClockType is empty.
+*/ 
+operation Element isOffsetAttrOfClockTypeEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ClockType"), "offsetAttr");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of getTime of stereotype ClockType is empty.
+*/ 
+operation Element isGetTimeOfClockTypeEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ClockType"), "getTime");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of setTime of stereotype ClockType is empty.
+*/ 
+operation Element isSetTimeOfClockTypeEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ClockType"), "setTime");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of indexToValue of stereotype ClockType is empty.
+*/ 
+operation Element isIndexToValueOfClockTypeEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("ClockType"), "indexToValue");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

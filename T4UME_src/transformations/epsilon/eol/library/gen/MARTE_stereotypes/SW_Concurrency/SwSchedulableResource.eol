@@ -1,0 +1,1939 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with SwSchedulableResource.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package SwSchedulableResourcesAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isSwSchedulableResource()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with SwSchedulableResource.
+*/ 
+operation Element isSwSchedulableResource() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isSwSchedulableResource() : Boolean in SwSchedulableResource.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "SwSchedulableResource");
+}
+
+
+//getters
+/*
+Returns a Set of isStaticSchedulingFeature of stereotype SwSchedulableResource.
+*/ 
+operation Element getIsStaticSchedulingFeatureOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "isStaticSchedulingFeature");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isPreemptable of stereotype SwSchedulableResource.
+*/ 
+operation Element getIsPreemptableOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "isPreemptable");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of schedulers of stereotype SwSchedulableResource.
+*/ 
+operation Element getSchedulersOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "schedulers");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of deadlineElements of stereotype SwSchedulableResource.
+*/ 
+operation Element getDeadlineElementsOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "deadlineElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of deadlineTypeElements of stereotype SwSchedulableResource.
+*/ 
+operation Element getDeadlineTypeElementsOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "deadlineTypeElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of timeSliceElements of stereotype SwSchedulableResource.
+*/ 
+operation Element getTimeSliceElementsOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "timeSliceElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of delayServices of stereotype SwSchedulableResource.
+*/ 
+operation Element getDelayServicesOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "delayServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of joinServices of stereotype SwSchedulableResource.
+*/ 
+operation Element getJoinServicesOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "joinServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of yieldServices of stereotype SwSchedulableResource.
+*/ 
+operation Element getYieldServicesOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "yieldServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of type of stereotype SwSchedulableResource.
+*/ 
+operation Element getTypeOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of activationCapacity of stereotype SwSchedulableResource.
+*/ 
+operation Element getActivationCapacityOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "activationCapacity");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of entryPoints of stereotype SwSchedulableResource.
+*/ 
+operation Element getEntryPointsOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "entryPoints");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of adressSpace of stereotype SwSchedulableResource.
+*/ 
+operation Element getAdressSpaceOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "adressSpace");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of periodElements of stereotype SwSchedulableResource.
+*/ 
+operation Element getPeriodElementsOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "periodElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of priorityElements of stereotype SwSchedulableResource.
+*/ 
+operation Element getPriorityElementsOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "priorityElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of stackSizeElements of stereotype SwSchedulableResource.
+*/ 
+operation Element getStackSizeElementsOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "stackSizeElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of activateServices of stereotype SwSchedulableResource.
+*/ 
+operation Element getActivateServicesOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "activateServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of enableConcurrencyServices of stereotype SwSchedulableResource.
+*/ 
+operation Element getEnableConcurrencyServicesOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "enableConcurrencyServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of resumeServices of stereotype SwSchedulableResource.
+*/ 
+operation Element getResumeServicesOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "resumeServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of suspendServices of stereotype SwSchedulableResource.
+*/ 
+operation Element getSuspendServicesOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "suspendServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of terminateServices of stereotype SwSchedulableResource.
+*/ 
+operation Element getTerminateServicesOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "terminateServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of disableConcurrencyServices of stereotype SwSchedulableResource.
+*/ 
+operation Element getDisableConcurrencyServicesOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "disableConcurrencyServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of shareDataResources of stereotype SwSchedulableResource.
+*/ 
+operation Element getShareDataResourcesOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "shareDataResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of messageResources of stereotype SwSchedulableResource.
+*/ 
+operation Element getMessageResourcesOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "messageResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of mutualExclusionResources of stereotype SwSchedulableResource.
+*/ 
+operation Element getMutualExclusionResourcesOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "mutualExclusionResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of notificationResources of stereotype SwSchedulableResource.
+*/ 
+operation Element getNotificationResourcesOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "notificationResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of heapSizeElements of stereotype SwSchedulableResource.
+*/ 
+operation Element getHeapSizeElementsOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "heapSizeElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of identifierElements of stereotype SwSchedulableResource.
+*/ 
+operation Element getIdentifierElementsOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "identifierElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of stateElements of stereotype SwSchedulableResource.
+*/ 
+operation Element getStateElementsOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "stateElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of memorySizeFootprint of stereotype SwSchedulableResource.
+*/ 
+operation Element getMemorySizeFootprintOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "memorySizeFootprint");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of createServices of stereotype SwSchedulableResource.
+*/ 
+operation Element getCreateServicesOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "createServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of deleteServices of stereotype SwSchedulableResource.
+*/ 
+operation Element getDeleteServicesOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "deleteServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of initializeServices of stereotype SwSchedulableResource.
+*/ 
+operation Element getInitializeServicesOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "initializeServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of resMult of stereotype SwSchedulableResource.
+*/ 
+operation Element getResMultOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "resMult");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isProtected of stereotype SwSchedulableResource.
+*/ 
+operation Element getIsProtectedOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "isProtected");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isActive of stereotype SwSchedulableResource.
+*/ 
+operation Element getIsActiveOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "isActive");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of schedParams of stereotype SwSchedulableResource.
+*/ 
+operation Element getSchedParamsOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "schedParams");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of host of stereotype SwSchedulableResource.
+*/ 
+operation Element getHostOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "host");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of dependentScheduler of stereotype SwSchedulableResource.
+*/ 
+operation Element getDependentSchedulerOfSwSchedulableResourceAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "dependentScheduler");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property SwSchedulableResource::isStaticSchedulingFeature	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsStaticSchedulingFeatureProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getIsStaticSchedulingFeatureProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::isPreemptable	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsPreemptableProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getIsPreemptableProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::schedulers	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@6d2612d4 (name: NamedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setSchedulersProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getSchedulersProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::deadlineElements	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setDeadlineElementsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getDeadlineElementsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::deadlineTypeElements	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setDeadlineTypeElementsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getDeadlineTypeElementsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::timeSliceElements	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setTimeSliceElementsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getTimeSliceElementsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::delayServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setDelayServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getDelayServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::joinServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setJoinServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getJoinServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::yieldServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setYieldServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getYieldServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::type	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@4e03047e (name: ArrivalPattern, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setTypeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getTypeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::activationCapacity	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@59aa4234 (name: Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setActivationCapacityProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getActivationCapacityProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::entryPoints	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@6b59c476 (name: Element, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setEntryPointsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getEntryPointsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::adressSpace	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setAdressSpaceProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getAdressSpaceProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::periodElements	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setPeriodElementsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getPeriodElementsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::priorityElements	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setPriorityElementsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getPriorityElementsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::stackSizeElements	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setStackSizeElementsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getStackSizeElementsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::activateServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setActivateServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getActivateServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::enableConcurrencyServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setEnableConcurrencyServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getEnableConcurrencyServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::resumeServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setResumeServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getResumeServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::suspendServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setSuspendServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getSuspendServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::terminateServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setTerminateServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getTerminateServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::disableConcurrencyServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setDisableConcurrencyServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getDisableConcurrencyServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::shareDataResources	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setShareDataResourcesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getShareDataResourcesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::messageResources	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setMessageResourcesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getMessageResourcesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::mutualExclusionResources	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setMutualExclusionResourcesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getMutualExclusionResourcesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::notificationResources	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setNotificationResourcesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getNotificationResourcesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::heapSizeElements	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setHeapSizeElementsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getHeapSizeElementsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::identifierElements	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setIdentifierElementsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getIdentifierElementsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::stateElements	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setStateElementsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getStateElementsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::memorySizeFootprint	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@b072408 (name: TypedElement, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setMemorySizeFootprintProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getMemorySizeFootprintProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::createServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setCreateServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getCreateServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::deleteServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setDeleteServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getDeleteServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::initializeServices	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setInitializeServicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getInitializeServicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::resMult	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@2ddf45fe (name: NFP_Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setResMultProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getResMultProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::isProtected	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsProtectedProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getIsProtectedProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::isActive	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsActiveProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getIsActiveProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::schedParams	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@719ce0d0 (name: SchedParameters, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setSchedParamsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getSchedParamsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::host	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@401e2d5b (name: Scheduler, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setHostProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getHostProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property SwSchedulableResource::dependentScheduler	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@7b91a529 (name: SecondaryScheduler, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setDependentSchedulerProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_sW_Concurrency = Profile.all.selectOne(e|e.name = "SW_Concurrency");
+		
+		var stereotype = current_sW_Concurrency.getSwSchedulableResourceStereotype();
+		var property = current_sW_Concurrency.getDependentSchedulerProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get isStaticSchedulingFeature Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsStaticSchedulingFeaturePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isStaticSchedulingFeatureProperty = allAttributes.selectOne(s|s.name = "isStaticSchedulingFeature");
+	return isStaticSchedulingFeatureProperty;
+}
+
+//--get isPreemptable Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsPreemptablePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isPreemptableProperty = allAttributes.selectOne(s|s.name = "isPreemptable");
+	return isPreemptableProperty;
+}
+
+//--get schedulers Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSchedulersPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var schedulersProperty = allAttributes.selectOne(s|s.name = "schedulers");
+	return schedulersProperty;
+}
+
+//--get deadlineElements Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDeadlineElementsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var deadlineElementsProperty = allAttributes.selectOne(s|s.name = "deadlineElements");
+	return deadlineElementsProperty;
+}
+
+//--get deadlineTypeElements Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDeadlineTypeElementsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var deadlineTypeElementsProperty = allAttributes.selectOne(s|s.name = "deadlineTypeElements");
+	return deadlineTypeElementsProperty;
+}
+
+//--get timeSliceElements Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getTimeSliceElementsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var timeSliceElementsProperty = allAttributes.selectOne(s|s.name = "timeSliceElements");
+	return timeSliceElementsProperty;
+}
+
+//--get delayServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDelayServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var delayServicesProperty = allAttributes.selectOne(s|s.name = "delayServices");
+	return delayServicesProperty;
+}
+
+//--get joinServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getJoinServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var joinServicesProperty = allAttributes.selectOne(s|s.name = "joinServices");
+	return joinServicesProperty;
+}
+
+//--get yieldServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getYieldServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var yieldServicesProperty = allAttributes.selectOne(s|s.name = "yieldServices");
+	return yieldServicesProperty;
+}
+
+//--get type Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getTypePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var typeProperty = allAttributes.selectOne(s|s.name = "type");
+	return typeProperty;
+}
+
+//--get activationCapacity Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getActivationCapacityPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var activationCapacityProperty = allAttributes.selectOne(s|s.name = "activationCapacity");
+	return activationCapacityProperty;
+}
+
+//--get entryPoints Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getEntryPointsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var entryPointsProperty = allAttributes.selectOne(s|s.name = "entryPoints");
+	return entryPointsProperty;
+}
+
+//--get adressSpace Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getAdressSpacePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var adressSpaceProperty = allAttributes.selectOne(s|s.name = "adressSpace");
+	return adressSpaceProperty;
+}
+
+//--get periodElements Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getPeriodElementsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var periodElementsProperty = allAttributes.selectOne(s|s.name = "periodElements");
+	return periodElementsProperty;
+}
+
+//--get priorityElements Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getPriorityElementsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var priorityElementsProperty = allAttributes.selectOne(s|s.name = "priorityElements");
+	return priorityElementsProperty;
+}
+
+//--get stackSizeElements Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getStackSizeElementsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var stackSizeElementsProperty = allAttributes.selectOne(s|s.name = "stackSizeElements");
+	return stackSizeElementsProperty;
+}
+
+//--get activateServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getActivateServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var activateServicesProperty = allAttributes.selectOne(s|s.name = "activateServices");
+	return activateServicesProperty;
+}
+
+//--get enableConcurrencyServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getEnableConcurrencyServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var enableConcurrencyServicesProperty = allAttributes.selectOne(s|s.name = "enableConcurrencyServices");
+	return enableConcurrencyServicesProperty;
+}
+
+//--get resumeServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getResumeServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var resumeServicesProperty = allAttributes.selectOne(s|s.name = "resumeServices");
+	return resumeServicesProperty;
+}
+
+//--get suspendServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSuspendServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var suspendServicesProperty = allAttributes.selectOne(s|s.name = "suspendServices");
+	return suspendServicesProperty;
+}
+
+//--get terminateServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getTerminateServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var terminateServicesProperty = allAttributes.selectOne(s|s.name = "terminateServices");
+	return terminateServicesProperty;
+}
+
+//--get disableConcurrencyServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDisableConcurrencyServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var disableConcurrencyServicesProperty = allAttributes.selectOne(s|s.name = "disableConcurrencyServices");
+	return disableConcurrencyServicesProperty;
+}
+
+//--get shareDataResources Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getShareDataResourcesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var shareDataResourcesProperty = allAttributes.selectOne(s|s.name = "shareDataResources");
+	return shareDataResourcesProperty;
+}
+
+//--get messageResources Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getMessageResourcesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var messageResourcesProperty = allAttributes.selectOne(s|s.name = "messageResources");
+	return messageResourcesProperty;
+}
+
+//--get mutualExclusionResources Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getMutualExclusionResourcesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var mutualExclusionResourcesProperty = allAttributes.selectOne(s|s.name = "mutualExclusionResources");
+	return mutualExclusionResourcesProperty;
+}
+
+//--get notificationResources Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getNotificationResourcesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var notificationResourcesProperty = allAttributes.selectOne(s|s.name = "notificationResources");
+	return notificationResourcesProperty;
+}
+
+//--get heapSizeElements Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getHeapSizeElementsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var heapSizeElementsProperty = allAttributes.selectOne(s|s.name = "heapSizeElements");
+	return heapSizeElementsProperty;
+}
+
+//--get identifierElements Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIdentifierElementsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var identifierElementsProperty = allAttributes.selectOne(s|s.name = "identifierElements");
+	return identifierElementsProperty;
+}
+
+//--get stateElements Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getStateElementsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var stateElementsProperty = allAttributes.selectOne(s|s.name = "stateElements");
+	return stateElementsProperty;
+}
+
+//--get memorySizeFootprint Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getMemorySizeFootprintPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var memorySizeFootprintProperty = allAttributes.selectOne(s|s.name = "memorySizeFootprint");
+	return memorySizeFootprintProperty;
+}
+
+//--get createServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getCreateServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var createServicesProperty = allAttributes.selectOne(s|s.name = "createServices");
+	return createServicesProperty;
+}
+
+//--get deleteServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDeleteServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var deleteServicesProperty = allAttributes.selectOne(s|s.name = "deleteServices");
+	return deleteServicesProperty;
+}
+
+//--get initializeServices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getInitializeServicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var initializeServicesProperty = allAttributes.selectOne(s|s.name = "initializeServices");
+	return initializeServicesProperty;
+}
+
+//--get resMult Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getResMultPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var resMultProperty = allAttributes.selectOne(s|s.name = "resMult");
+	return resMultProperty;
+}
+
+//--get isProtected Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsProtectedPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isProtectedProperty = allAttributes.selectOne(s|s.name = "isProtected");
+	return isProtectedProperty;
+}
+
+//--get isActive Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsActivePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isActiveProperty = allAttributes.selectOne(s|s.name = "isActive");
+	return isActiveProperty;
+}
+
+//--get schedParams Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSchedParamsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var schedParamsProperty = allAttributes.selectOne(s|s.name = "schedParams");
+	return schedParamsProperty;
+}
+
+//--get host Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getHostPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var hostProperty = allAttributes.selectOne(s|s.name = "host");
+	return hostProperty;
+}
+
+//--get dependentScheduler Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDependentSchedulerPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var dependentSchedulerProperty = allAttributes.selectOne(s|s.name = "dependentScheduler");
+	return dependentSchedulerProperty;
+}
+
+
+/*
+Check if a Set of isStaticSchedulingFeature of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isIsStaticSchedulingFeatureOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "isStaticSchedulingFeature");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isPreemptable of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isIsPreemptableOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "isPreemptable");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of schedulers of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isSchedulersOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "schedulers");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of deadlineElements of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isDeadlineElementsOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "deadlineElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of deadlineTypeElements of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isDeadlineTypeElementsOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "deadlineTypeElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of timeSliceElements of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isTimeSliceElementsOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "timeSliceElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of delayServices of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isDelayServicesOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "delayServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of joinServices of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isJoinServicesOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "joinServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of yieldServices of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isYieldServicesOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "yieldServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of type of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isTypeOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of activationCapacity of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isActivationCapacityOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "activationCapacity");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of entryPoints of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isEntryPointsOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "entryPoints");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of adressSpace of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isAdressSpaceOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "adressSpace");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of periodElements of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isPeriodElementsOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "periodElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of priorityElements of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isPriorityElementsOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "priorityElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of stackSizeElements of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isStackSizeElementsOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "stackSizeElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of activateServices of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isActivateServicesOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "activateServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of enableConcurrencyServices of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isEnableConcurrencyServicesOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "enableConcurrencyServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of resumeServices of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isResumeServicesOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "resumeServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of suspendServices of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isSuspendServicesOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "suspendServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of terminateServices of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isTerminateServicesOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "terminateServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of disableConcurrencyServices of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isDisableConcurrencyServicesOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "disableConcurrencyServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of shareDataResources of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isShareDataResourcesOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "shareDataResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of messageResources of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isMessageResourcesOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "messageResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of mutualExclusionResources of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isMutualExclusionResourcesOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "mutualExclusionResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of notificationResources of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isNotificationResourcesOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "notificationResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of heapSizeElements of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isHeapSizeElementsOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "heapSizeElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of identifierElements of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isIdentifierElementsOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "identifierElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of stateElements of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isStateElementsOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "stateElements");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of memorySizeFootprint of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isMemorySizeFootprintOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "memorySizeFootprint");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of createServices of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isCreateServicesOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "createServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of deleteServices of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isDeleteServicesOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "deleteServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of initializeServices of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isInitializeServicesOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "initializeServices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of resMult of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isResMultOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "resMult");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isProtected of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isIsProtectedOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "isProtected");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isActive of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isIsActiveOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "isActive");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of schedParams of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isSchedParamsOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "schedParams");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of host of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isHostOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "host");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of dependentScheduler of stereotype SwSchedulableResource is empty.
+*/ 
+operation Element isDependentSchedulerOfSwSchedulableResourceEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("SwSchedulableResource"), "dependentScheduler");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

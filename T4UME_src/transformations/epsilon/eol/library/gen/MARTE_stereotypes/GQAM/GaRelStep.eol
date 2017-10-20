@@ -1,0 +1,1891 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with GaRelStep.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package GaRelStepsAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isGaRelStep()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with GaRelStep.
+*/ 
+operation Element isGaRelStep() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isGaRelStep() : Boolean in GaRelStep.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "GaRelStep");
+}
+
+
+//getters
+/*
+Returns a Set of relRes of stereotype GaRelStep.
+*/ 
+operation Element getRelResOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "relRes");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of resUnits of stereotype GaRelStep.
+*/ 
+operation Element getResUnitsOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "resUnits");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isAtomic of stereotype GaRelStep.
+*/ 
+operation Element getIsAtomicOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "isAtomic");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of blockT of stereotype GaRelStep.
+*/ 
+operation Element getBlockTOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "blockT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of rep of stereotype GaRelStep.
+*/ 
+operation Element getRepOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "rep");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of prob of stereotype GaRelStep.
+*/ 
+operation Element getProbOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "prob");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of priority of stereotype GaRelStep.
+*/ 
+operation Element getPriorityOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "priority");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of concurRes of stereotype GaRelStep.
+*/ 
+operation Element getConcurResOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "concurRes");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of host of stereotype GaRelStep.
+*/ 
+operation Element getHostOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "host");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of servDemand of stereotype GaRelStep.
+*/ 
+operation Element getServDemandOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "servDemand");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of servCount of stereotype GaRelStep.
+*/ 
+operation Element getServCountOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "servCount");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of selfDelay of stereotype GaRelStep.
+*/ 
+operation Element getSelfDelayOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "selfDelay");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of scenario of stereotype GaRelStep.
+*/ 
+operation Element getScenarioOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "scenario");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of childScenario of stereotype GaRelStep.
+*/ 
+operation Element getChildScenarioOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "childScenario");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of cause of stereotype GaRelStep.
+*/ 
+operation Element getCauseOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "cause");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of hostDemand of stereotype GaRelStep.
+*/ 
+operation Element getHostDemandOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "hostDemand");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of hostDemandOps of stereotype GaRelStep.
+*/ 
+operation Element getHostDemandOpsOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "hostDemandOps");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of interOccT of stereotype GaRelStep.
+*/ 
+operation Element getInterOccTOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "interOccT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of throughput of stereotype GaRelStep.
+*/ 
+operation Element getThroughputOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "throughput");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of respT of stereotype GaRelStep.
+*/ 
+operation Element getRespTOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "respT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of utilization of stereotype GaRelStep.
+*/ 
+operation Element getUtilizationOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "utilization");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of utilizationOnHost of stereotype GaRelStep.
+*/ 
+operation Element getUtilizationOnHostOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "utilizationOnHost");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of root of stereotype GaRelStep.
+*/ 
+operation Element getRootOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "root");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of timing of stereotype GaRelStep.
+*/ 
+operation Element getTimingOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "timing");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of steps of stereotype GaRelStep.
+*/ 
+operation Element getStepsOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "steps");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of parentStep of stereotype GaRelStep.
+*/ 
+operation Element getParentStepOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "parentStep");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of execTime of stereotype GaRelStep.
+*/ 
+operation Element getExecTimeOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "execTime");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of allocatedMemory of stereotype GaRelStep.
+*/ 
+operation Element getAllocatedMemoryOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "allocatedMemory");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of usedMemory of stereotype GaRelStep.
+*/ 
+operation Element getUsedMemoryOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "usedMemory");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of powerPeak of stereotype GaRelStep.
+*/ 
+operation Element getPowerPeakOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "powerPeak");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of energy of stereotype GaRelStep.
+*/ 
+operation Element getEnergyOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "energy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of subUsage of stereotype GaRelStep.
+*/ 
+operation Element getSubUsageOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "subUsage");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of usedResources of stereotype GaRelStep.
+*/ 
+operation Element getUsedResourcesOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "usedResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of msgSize of stereotype GaRelStep.
+*/ 
+operation Element getMsgSizeOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "msgSize");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of duration of stereotype GaRelStep.
+*/ 
+operation Element getDurationOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "duration");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of start of stereotype GaRelStep.
+*/ 
+operation Element getStartOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "start");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of finish of stereotype GaRelStep.
+*/ 
+operation Element getFinishOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "finish");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of on of stereotype GaRelStep.
+*/ 
+operation Element getOnOfGaRelStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaRelStep"), "on");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property GaRelStep::relRes	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@1dd9e9d8 (name: Resource, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setRelResProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getRelResProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::resUnits	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@2ddf45fe (name: NFP_Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setResUnitsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getResUnitsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::isAtomic	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@2fba6b4b (name: NFP_Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsAtomicProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getIsAtomicProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::blockT	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setBlockTProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getBlockTProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::rep	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setRepProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getRepProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::prob	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setProbProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getProbProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::priority	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@2ddf45fe (name: NFP_Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setPriorityProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getPriorityProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::concurRes	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@326fe4b0 (name: SchedulableResource, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setConcurResProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getConcurResProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::host	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@c40ffd7 (name: GaExecHost, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setHostProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getHostProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::servDemand	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@5f00a6e2 (name: GaRequestedService, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setServDemandProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getServDemandProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::servCount	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setServCountProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getServCountProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::selfDelay	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setSelfDelayProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getSelfDelayProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::scenario	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@580fca37 (name: GaScenario, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setScenarioProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getScenarioProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::childScenario	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@580fca37 (name: GaScenario, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setChildScenarioProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getChildScenarioProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::cause	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@38c2feeb (name: GaWorkloadEvent, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setCauseProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getCauseProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::hostDemand	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setHostDemandProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getHostDemandProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::hostDemandOps	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setHostDemandOpsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getHostDemandOpsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::interOccT	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setInterOccTProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getInterOccTProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::throughput	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@582547c6 (name: NFP_Frequency, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setThroughputProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getThroughputProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::respT	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setRespTProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getRespTProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::utilization	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setUtilizationProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getUtilizationProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::utilizationOnHost	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setUtilizationOnHostProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getUtilizationOnHostProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::root	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@23e40814 (name: GaStep, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setRootProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getRootProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::timing	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@5a9bf62a (name: GaTimedObs, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setTimingProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getTimingProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::steps	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@23e40814 (name: GaStep, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setStepsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getStepsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::parentStep	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@23e40814 (name: GaStep, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setParentStepProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getParentStepProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::execTime	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setExecTimeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getExecTimeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::allocatedMemory	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@7fd8cbd9 (name: NFP_DataSize, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setAllocatedMemoryProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getAllocatedMemoryProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::usedMemory	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@7fd8cbd9 (name: NFP_DataSize, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setUsedMemoryProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getUsedMemoryProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::powerPeak	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@367bc2b5 (name: NFP_Power, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setPowerPeakProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getPowerPeakProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::energy	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@7c7866c (name: NFP_Energy, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setEnergyProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getEnergyProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::subUsage	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@11261c05 (name: ResourceUsage, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setSubUsageProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getSubUsageProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::usedResources	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@1dd9e9d8 (name: Resource, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setUsedResourcesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getUsedResourcesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::msgSize	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@7fd8cbd9 (name: NFP_DataSize, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setMsgSizeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getMsgSizeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::duration	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@74a062c6 (name: ValueSpecification, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setDurationProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getDurationProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::start	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@5150ff0c (name: Event, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setStartProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getStartProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::finish	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@5150ff0c (name: Event, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setFinishProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getFinishProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaRelStep::on	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@181ca2d4 (name: Clock, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setOnProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaRelStepStereotype();
+		var property = current_gQAM.getOnProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get relRes Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getRelResPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var relResProperty = allAttributes.selectOne(s|s.name = "relRes");
+	return relResProperty;
+}
+
+//--get resUnits Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getResUnitsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var resUnitsProperty = allAttributes.selectOne(s|s.name = "resUnits");
+	return resUnitsProperty;
+}
+
+//--get isAtomic Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsAtomicPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isAtomicProperty = allAttributes.selectOne(s|s.name = "isAtomic");
+	return isAtomicProperty;
+}
+
+//--get blockT Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getBlockTPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var blockTProperty = allAttributes.selectOne(s|s.name = "blockT");
+	return blockTProperty;
+}
+
+//--get rep Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getRepPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var repProperty = allAttributes.selectOne(s|s.name = "rep");
+	return repProperty;
+}
+
+//--get prob Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getProbPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var probProperty = allAttributes.selectOne(s|s.name = "prob");
+	return probProperty;
+}
+
+//--get priority Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getPriorityPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var priorityProperty = allAttributes.selectOne(s|s.name = "priority");
+	return priorityProperty;
+}
+
+//--get concurRes Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getConcurResPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var concurResProperty = allAttributes.selectOne(s|s.name = "concurRes");
+	return concurResProperty;
+}
+
+//--get host Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getHostPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var hostProperty = allAttributes.selectOne(s|s.name = "host");
+	return hostProperty;
+}
+
+//--get servDemand Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getServDemandPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var servDemandProperty = allAttributes.selectOne(s|s.name = "servDemand");
+	return servDemandProperty;
+}
+
+//--get servCount Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getServCountPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var servCountProperty = allAttributes.selectOne(s|s.name = "servCount");
+	return servCountProperty;
+}
+
+//--get selfDelay Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSelfDelayPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var selfDelayProperty = allAttributes.selectOne(s|s.name = "selfDelay");
+	return selfDelayProperty;
+}
+
+//--get scenario Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getScenarioPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var scenarioProperty = allAttributes.selectOne(s|s.name = "scenario");
+	return scenarioProperty;
+}
+
+//--get childScenario Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getChildScenarioPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var childScenarioProperty = allAttributes.selectOne(s|s.name = "childScenario");
+	return childScenarioProperty;
+}
+
+//--get cause Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getCausePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var causeProperty = allAttributes.selectOne(s|s.name = "cause");
+	return causeProperty;
+}
+
+//--get hostDemand Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getHostDemandPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var hostDemandProperty = allAttributes.selectOne(s|s.name = "hostDemand");
+	return hostDemandProperty;
+}
+
+//--get hostDemandOps Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getHostDemandOpsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var hostDemandOpsProperty = allAttributes.selectOne(s|s.name = "hostDemandOps");
+	return hostDemandOpsProperty;
+}
+
+//--get interOccT Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getInterOccTPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var interOccTProperty = allAttributes.selectOne(s|s.name = "interOccT");
+	return interOccTProperty;
+}
+
+//--get throughput Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getThroughputPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var throughputProperty = allAttributes.selectOne(s|s.name = "throughput");
+	return throughputProperty;
+}
+
+//--get respT Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getRespTPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var respTProperty = allAttributes.selectOne(s|s.name = "respT");
+	return respTProperty;
+}
+
+//--get utilization Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getUtilizationPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var utilizationProperty = allAttributes.selectOne(s|s.name = "utilization");
+	return utilizationProperty;
+}
+
+//--get utilizationOnHost Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getUtilizationOnHostPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var utilizationOnHostProperty = allAttributes.selectOne(s|s.name = "utilizationOnHost");
+	return utilizationOnHostProperty;
+}
+
+//--get root Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getRootPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var rootProperty = allAttributes.selectOne(s|s.name = "root");
+	return rootProperty;
+}
+
+//--get timing Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getTimingPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var timingProperty = allAttributes.selectOne(s|s.name = "timing");
+	return timingProperty;
+}
+
+//--get steps Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getStepsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var stepsProperty = allAttributes.selectOne(s|s.name = "steps");
+	return stepsProperty;
+}
+
+//--get parentStep Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getParentStepPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var parentStepProperty = allAttributes.selectOne(s|s.name = "parentStep");
+	return parentStepProperty;
+}
+
+//--get execTime Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getExecTimePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var execTimeProperty = allAttributes.selectOne(s|s.name = "execTime");
+	return execTimeProperty;
+}
+
+//--get allocatedMemory Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getAllocatedMemoryPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var allocatedMemoryProperty = allAttributes.selectOne(s|s.name = "allocatedMemory");
+	return allocatedMemoryProperty;
+}
+
+//--get usedMemory Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getUsedMemoryPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var usedMemoryProperty = allAttributes.selectOne(s|s.name = "usedMemory");
+	return usedMemoryProperty;
+}
+
+//--get powerPeak Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getPowerPeakPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var powerPeakProperty = allAttributes.selectOne(s|s.name = "powerPeak");
+	return powerPeakProperty;
+}
+
+//--get energy Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getEnergyPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var energyProperty = allAttributes.selectOne(s|s.name = "energy");
+	return energyProperty;
+}
+
+//--get subUsage Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSubUsagePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var subUsageProperty = allAttributes.selectOne(s|s.name = "subUsage");
+	return subUsageProperty;
+}
+
+//--get usedResources Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getUsedResourcesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var usedResourcesProperty = allAttributes.selectOne(s|s.name = "usedResources");
+	return usedResourcesProperty;
+}
+
+//--get msgSize Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getMsgSizePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var msgSizeProperty = allAttributes.selectOne(s|s.name = "msgSize");
+	return msgSizeProperty;
+}
+
+//--get duration Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDurationPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var durationProperty = allAttributes.selectOne(s|s.name = "duration");
+	return durationProperty;
+}
+
+//--get start Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getStartPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var startProperty = allAttributes.selectOne(s|s.name = "start");
+	return startProperty;
+}
+
+//--get finish Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getFinishPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var finishProperty = allAttributes.selectOne(s|s.name = "finish");
+	return finishProperty;
+}
+
+//--get on Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getOnPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var onProperty = allAttributes.selectOne(s|s.name = "on");
+	return onProperty;
+}
+
+
+/*
+Check if a Set of relRes of stereotype GaRelStep is empty.
+*/ 
+operation Element isRelResOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "relRes");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of resUnits of stereotype GaRelStep is empty.
+*/ 
+operation Element isResUnitsOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "resUnits");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isAtomic of stereotype GaRelStep is empty.
+*/ 
+operation Element isIsAtomicOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "isAtomic");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of blockT of stereotype GaRelStep is empty.
+*/ 
+operation Element isBlockTOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "blockT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of rep of stereotype GaRelStep is empty.
+*/ 
+operation Element isRepOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "rep");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of prob of stereotype GaRelStep is empty.
+*/ 
+operation Element isProbOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "prob");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of priority of stereotype GaRelStep is empty.
+*/ 
+operation Element isPriorityOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "priority");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of concurRes of stereotype GaRelStep is empty.
+*/ 
+operation Element isConcurResOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "concurRes");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of host of stereotype GaRelStep is empty.
+*/ 
+operation Element isHostOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "host");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of servDemand of stereotype GaRelStep is empty.
+*/ 
+operation Element isServDemandOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "servDemand");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of servCount of stereotype GaRelStep is empty.
+*/ 
+operation Element isServCountOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "servCount");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of selfDelay of stereotype GaRelStep is empty.
+*/ 
+operation Element isSelfDelayOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "selfDelay");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of scenario of stereotype GaRelStep is empty.
+*/ 
+operation Element isScenarioOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "scenario");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of childScenario of stereotype GaRelStep is empty.
+*/ 
+operation Element isChildScenarioOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "childScenario");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of cause of stereotype GaRelStep is empty.
+*/ 
+operation Element isCauseOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "cause");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of hostDemand of stereotype GaRelStep is empty.
+*/ 
+operation Element isHostDemandOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "hostDemand");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of hostDemandOps of stereotype GaRelStep is empty.
+*/ 
+operation Element isHostDemandOpsOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "hostDemandOps");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of interOccT of stereotype GaRelStep is empty.
+*/ 
+operation Element isInterOccTOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "interOccT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of throughput of stereotype GaRelStep is empty.
+*/ 
+operation Element isThroughputOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "throughput");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of respT of stereotype GaRelStep is empty.
+*/ 
+operation Element isRespTOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "respT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of utilization of stereotype GaRelStep is empty.
+*/ 
+operation Element isUtilizationOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "utilization");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of utilizationOnHost of stereotype GaRelStep is empty.
+*/ 
+operation Element isUtilizationOnHostOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "utilizationOnHost");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of root of stereotype GaRelStep is empty.
+*/ 
+operation Element isRootOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "root");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of timing of stereotype GaRelStep is empty.
+*/ 
+operation Element isTimingOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "timing");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of steps of stereotype GaRelStep is empty.
+*/ 
+operation Element isStepsOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "steps");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of parentStep of stereotype GaRelStep is empty.
+*/ 
+operation Element isParentStepOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "parentStep");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of execTime of stereotype GaRelStep is empty.
+*/ 
+operation Element isExecTimeOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "execTime");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of allocatedMemory of stereotype GaRelStep is empty.
+*/ 
+operation Element isAllocatedMemoryOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "allocatedMemory");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of usedMemory of stereotype GaRelStep is empty.
+*/ 
+operation Element isUsedMemoryOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "usedMemory");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of powerPeak of stereotype GaRelStep is empty.
+*/ 
+operation Element isPowerPeakOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "powerPeak");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of energy of stereotype GaRelStep is empty.
+*/ 
+operation Element isEnergyOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "energy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of subUsage of stereotype GaRelStep is empty.
+*/ 
+operation Element isSubUsageOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "subUsage");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of usedResources of stereotype GaRelStep is empty.
+*/ 
+operation Element isUsedResourcesOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "usedResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of msgSize of stereotype GaRelStep is empty.
+*/ 
+operation Element isMsgSizeOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "msgSize");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of duration of stereotype GaRelStep is empty.
+*/ 
+operation Element isDurationOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "duration");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of start of stereotype GaRelStep is empty.
+*/ 
+operation Element isStartOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "start");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of finish of stereotype GaRelStep is empty.
+*/ 
+operation Element isFinishOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "finish");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of on of stereotype GaRelStep is empty.
+*/ 
+operation Element isOnOfGaRelStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaRelStep"), "on");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

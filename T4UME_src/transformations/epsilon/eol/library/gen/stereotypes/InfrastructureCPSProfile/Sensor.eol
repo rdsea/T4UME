@@ -1,0 +1,883 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with Sensor.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package SensorsAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isSensor()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with Sensor.
+*/ 
+operation Element isSensor() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isSensor() : Boolean in Sensor.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "Sensor");
+}
+
+
+//getters
+/*
+Returns a Set of phyMetrics of stereotype Sensor.
+*/ 
+operation Element getPhyMetricsOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "phyMetrics");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of minValue of stereotype Sensor.
+*/ 
+operation Element getMinValueOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "minValue");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of maxValue of stereotype Sensor.
+*/ 
+operation Element getMaxValueOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "maxValue");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of value of stereotype Sensor.
+*/ 
+operation Element getValueOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "value");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of phyCapabilities of stereotype Sensor.
+*/ 
+operation Element getPhyCapabilitiesOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "phyCapabilities");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of sensors of stereotype Sensor.
+*/ 
+operation Element getSensorsOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "sensors");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of actuators of stereotype Sensor.
+*/ 
+operation Element getActuatorsOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "actuators");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of ownedPhysicalUnits of stereotype Sensor.
+*/ 
+operation Element getOwnedPhysicalUnitsOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "ownedPhysicalUnits");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of ioDevices of stereotype Sensor.
+*/ 
+operation Element getIoDevicesOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "ioDevices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of id of stereotype Sensor.
+*/ 
+operation Element getIdOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "id");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of location of stereotype Sensor.
+*/ 
+operation Element getLocationOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "location");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of description of stereotype Sensor.
+*/ 
+operation Element getDescriptionOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "description");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of ownedUnits of stereotype Sensor.
+*/ 
+operation Element getOwnedUnitsOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "ownedUnits");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of hasTimestampMechanism of stereotype Sensor.
+*/ 
+operation Element getHasTimestampMechanismOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "hasTimestampMechanism");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of timestampMaxLatency of stereotype Sensor.
+*/ 
+operation Element getTimestampMaxLatencyOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "timestampMaxLatency");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isSafetyCritical of stereotype Sensor.
+*/ 
+operation Element getIsSafetyCriticalOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "isSafetyCritical");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of infrastructureInterface of stereotype Sensor.
+*/ 
+operation Element getInfrastructureInterfaceOfSensorAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Sensor"), "infrastructureInterface");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property Sensor::phyMetrics	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@21bbca1 (name: PhysicalMetric, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setPhyMetricsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getPhyMetricsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Sensor::minValue	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@5d5204e7 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setMinValueProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getMinValueProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Sensor::maxValue	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@5d5204e7 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setMaxValueProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getMaxValueProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Sensor::value	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@5d5204e7 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setValueProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getValueProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Sensor::phyCapabilities	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@1b66127b (name: PhysicalCapability, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setPhyCapabilitiesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getPhyCapabilitiesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Sensor::sensors	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@1e2995af (name: Sensor, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setSensorsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getSensorsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Sensor::actuators	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@562c8bab (name: Actuator, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setActuatorsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getActuatorsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Sensor::ownedPhysicalUnits	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@a8598bd (name: PhysicalUnit, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setOwnedPhysicalUnitsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getOwnedPhysicalUnitsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Sensor::ioDevices	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@5081851a (name: IODevice, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setIoDevicesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getIoDevicesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Sensor::id	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@36654c22 (name: Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIdProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getIdProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Sensor::location	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@5d5204e7 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setLocationProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getLocationProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Sensor::description	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@5d5204e7 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setDescriptionProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getDescriptionProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Sensor::ownedUnits	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@22b001da (name: Unit, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setOwnedUnitsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getOwnedUnitsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Sensor::hasTimestampMechanism	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@7016a6d1 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setHasTimestampMechanismProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getHasTimestampMechanismProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Sensor::timestampMaxLatency	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@5d5204e7 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setTimestampMaxLatencyProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getTimestampMaxLatencyProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Sensor::isSafetyCritical	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@7016a6d1 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsSafetyCriticalProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getIsSafetyCriticalProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Sensor::infrastructureInterface	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@4bc7dfab (name: InfrastructureInterface, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setInfrastructureInterfaceProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getSensorStereotype();
+		var property = current_infrastructureCPSProfile.getInfrastructureInterfaceProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get phyMetrics Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getPhyMetricsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var phyMetricsProperty = allAttributes.selectOne(s|s.name = "phyMetrics");
+	return phyMetricsProperty;
+}
+
+//--get minValue Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getMinValuePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var minValueProperty = allAttributes.selectOne(s|s.name = "minValue");
+	return minValueProperty;
+}
+
+//--get maxValue Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getMaxValuePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var maxValueProperty = allAttributes.selectOne(s|s.name = "maxValue");
+	return maxValueProperty;
+}
+
+//--get value Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getValuePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var valueProperty = allAttributes.selectOne(s|s.name = "value");
+	return valueProperty;
+}
+
+//--get phyCapabilities Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getPhyCapabilitiesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var phyCapabilitiesProperty = allAttributes.selectOne(s|s.name = "phyCapabilities");
+	return phyCapabilitiesProperty;
+}
+
+//--get sensors Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSensorsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var sensorsProperty = allAttributes.selectOne(s|s.name = "sensors");
+	return sensorsProperty;
+}
+
+//--get actuators Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getActuatorsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var actuatorsProperty = allAttributes.selectOne(s|s.name = "actuators");
+	return actuatorsProperty;
+}
+
+//--get ownedPhysicalUnits Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getOwnedPhysicalUnitsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var ownedPhysicalUnitsProperty = allAttributes.selectOne(s|s.name = "ownedPhysicalUnits");
+	return ownedPhysicalUnitsProperty;
+}
+
+//--get ioDevices Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIoDevicesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var ioDevicesProperty = allAttributes.selectOne(s|s.name = "ioDevices");
+	return ioDevicesProperty;
+}
+
+//--get id Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIdPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var idProperty = allAttributes.selectOne(s|s.name = "id");
+	return idProperty;
+}
+
+//--get location Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getLocationPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var locationProperty = allAttributes.selectOne(s|s.name = "location");
+	return locationProperty;
+}
+
+//--get description Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDescriptionPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var descriptionProperty = allAttributes.selectOne(s|s.name = "description");
+	return descriptionProperty;
+}
+
+//--get ownedUnits Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getOwnedUnitsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var ownedUnitsProperty = allAttributes.selectOne(s|s.name = "ownedUnits");
+	return ownedUnitsProperty;
+}
+
+//--get hasTimestampMechanism Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getHasTimestampMechanismPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var hasTimestampMechanismProperty = allAttributes.selectOne(s|s.name = "hasTimestampMechanism");
+	return hasTimestampMechanismProperty;
+}
+
+//--get timestampMaxLatency Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getTimestampMaxLatencyPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var timestampMaxLatencyProperty = allAttributes.selectOne(s|s.name = "timestampMaxLatency");
+	return timestampMaxLatencyProperty;
+}
+
+//--get isSafetyCritical Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsSafetyCriticalPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isSafetyCriticalProperty = allAttributes.selectOne(s|s.name = "isSafetyCritical");
+	return isSafetyCriticalProperty;
+}
+
+//--get infrastructureInterface Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getInfrastructureInterfacePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var infrastructureInterfaceProperty = allAttributes.selectOne(s|s.name = "infrastructureInterface");
+	return infrastructureInterfaceProperty;
+}
+
+
+/*
+Check if a Set of phyMetrics of stereotype Sensor is empty.
+*/ 
+operation Element isPhyMetricsOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "phyMetrics");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of minValue of stereotype Sensor is empty.
+*/ 
+operation Element isMinValueOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "minValue");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of maxValue of stereotype Sensor is empty.
+*/ 
+operation Element isMaxValueOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "maxValue");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of value of stereotype Sensor is empty.
+*/ 
+operation Element isValueOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "value");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of phyCapabilities of stereotype Sensor is empty.
+*/ 
+operation Element isPhyCapabilitiesOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "phyCapabilities");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of sensors of stereotype Sensor is empty.
+*/ 
+operation Element isSensorsOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "sensors");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of actuators of stereotype Sensor is empty.
+*/ 
+operation Element isActuatorsOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "actuators");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of ownedPhysicalUnits of stereotype Sensor is empty.
+*/ 
+operation Element isOwnedPhysicalUnitsOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "ownedPhysicalUnits");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of ioDevices of stereotype Sensor is empty.
+*/ 
+operation Element isIoDevicesOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "ioDevices");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of id of stereotype Sensor is empty.
+*/ 
+operation Element isIdOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "id");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of location of stereotype Sensor is empty.
+*/ 
+operation Element isLocationOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "location");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of description of stereotype Sensor is empty.
+*/ 
+operation Element isDescriptionOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "description");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of ownedUnits of stereotype Sensor is empty.
+*/ 
+operation Element isOwnedUnitsOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "ownedUnits");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of hasTimestampMechanism of stereotype Sensor is empty.
+*/ 
+operation Element isHasTimestampMechanismOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "hasTimestampMechanism");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of timestampMaxLatency of stereotype Sensor is empty.
+*/ 
+operation Element isTimestampMaxLatencyOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "timestampMaxLatency");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isSafetyCritical of stereotype Sensor is empty.
+*/ 
+operation Element isIsSafetyCriticalOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "isSafetyCritical");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of infrastructureInterface of stereotype Sensor is empty.
+*/ 
+operation Element isInfrastructureInterfaceOfSensorEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Sensor"), "infrastructureInterface");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

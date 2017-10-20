@@ -1,0 +1,1108 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+import "../../utilities.eol";
+
+//stereotype libraries
+import	"../stereotypes/InfrastructureUncertaintyProfile/InfrastructureLevelUncertainty.eol";
+import	"../stereotypes/InfrastructureUncertaintyProfile/StorageUncertainty.eol";
+import	"../stereotypes/InfrastructureUncertaintyProfile/DataDeliveryUncertainty.eol";
+import	"../stereotypes/InfrastructureUncertaintyProfile/ElasticityUncertainty.eol";
+import	"../stereotypes/InfrastructureUncertaintyProfile/ActuationUncertainty.eol";
+import	"../stereotypes/InfrastructureUncertaintyProfile/ExecutionEnvironmentUncertainty.eol";
+import	"../stereotypes/InfrastructureUncertaintyProfile/StorageDependabilityUncertainty.eol";
+import	"../stereotypes/InfrastructureUncertaintyProfile/MonitoringDataUncertainty.eol";
+import	"../stereotypes/InfrastructureUncertaintyProfile/ActuationBehaviorUncertainty.eol";
+import	"../stereotypes/InfrastructureUncertaintyProfile/RuntimeExecutionEnvironmentUncertainty.eol";
+import	"../stereotypes/InfrastructureUncertaintyProfile/GovernanceUncertainty.eol";
+import	"../stereotypes/InfrastructureUncertaintyProfile/UncertaintyFamily.eol";
+
+import	"../enumerations/InfrastructureUncertaintyProfile/EffectPropagationType.eol";
+import	"../enumerations/InfrastructureUncertaintyProfile/FunctionalDimensionalityType.eol";
+import	"../enumerations/InfrastructureUncertaintyProfile/TemporalManifestationType.eol";
+import	"../enumerations/InfrastructureUncertaintyProfile/NonFunctionalDimensionalityType.eol";
+import	"../enumerations/InfrastructureUncertaintyProfile/CauseType.eol";
+import	"../enumerations/InfrastructureUncertaintyProfile/ObservationTimeType.eol";
+
+@cached
+operation Profile getInfrastructureUncertaintyProfile() : Profile {
+	return self;
+}
+
+
+@cached
+operation Profile getEnumerations() : Set {
+	var enumerations = self.getOwnedTypes().select(e|e.isTypeOf(Enumeration));
+	return enumerations;
+}
+
+
+//enumeration operations
+@cached
+operation Profile getEffectPropagationTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "EffectPropagationType");
+	return enum;
+}
+@cached
+operation Profile getFunctionalDimensionalityTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "FunctionalDimensionalityType");
+	return enum;
+}
+@cached
+operation Profile getTemporalManifestationTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TemporalManifestationType");
+	return enum;
+}
+@cached
+operation Profile getNonFunctionalDimensionalityTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "NonFunctionalDimensionalityType");
+	return enum;
+}
+@cached
+operation Profile getCauseTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "CauseType");
+	return enum;
+}
+@cached
+operation Profile getObservationTimeTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ObservationTimeType");
+	return enum;
+}
+@cached
+operation Profile getContentKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ContentKind");
+	return enum;
+}
+@cached
+operation Profile getFeatureKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "FeatureKind");
+	return enum;
+}
+@cached
+operation Profile getVisibilityKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "VisibilityKind");
+	return enum;
+}
+@cached
+operation Profile getExpansionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ExpansionKind");
+	return enum;
+}
+@cached
+operation Profile getObjectNodeOrderingKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ObjectNodeOrderingKind");
+	return enum;
+}
+@cached
+operation Profile getAggregationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AggregationKind");
+	return enum;
+}
+@cached
+operation Profile getCallConcurrencyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "CallConcurrencyKind");
+	return enum;
+}
+@cached
+operation Profile getParameterDirectionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ParameterDirectionKind");
+	return enum;
+}
+@cached
+operation Profile getParameterEffectKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ParameterEffectKind");
+	return enum;
+}
+@cached
+operation Profile getVisibilityKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "VisibilityKind");
+	return enum;
+}
+@cached
+operation Profile getInteractionOperatorKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "InteractionOperatorKind");
+	return enum;
+}
+@cached
+operation Profile getMessageKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "MessageKind");
+	return enum;
+}
+@cached
+operation Profile getMessageSortEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "MessageSort");
+	return enum;
+}
+@cached
+operation Profile getPseudostateKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PseudostateKind");
+	return enum;
+}
+@cached
+operation Profile getTransitionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TransitionKind");
+	return enum;
+}
+@cached
+operation Profile getConnectorKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConnectorKind");
+	return enum;
+}
+@cached
+operation Profile getIndeterminacyNatureEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "IndeterminacyNature");
+	return enum;
+}
+@cached
+operation Profile getUncertaintyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "UncertaintyKind");
+	return enum;
+}
+@cached
+operation Profile getTimeFieldEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TimeField");
+	return enum;
+}
+@cached
+operation Profile getFunctionTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "FunctionType");
+	return enum;
+}
+@cached
+operation Profile getRiskLevelEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "RiskLevel");
+	return enum;
+}
+@cached
+operation Profile getSupportedCommunicationProtocolsEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "SupportedCommunicationProtocols");
+	return enum;
+}
+@cached
+operation Profile getCloudServiceTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "CloudServiceType");
+	return enum;
+}
+@cached
+operation Profile getNetworkDeviceTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "NetworkDeviceType");
+	return enum;
+}
+@cached
+operation Profile getIODeviceTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "IODeviceType");
+	return enum;
+}
+@cached
+operation Profile getImpactEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "Impact");
+	return enum;
+}
+@cached
+operation Profile getLocationTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "LocationType");
+	return enum;
+}
+@cached
+operation Profile getSeverityEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "Severity");
+	return enum;
+}
+@cached
+operation Profile getModeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "Mode");
+	return enum;
+}
+@cached
+operation Profile getNameBasedMsgModeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "NameBasedMsgMode");
+	return enum;
+}
+
+//stereotype operations
+
+@cached
+operation Profile getInfrastructureLevelUncertaintyStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var infrastructureLevelUncertaintyStereotype = ownedStereotypes.selectOne(s|s.name = "InfrastructureLevelUncertainty");
+	return infrastructureLevelUncertaintyStereotype;
+}
+
+@cached
+operation Profile getStorageUncertaintyStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var storageUncertaintyStereotype = ownedStereotypes.selectOne(s|s.name = "StorageUncertainty");
+	return storageUncertaintyStereotype;
+}
+
+@cached
+operation Profile getDataDeliveryUncertaintyStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var dataDeliveryUncertaintyStereotype = ownedStereotypes.selectOne(s|s.name = "DataDeliveryUncertainty");
+	return dataDeliveryUncertaintyStereotype;
+}
+
+@cached
+operation Profile getElasticityUncertaintyStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var elasticityUncertaintyStereotype = ownedStereotypes.selectOne(s|s.name = "ElasticityUncertainty");
+	return elasticityUncertaintyStereotype;
+}
+
+@cached
+operation Profile getActuationUncertaintyStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var actuationUncertaintyStereotype = ownedStereotypes.selectOne(s|s.name = "ActuationUncertainty");
+	return actuationUncertaintyStereotype;
+}
+
+@cached
+operation Profile getExecutionEnvironmentUncertaintyStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var executionEnvironmentUncertaintyStereotype = ownedStereotypes.selectOne(s|s.name = "ExecutionEnvironmentUncertainty");
+	return executionEnvironmentUncertaintyStereotype;
+}
+
+@cached
+operation Profile getStorageDependabilityUncertaintyStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var storageDependabilityUncertaintyStereotype = ownedStereotypes.selectOne(s|s.name = "StorageDependabilityUncertainty");
+	return storageDependabilityUncertaintyStereotype;
+}
+
+@cached
+operation Profile getMonitoringDataUncertaintyStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var monitoringDataUncertaintyStereotype = ownedStereotypes.selectOne(s|s.name = "MonitoringDataUncertainty");
+	return monitoringDataUncertaintyStereotype;
+}
+
+@cached
+operation Profile getActuationBehaviorUncertaintyStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var actuationBehaviorUncertaintyStereotype = ownedStereotypes.selectOne(s|s.name = "ActuationBehaviorUncertainty");
+	return actuationBehaviorUncertaintyStereotype;
+}
+
+@cached
+operation Profile getRuntimeExecutionEnvironmentUncertaintyStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var runtimeExecutionEnvironmentUncertaintyStereotype = ownedStereotypes.selectOne(s|s.name = "RuntimeExecutionEnvironmentUncertainty");
+	return runtimeExecutionEnvironmentUncertaintyStereotype;
+}
+
+@cached
+operation Profile getGovernanceUncertaintyStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var governanceUncertaintyStereotype = ownedStereotypes.selectOne(s|s.name = "GovernanceUncertainty");
+	return governanceUncertaintyStereotype;
+}
+
+@cached
+operation Profile getUncertaintyFamilyStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var uncertaintyFamilyStereotype = ownedStereotypes.selectOne(s|s.name = "UncertaintyFamily");
+	return uncertaintyFamilyStereotype;
+}
+
+
+	
+operation Package getInfrastructureLevelUncertaintySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("InfrastructureLevelUncertainty")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getInfrastructureLevelUncertaintySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("InfrastructureLevelUncertainty")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Element annotated with InfrastructureLevelUncertainty.
+*/ 
+operation Package getInfrastructureLevelUncertaintyElementSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("InfrastructureLevelUncertainty")){
+			if(son.type.getName()="Element"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Classifier annotated with InfrastructureLevelUncertainty.
+*/ 
+operation Package getInfrastructureLevelUncertaintyClassifierSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("InfrastructureLevelUncertainty")){
+			if(son.type.getName()="Classifier"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getStorageUncertaintySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("StorageUncertainty")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getStorageUncertaintySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("StorageUncertainty")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Element annotated with StorageUncertainty.
+*/ 
+operation Package getStorageUncertaintyElementSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("StorageUncertainty")){
+			if(son.type.getName()="Element"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Classifier annotated with StorageUncertainty.
+*/ 
+operation Package getStorageUncertaintyClassifierSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("StorageUncertainty")){
+			if(son.type.getName()="Classifier"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getDataDeliveryUncertaintySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("DataDeliveryUncertainty")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getDataDeliveryUncertaintySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("DataDeliveryUncertainty")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Element annotated with DataDeliveryUncertainty.
+*/ 
+operation Package getDataDeliveryUncertaintyElementSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("DataDeliveryUncertainty")){
+			if(son.type.getName()="Element"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Classifier annotated with DataDeliveryUncertainty.
+*/ 
+operation Package getDataDeliveryUncertaintyClassifierSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("DataDeliveryUncertainty")){
+			if(son.type.getName()="Classifier"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getElasticityUncertaintySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("ElasticityUncertainty")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getElasticityUncertaintySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("ElasticityUncertainty")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Element annotated with ElasticityUncertainty.
+*/ 
+operation Package getElasticityUncertaintyElementSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("ElasticityUncertainty")){
+			if(son.type.getName()="Element"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Classifier annotated with ElasticityUncertainty.
+*/ 
+operation Package getElasticityUncertaintyClassifierSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("ElasticityUncertainty")){
+			if(son.type.getName()="Classifier"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getActuationUncertaintySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("ActuationUncertainty")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getActuationUncertaintySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("ActuationUncertainty")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Element annotated with ActuationUncertainty.
+*/ 
+operation Package getActuationUncertaintyElementSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("ActuationUncertainty")){
+			if(son.type.getName()="Element"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Classifier annotated with ActuationUncertainty.
+*/ 
+operation Package getActuationUncertaintyClassifierSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("ActuationUncertainty")){
+			if(son.type.getName()="Classifier"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getExecutionEnvironmentUncertaintySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("ExecutionEnvironmentUncertainty")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getExecutionEnvironmentUncertaintySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("ExecutionEnvironmentUncertainty")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Element annotated with ExecutionEnvironmentUncertainty.
+*/ 
+operation Package getExecutionEnvironmentUncertaintyElementSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("ExecutionEnvironmentUncertainty")){
+			if(son.type.getName()="Element"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Classifier annotated with ExecutionEnvironmentUncertainty.
+*/ 
+operation Package getExecutionEnvironmentUncertaintyClassifierSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("ExecutionEnvironmentUncertainty")){
+			if(son.type.getName()="Classifier"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getStorageDependabilityUncertaintySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("StorageDependabilityUncertainty")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getStorageDependabilityUncertaintySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("StorageDependabilityUncertainty")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Element annotated with StorageDependabilityUncertainty.
+*/ 
+operation Package getStorageDependabilityUncertaintyElementSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("StorageDependabilityUncertainty")){
+			if(son.type.getName()="Element"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Classifier annotated with StorageDependabilityUncertainty.
+*/ 
+operation Package getStorageDependabilityUncertaintyClassifierSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("StorageDependabilityUncertainty")){
+			if(son.type.getName()="Classifier"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getMonitoringDataUncertaintySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("MonitoringDataUncertainty")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getMonitoringDataUncertaintySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("MonitoringDataUncertainty")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Element annotated with MonitoringDataUncertainty.
+*/ 
+operation Package getMonitoringDataUncertaintyElementSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("MonitoringDataUncertainty")){
+			if(son.type.getName()="Element"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Classifier annotated with MonitoringDataUncertainty.
+*/ 
+operation Package getMonitoringDataUncertaintyClassifierSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("MonitoringDataUncertainty")){
+			if(son.type.getName()="Classifier"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getActuationBehaviorUncertaintySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("ActuationBehaviorUncertainty")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getActuationBehaviorUncertaintySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("ActuationBehaviorUncertainty")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Element annotated with ActuationBehaviorUncertainty.
+*/ 
+operation Package getActuationBehaviorUncertaintyElementSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("ActuationBehaviorUncertainty")){
+			if(son.type.getName()="Element"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Classifier annotated with ActuationBehaviorUncertainty.
+*/ 
+operation Package getActuationBehaviorUncertaintyClassifierSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("ActuationBehaviorUncertainty")){
+			if(son.type.getName()="Classifier"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getRuntimeExecutionEnvironmentUncertaintySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("RuntimeExecutionEnvironmentUncertainty")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getRuntimeExecutionEnvironmentUncertaintySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("RuntimeExecutionEnvironmentUncertainty")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Element annotated with RuntimeExecutionEnvironmentUncertainty.
+*/ 
+operation Package getRuntimeExecutionEnvironmentUncertaintyElementSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("RuntimeExecutionEnvironmentUncertainty")){
+			if(son.type.getName()="Element"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Classifier annotated with RuntimeExecutionEnvironmentUncertainty.
+*/ 
+operation Package getRuntimeExecutionEnvironmentUncertaintyClassifierSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("RuntimeExecutionEnvironmentUncertainty")){
+			if(son.type.getName()="Classifier"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getGovernanceUncertaintySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("GovernanceUncertainty")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getGovernanceUncertaintySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("GovernanceUncertainty")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Element annotated with GovernanceUncertainty.
+*/ 
+operation Package getGovernanceUncertaintyElementSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("GovernanceUncertainty")){
+			if(son.type.getName()="Element"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Classifier annotated with GovernanceUncertainty.
+*/ 
+operation Package getGovernanceUncertaintyClassifierSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("GovernanceUncertainty")){
+			if(son.type.getName()="Classifier"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getUncertaintyFamilySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("UncertaintyFamily")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getUncertaintyFamilySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("UncertaintyFamily")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+
+
+
+
+

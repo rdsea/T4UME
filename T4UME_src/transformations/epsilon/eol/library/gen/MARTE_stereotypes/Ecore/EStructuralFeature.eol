@@ -1,0 +1,451 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with EStructuralFeature.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package EStructuralFeaturesAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isEStructuralFeature()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with EStructuralFeature.
+*/ 
+operation Element isEStructuralFeature() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isEStructuralFeature() : Boolean in EStructuralFeature.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "EStructuralFeature");
+}
+
+
+//getters
+/*
+Returns a Set of isTransient of stereotype EStructuralFeature.
+*/ 
+operation Element getIsTransientOfEStructuralFeatureAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("EStructuralFeature"), "isTransient");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isVolatile of stereotype EStructuralFeature.
+*/ 
+operation Element getIsVolatileOfEStructuralFeatureAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("EStructuralFeature"), "isVolatile");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isUnsettable of stereotype EStructuralFeature.
+*/ 
+operation Element getIsUnsettableOfEStructuralFeatureAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("EStructuralFeature"), "isUnsettable");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of xmlNamespace of stereotype EStructuralFeature.
+*/ 
+operation Element getXmlNamespaceOfEStructuralFeatureAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("EStructuralFeature"), "xmlNamespace");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of xmlFeatureKind of stereotype EStructuralFeature.
+*/ 
+operation Element getXmlFeatureKindOfEStructuralFeatureAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("EStructuralFeature"), "xmlFeatureKind");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of visibility of stereotype EStructuralFeature.
+*/ 
+operation Element getVisibilityOfEStructuralFeatureAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("EStructuralFeature"), "visibility");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of xmlName of stereotype EStructuralFeature.
+*/ 
+operation Element getXmlNameOfEStructuralFeatureAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("EStructuralFeature"), "xmlName");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of annotations of stereotype EStructuralFeature.
+*/ 
+operation Element getAnnotationsOfEStructuralFeatureAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("EStructuralFeature"), "annotations");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property EStructuralFeature::isTransient	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@46b8267 (name: EBoolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsTransientProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_ecore = Profile.all.selectOne(e|e.name = "Ecore");
+		
+		var stereotype = current_ecore.getEStructuralFeatureStereotype();
+		var property = current_ecore.getIsTransientProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property EStructuralFeature::isVolatile	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@46b8267 (name: EBoolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsVolatileProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_ecore = Profile.all.selectOne(e|e.name = "Ecore");
+		
+		var stereotype = current_ecore.getEStructuralFeatureStereotype();
+		var property = current_ecore.getIsVolatileProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property EStructuralFeature::isUnsettable	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@46b8267 (name: EBoolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsUnsettableProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_ecore = Profile.all.selectOne(e|e.name = "Ecore");
+		
+		var stereotype = current_ecore.getEStructuralFeatureStereotype();
+		var property = current_ecore.getIsUnsettableProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property EStructuralFeature::xmlNamespace	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@409bcd21 (name: EString, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setXmlNamespaceProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_ecore = Profile.all.selectOne(e|e.name = "Ecore");
+		
+		var stereotype = current_ecore.getEStructuralFeatureStereotype();
+		var property = current_ecore.getXmlNamespaceProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property EStructuralFeature::xmlFeatureKind	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@5371f7a (name: FeatureKind, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setXmlFeatureKindProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_ecore = Profile.all.selectOne(e|e.name = "Ecore");
+		
+		var stereotype = current_ecore.getEStructuralFeatureStereotype();
+		var property = current_ecore.getXmlFeatureKindProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property EStructuralFeature::visibility	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@4a895f2f (name: VisibilityKind, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setVisibilityProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_ecore = Profile.all.selectOne(e|e.name = "Ecore");
+		
+		var stereotype = current_ecore.getEStructuralFeatureStereotype();
+		var property = current_ecore.getVisibilityProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property EStructuralFeature::xmlName	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@409bcd21 (name: EString, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setXmlNameProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_ecore = Profile.all.selectOne(e|e.name = "Ecore");
+		
+		var stereotype = current_ecore.getEStructuralFeatureStereotype();
+		var property = current_ecore.getXmlNameProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property EStructuralFeature::annotations	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@409bcd21 (name: EString, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setAnnotationsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_ecore = Profile.all.selectOne(e|e.name = "Ecore");
+		
+		var stereotype = current_ecore.getEStructuralFeatureStereotype();
+		var property = current_ecore.getAnnotationsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get isTransient Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsTransientPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isTransientProperty = allAttributes.selectOne(s|s.name = "isTransient");
+	return isTransientProperty;
+}
+
+//--get isVolatile Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsVolatilePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isVolatileProperty = allAttributes.selectOne(s|s.name = "isVolatile");
+	return isVolatileProperty;
+}
+
+//--get isUnsettable Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsUnsettablePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isUnsettableProperty = allAttributes.selectOne(s|s.name = "isUnsettable");
+	return isUnsettableProperty;
+}
+
+//--get xmlNamespace Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getXmlNamespacePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var xmlNamespaceProperty = allAttributes.selectOne(s|s.name = "xmlNamespace");
+	return xmlNamespaceProperty;
+}
+
+//--get xmlFeatureKind Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getXmlFeatureKindPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var xmlFeatureKindProperty = allAttributes.selectOne(s|s.name = "xmlFeatureKind");
+	return xmlFeatureKindProperty;
+}
+
+//--get visibility Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getVisibilityPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var visibilityProperty = allAttributes.selectOne(s|s.name = "visibility");
+	return visibilityProperty;
+}
+
+//--get xmlName Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getXmlNamePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var xmlNameProperty = allAttributes.selectOne(s|s.name = "xmlName");
+	return xmlNameProperty;
+}
+
+//--get annotations Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getAnnotationsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var annotationsProperty = allAttributes.selectOne(s|s.name = "annotations");
+	return annotationsProperty;
+}
+
+
+/*
+Check if a Set of isTransient of stereotype EStructuralFeature is empty.
+*/ 
+operation Element isIsTransientOfEStructuralFeatureEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("EStructuralFeature"), "isTransient");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isVolatile of stereotype EStructuralFeature is empty.
+*/ 
+operation Element isIsVolatileOfEStructuralFeatureEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("EStructuralFeature"), "isVolatile");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isUnsettable of stereotype EStructuralFeature is empty.
+*/ 
+operation Element isIsUnsettableOfEStructuralFeatureEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("EStructuralFeature"), "isUnsettable");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of xmlNamespace of stereotype EStructuralFeature is empty.
+*/ 
+operation Element isXmlNamespaceOfEStructuralFeatureEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("EStructuralFeature"), "xmlNamespace");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of xmlFeatureKind of stereotype EStructuralFeature is empty.
+*/ 
+operation Element isXmlFeatureKindOfEStructuralFeatureEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("EStructuralFeature"), "xmlFeatureKind");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of visibility of stereotype EStructuralFeature is empty.
+*/ 
+operation Element isVisibilityOfEStructuralFeatureEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("EStructuralFeature"), "visibility");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of xmlName of stereotype EStructuralFeature is empty.
+*/ 
+operation Element isXmlNameOfEStructuralFeatureEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("EStructuralFeature"), "xmlName");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of annotations of stereotype EStructuralFeature is empty.
+*/ 
+operation Element isAnnotationsOfEStructuralFeatureEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("EStructuralFeature"), "annotations");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

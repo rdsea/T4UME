@@ -1,0 +1,1219 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with GaScenario.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package GaScenariosAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isGaScenario()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with GaScenario.
+*/ 
+operation Element isGaScenario() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isGaScenario() : Boolean in GaScenario.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "GaScenario");
+}
+
+
+//getters
+/*
+Returns a Set of cause of stereotype GaScenario.
+*/ 
+operation Element getCauseOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "cause");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of hostDemand of stereotype GaScenario.
+*/ 
+operation Element getHostDemandOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "hostDemand");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of hostDemandOps of stereotype GaScenario.
+*/ 
+operation Element getHostDemandOpsOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "hostDemandOps");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of interOccT of stereotype GaScenario.
+*/ 
+operation Element getInterOccTOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "interOccT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of throughput of stereotype GaScenario.
+*/ 
+operation Element getThroughputOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "throughput");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of respT of stereotype GaScenario.
+*/ 
+operation Element getRespTOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "respT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of utilization of stereotype GaScenario.
+*/ 
+operation Element getUtilizationOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "utilization");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of utilizationOnHost of stereotype GaScenario.
+*/ 
+operation Element getUtilizationOnHostOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "utilizationOnHost");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of root of stereotype GaScenario.
+*/ 
+operation Element getRootOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "root");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of timing of stereotype GaScenario.
+*/ 
+operation Element getTimingOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "timing");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of steps of stereotype GaScenario.
+*/ 
+operation Element getStepsOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "steps");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of parentStep of stereotype GaScenario.
+*/ 
+operation Element getParentStepOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "parentStep");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of execTime of stereotype GaScenario.
+*/ 
+operation Element getExecTimeOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "execTime");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of allocatedMemory of stereotype GaScenario.
+*/ 
+operation Element getAllocatedMemoryOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "allocatedMemory");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of usedMemory of stereotype GaScenario.
+*/ 
+operation Element getUsedMemoryOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "usedMemory");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of powerPeak of stereotype GaScenario.
+*/ 
+operation Element getPowerPeakOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "powerPeak");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of energy of stereotype GaScenario.
+*/ 
+operation Element getEnergyOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "energy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of subUsage of stereotype GaScenario.
+*/ 
+operation Element getSubUsageOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "subUsage");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of usedResources of stereotype GaScenario.
+*/ 
+operation Element getUsedResourcesOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "usedResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of msgSize of stereotype GaScenario.
+*/ 
+operation Element getMsgSizeOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "msgSize");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of duration of stereotype GaScenario.
+*/ 
+operation Element getDurationOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "duration");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of start of stereotype GaScenario.
+*/ 
+operation Element getStartOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "start");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of finish of stereotype GaScenario.
+*/ 
+operation Element getFinishOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "finish");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of on of stereotype GaScenario.
+*/ 
+operation Element getOnOfGaScenarioAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaScenario"), "on");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property GaScenario::cause	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@38c2feeb (name: GaWorkloadEvent, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setCauseProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getCauseProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::hostDemand	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setHostDemandProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getHostDemandProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::hostDemandOps	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setHostDemandOpsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getHostDemandOpsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::interOccT	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setInterOccTProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getInterOccTProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::throughput	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@582547c6 (name: NFP_Frequency, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setThroughputProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getThroughputProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::respT	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setRespTProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getRespTProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::utilization	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setUtilizationProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getUtilizationProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::utilizationOnHost	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setUtilizationOnHostProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getUtilizationOnHostProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::root	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@23e40814 (name: GaStep, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setRootProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getRootProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::timing	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@5a9bf62a (name: GaTimedObs, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setTimingProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getTimingProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::steps	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@23e40814 (name: GaStep, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setStepsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getStepsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::parentStep	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@23e40814 (name: GaStep, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setParentStepProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getParentStepProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::execTime	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setExecTimeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getExecTimeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::allocatedMemory	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@7fd8cbd9 (name: NFP_DataSize, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setAllocatedMemoryProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getAllocatedMemoryProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::usedMemory	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@7fd8cbd9 (name: NFP_DataSize, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setUsedMemoryProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getUsedMemoryProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::powerPeak	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@367bc2b5 (name: NFP_Power, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setPowerPeakProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getPowerPeakProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::energy	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@7c7866c (name: NFP_Energy, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setEnergyProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getEnergyProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::subUsage	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@11261c05 (name: ResourceUsage, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setSubUsageProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getSubUsageProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::usedResources	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@1dd9e9d8 (name: Resource, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setUsedResourcesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getUsedResourcesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::msgSize	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@7fd8cbd9 (name: NFP_DataSize, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setMsgSizeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getMsgSizeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::duration	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@74a062c6 (name: ValueSpecification, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setDurationProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getDurationProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::start	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@5150ff0c (name: Event, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setStartProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getStartProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::finish	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@5150ff0c (name: Event, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setFinishProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getFinishProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaScenario::on	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@181ca2d4 (name: Clock, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setOnProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaScenarioStereotype();
+		var property = current_gQAM.getOnProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get cause Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getCausePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var causeProperty = allAttributes.selectOne(s|s.name = "cause");
+	return causeProperty;
+}
+
+//--get hostDemand Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getHostDemandPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var hostDemandProperty = allAttributes.selectOne(s|s.name = "hostDemand");
+	return hostDemandProperty;
+}
+
+//--get hostDemandOps Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getHostDemandOpsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var hostDemandOpsProperty = allAttributes.selectOne(s|s.name = "hostDemandOps");
+	return hostDemandOpsProperty;
+}
+
+//--get interOccT Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getInterOccTPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var interOccTProperty = allAttributes.selectOne(s|s.name = "interOccT");
+	return interOccTProperty;
+}
+
+//--get throughput Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getThroughputPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var throughputProperty = allAttributes.selectOne(s|s.name = "throughput");
+	return throughputProperty;
+}
+
+//--get respT Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getRespTPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var respTProperty = allAttributes.selectOne(s|s.name = "respT");
+	return respTProperty;
+}
+
+//--get utilization Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getUtilizationPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var utilizationProperty = allAttributes.selectOne(s|s.name = "utilization");
+	return utilizationProperty;
+}
+
+//--get utilizationOnHost Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getUtilizationOnHostPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var utilizationOnHostProperty = allAttributes.selectOne(s|s.name = "utilizationOnHost");
+	return utilizationOnHostProperty;
+}
+
+//--get root Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getRootPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var rootProperty = allAttributes.selectOne(s|s.name = "root");
+	return rootProperty;
+}
+
+//--get timing Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getTimingPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var timingProperty = allAttributes.selectOne(s|s.name = "timing");
+	return timingProperty;
+}
+
+//--get steps Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getStepsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var stepsProperty = allAttributes.selectOne(s|s.name = "steps");
+	return stepsProperty;
+}
+
+//--get parentStep Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getParentStepPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var parentStepProperty = allAttributes.selectOne(s|s.name = "parentStep");
+	return parentStepProperty;
+}
+
+//--get execTime Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getExecTimePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var execTimeProperty = allAttributes.selectOne(s|s.name = "execTime");
+	return execTimeProperty;
+}
+
+//--get allocatedMemory Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getAllocatedMemoryPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var allocatedMemoryProperty = allAttributes.selectOne(s|s.name = "allocatedMemory");
+	return allocatedMemoryProperty;
+}
+
+//--get usedMemory Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getUsedMemoryPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var usedMemoryProperty = allAttributes.selectOne(s|s.name = "usedMemory");
+	return usedMemoryProperty;
+}
+
+//--get powerPeak Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getPowerPeakPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var powerPeakProperty = allAttributes.selectOne(s|s.name = "powerPeak");
+	return powerPeakProperty;
+}
+
+//--get energy Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getEnergyPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var energyProperty = allAttributes.selectOne(s|s.name = "energy");
+	return energyProperty;
+}
+
+//--get subUsage Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSubUsagePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var subUsageProperty = allAttributes.selectOne(s|s.name = "subUsage");
+	return subUsageProperty;
+}
+
+//--get usedResources Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getUsedResourcesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var usedResourcesProperty = allAttributes.selectOne(s|s.name = "usedResources");
+	return usedResourcesProperty;
+}
+
+//--get msgSize Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getMsgSizePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var msgSizeProperty = allAttributes.selectOne(s|s.name = "msgSize");
+	return msgSizeProperty;
+}
+
+//--get duration Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDurationPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var durationProperty = allAttributes.selectOne(s|s.name = "duration");
+	return durationProperty;
+}
+
+//--get start Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getStartPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var startProperty = allAttributes.selectOne(s|s.name = "start");
+	return startProperty;
+}
+
+//--get finish Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getFinishPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var finishProperty = allAttributes.selectOne(s|s.name = "finish");
+	return finishProperty;
+}
+
+//--get on Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getOnPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var onProperty = allAttributes.selectOne(s|s.name = "on");
+	return onProperty;
+}
+
+
+/*
+Check if a Set of cause of stereotype GaScenario is empty.
+*/ 
+operation Element isCauseOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "cause");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of hostDemand of stereotype GaScenario is empty.
+*/ 
+operation Element isHostDemandOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "hostDemand");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of hostDemandOps of stereotype GaScenario is empty.
+*/ 
+operation Element isHostDemandOpsOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "hostDemandOps");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of interOccT of stereotype GaScenario is empty.
+*/ 
+operation Element isInterOccTOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "interOccT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of throughput of stereotype GaScenario is empty.
+*/ 
+operation Element isThroughputOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "throughput");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of respT of stereotype GaScenario is empty.
+*/ 
+operation Element isRespTOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "respT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of utilization of stereotype GaScenario is empty.
+*/ 
+operation Element isUtilizationOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "utilization");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of utilizationOnHost of stereotype GaScenario is empty.
+*/ 
+operation Element isUtilizationOnHostOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "utilizationOnHost");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of root of stereotype GaScenario is empty.
+*/ 
+operation Element isRootOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "root");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of timing of stereotype GaScenario is empty.
+*/ 
+operation Element isTimingOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "timing");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of steps of stereotype GaScenario is empty.
+*/ 
+operation Element isStepsOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "steps");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of parentStep of stereotype GaScenario is empty.
+*/ 
+operation Element isParentStepOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "parentStep");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of execTime of stereotype GaScenario is empty.
+*/ 
+operation Element isExecTimeOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "execTime");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of allocatedMemory of stereotype GaScenario is empty.
+*/ 
+operation Element isAllocatedMemoryOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "allocatedMemory");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of usedMemory of stereotype GaScenario is empty.
+*/ 
+operation Element isUsedMemoryOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "usedMemory");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of powerPeak of stereotype GaScenario is empty.
+*/ 
+operation Element isPowerPeakOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "powerPeak");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of energy of stereotype GaScenario is empty.
+*/ 
+operation Element isEnergyOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "energy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of subUsage of stereotype GaScenario is empty.
+*/ 
+operation Element isSubUsageOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "subUsage");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of usedResources of stereotype GaScenario is empty.
+*/ 
+operation Element isUsedResourcesOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "usedResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of msgSize of stereotype GaScenario is empty.
+*/ 
+operation Element isMsgSizeOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "msgSize");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of duration of stereotype GaScenario is empty.
+*/ 
+operation Element isDurationOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "duration");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of start of stereotype GaScenario is empty.
+*/ 
+operation Element isStartOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "start");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of finish of stereotype GaScenario is empty.
+*/ 
+operation Element isFinishOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "finish");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of on of stereotype GaScenario is empty.
+*/ 
+operation Element isOnOfGaScenarioEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaScenario"), "on");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

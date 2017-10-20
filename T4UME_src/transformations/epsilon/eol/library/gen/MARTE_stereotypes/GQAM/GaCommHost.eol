@@ -1,0 +1,1027 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with GaCommHost.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package GaCommHostsAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isGaCommHost()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with GaCommHost.
+*/ 
+operation Element isGaCommHost() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isGaCommHost() : Boolean in GaCommHost.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "GaCommHost");
+}
+
+
+//getters
+/*
+Returns a Set of throughput of stereotype GaCommHost.
+*/ 
+operation Element getThroughputOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "throughput");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of utilization of stereotype GaCommHost.
+*/ 
+operation Element getUtilizationOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "utilization");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isPreemptible of stereotype GaCommHost.
+*/ 
+operation Element getIsPreemptibleOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "isPreemptible");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of schedPolicy of stereotype GaCommHost.
+*/ 
+operation Element getSchedPolicyOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "schedPolicy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of otherSchedPolicy of stereotype GaCommHost.
+*/ 
+operation Element getOtherSchedPolicyOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "otherSchedPolicy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of schedule of stereotype GaCommHost.
+*/ 
+operation Element getScheduleOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "schedule");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of processingUnits of stereotype GaCommHost.
+*/ 
+operation Element getProcessingUnitsOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "processingUnits");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of host of stereotype GaCommHost.
+*/ 
+operation Element getHostOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "host");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of protectedSharedResources of stereotype GaCommHost.
+*/ 
+operation Element getProtectedSharedResourcesOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "protectedSharedResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of schedulableResources of stereotype GaCommHost.
+*/ 
+operation Element getSchedulableResourcesOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "schedulableResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of resMult of stereotype GaCommHost.
+*/ 
+operation Element getResMultOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "resMult");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isProtected of stereotype GaCommHost.
+*/ 
+operation Element getIsProtectedOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "isProtected");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isActive of stereotype GaCommHost.
+*/ 
+operation Element getIsActiveOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "isActive");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of elementSize of stereotype GaCommHost.
+*/ 
+operation Element getElementSizeOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "elementSize");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of transmMode of stereotype GaCommHost.
+*/ 
+operation Element getTransmModeOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "transmMode");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of blockT of stereotype GaCommHost.
+*/ 
+operation Element getBlockTOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "blockT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of packetT of stereotype GaCommHost.
+*/ 
+operation Element getPacketTOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "packetT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of capacity of stereotype GaCommHost.
+*/ 
+operation Element getCapacityOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "capacity");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of speedFactor of stereotype GaCommHost.
+*/ 
+operation Element getSpeedFactorOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "speedFactor");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of mainScheduler of stereotype GaCommHost.
+*/ 
+operation Element getMainSchedulerOfGaCommHostAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("GaCommHost"), "mainScheduler");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property GaCommHost::throughput	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@582547c6 (name: NFP_Frequency, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setThroughputProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getThroughputProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::utilization	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setUtilizationProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getUtilizationProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::isPreemptible	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsPreemptibleProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getIsPreemptibleProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::schedPolicy	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@30a591bc (name: SchedPolicyKind, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setSchedPolicyProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getSchedPolicyProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::otherSchedPolicy	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@270530c6 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setOtherSchedPolicyProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getOtherSchedPolicyProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::schedule	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@734af66a (name: ScheduleSpecification, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setScheduleProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getScheduleProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::processingUnits	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@2bf03d4 (name: ProcessingResource, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setProcessingUnitsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getProcessingUnitsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::host	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@69d8584e (name: ComputingResource, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setHostProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getHostProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::protectedSharedResources	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@167eeeec (name: MutualExclusionResource, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setProtectedSharedResourcesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getProtectedSharedResourcesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::schedulableResources	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@326fe4b0 (name: SchedulableResource, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setSchedulableResourcesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getSchedulableResourcesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::resMult	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@2ddf45fe (name: NFP_Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setResMultProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getResMultProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::isProtected	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsProtectedProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getIsProtectedProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::isActive	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@adbe421 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsActiveProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getIsActiveProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::elementSize	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@2ddf45fe (name: NFP_Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setElementSizeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getElementSizeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::transmMode	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@e8a777 (name: TransmModeKind, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setTransmModeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getTransmModeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::blockT	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setBlockTProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getBlockTProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::packetT	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setPacketTProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getPacketTProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::capacity	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@5cfe85a (name: NFP_DataTxRate, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setCapacityProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getCapacityProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::speedFactor	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setSpeedFactorProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getSpeedFactorProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property GaCommHost::mainScheduler	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@401e2d5b (name: Scheduler, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setMainSchedulerProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_gQAM = Profile.all.selectOne(e|e.name = "GQAM");
+		
+		var stereotype = current_gQAM.getGaCommHostStereotype();
+		var property = current_gQAM.getMainSchedulerProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get throughput Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getThroughputPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var throughputProperty = allAttributes.selectOne(s|s.name = "throughput");
+	return throughputProperty;
+}
+
+//--get utilization Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getUtilizationPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var utilizationProperty = allAttributes.selectOne(s|s.name = "utilization");
+	return utilizationProperty;
+}
+
+//--get isPreemptible Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsPreemptiblePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isPreemptibleProperty = allAttributes.selectOne(s|s.name = "isPreemptible");
+	return isPreemptibleProperty;
+}
+
+//--get schedPolicy Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSchedPolicyPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var schedPolicyProperty = allAttributes.selectOne(s|s.name = "schedPolicy");
+	return schedPolicyProperty;
+}
+
+//--get otherSchedPolicy Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getOtherSchedPolicyPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var otherSchedPolicyProperty = allAttributes.selectOne(s|s.name = "otherSchedPolicy");
+	return otherSchedPolicyProperty;
+}
+
+//--get schedule Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSchedulePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var scheduleProperty = allAttributes.selectOne(s|s.name = "schedule");
+	return scheduleProperty;
+}
+
+//--get processingUnits Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getProcessingUnitsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var processingUnitsProperty = allAttributes.selectOne(s|s.name = "processingUnits");
+	return processingUnitsProperty;
+}
+
+//--get host Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getHostPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var hostProperty = allAttributes.selectOne(s|s.name = "host");
+	return hostProperty;
+}
+
+//--get protectedSharedResources Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getProtectedSharedResourcesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var protectedSharedResourcesProperty = allAttributes.selectOne(s|s.name = "protectedSharedResources");
+	return protectedSharedResourcesProperty;
+}
+
+//--get schedulableResources Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSchedulableResourcesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var schedulableResourcesProperty = allAttributes.selectOne(s|s.name = "schedulableResources");
+	return schedulableResourcesProperty;
+}
+
+//--get resMult Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getResMultPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var resMultProperty = allAttributes.selectOne(s|s.name = "resMult");
+	return resMultProperty;
+}
+
+//--get isProtected Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsProtectedPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isProtectedProperty = allAttributes.selectOne(s|s.name = "isProtected");
+	return isProtectedProperty;
+}
+
+//--get isActive Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsActivePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isActiveProperty = allAttributes.selectOne(s|s.name = "isActive");
+	return isActiveProperty;
+}
+
+//--get elementSize Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getElementSizePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var elementSizeProperty = allAttributes.selectOne(s|s.name = "elementSize");
+	return elementSizeProperty;
+}
+
+//--get transmMode Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getTransmModePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var transmModeProperty = allAttributes.selectOne(s|s.name = "transmMode");
+	return transmModeProperty;
+}
+
+//--get blockT Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getBlockTPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var blockTProperty = allAttributes.selectOne(s|s.name = "blockT");
+	return blockTProperty;
+}
+
+//--get packetT Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getPacketTPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var packetTProperty = allAttributes.selectOne(s|s.name = "packetT");
+	return packetTProperty;
+}
+
+//--get capacity Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getCapacityPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var capacityProperty = allAttributes.selectOne(s|s.name = "capacity");
+	return capacityProperty;
+}
+
+//--get speedFactor Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSpeedFactorPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var speedFactorProperty = allAttributes.selectOne(s|s.name = "speedFactor");
+	return speedFactorProperty;
+}
+
+//--get mainScheduler Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getMainSchedulerPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var mainSchedulerProperty = allAttributes.selectOne(s|s.name = "mainScheduler");
+	return mainSchedulerProperty;
+}
+
+
+/*
+Check if a Set of throughput of stereotype GaCommHost is empty.
+*/ 
+operation Element isThroughputOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "throughput");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of utilization of stereotype GaCommHost is empty.
+*/ 
+operation Element isUtilizationOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "utilization");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isPreemptible of stereotype GaCommHost is empty.
+*/ 
+operation Element isIsPreemptibleOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "isPreemptible");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of schedPolicy of stereotype GaCommHost is empty.
+*/ 
+operation Element isSchedPolicyOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "schedPolicy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of otherSchedPolicy of stereotype GaCommHost is empty.
+*/ 
+operation Element isOtherSchedPolicyOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "otherSchedPolicy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of schedule of stereotype GaCommHost is empty.
+*/ 
+operation Element isScheduleOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "schedule");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of processingUnits of stereotype GaCommHost is empty.
+*/ 
+operation Element isProcessingUnitsOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "processingUnits");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of host of stereotype GaCommHost is empty.
+*/ 
+operation Element isHostOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "host");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of protectedSharedResources of stereotype GaCommHost is empty.
+*/ 
+operation Element isProtectedSharedResourcesOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "protectedSharedResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of schedulableResources of stereotype GaCommHost is empty.
+*/ 
+operation Element isSchedulableResourcesOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "schedulableResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of resMult of stereotype GaCommHost is empty.
+*/ 
+operation Element isResMultOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "resMult");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isProtected of stereotype GaCommHost is empty.
+*/ 
+operation Element isIsProtectedOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "isProtected");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isActive of stereotype GaCommHost is empty.
+*/ 
+operation Element isIsActiveOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "isActive");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of elementSize of stereotype GaCommHost is empty.
+*/ 
+operation Element isElementSizeOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "elementSize");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of transmMode of stereotype GaCommHost is empty.
+*/ 
+operation Element isTransmModeOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "transmMode");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of blockT of stereotype GaCommHost is empty.
+*/ 
+operation Element isBlockTOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "blockT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of packetT of stereotype GaCommHost is empty.
+*/ 
+operation Element isPacketTOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "packetT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of capacity of stereotype GaCommHost is empty.
+*/ 
+operation Element isCapacityOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "capacity");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of speedFactor of stereotype GaCommHost is empty.
+*/ 
+operation Element isSpeedFactorOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "speedFactor");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of mainScheduler of stereotype GaCommHost is empty.
+*/ 
+operation Element isMainSchedulerOfGaCommHostEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("GaCommHost"), "mainScheduler");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

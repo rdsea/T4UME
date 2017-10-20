@@ -1,0 +1,547 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with RtSpecification.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package RtSpecificationsAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isRtSpecification()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with RtSpecification.
+*/ 
+operation Element isRtSpecification() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isRtSpecification() : Boolean in RtSpecification.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "RtSpecification");
+}
+
+
+//getters
+/*
+Returns a Set of utility of stereotype RtSpecification.
+*/ 
+operation Element getUtilityOfRtSpecificationAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("RtSpecification"), "utility");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of occKind of stereotype RtSpecification.
+*/ 
+operation Element getOccKindOfRtSpecificationAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("RtSpecification"), "occKind");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of tRef of stereotype RtSpecification.
+*/ 
+operation Element getTRefOfRtSpecificationAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("RtSpecification"), "tRef");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of relDl of stereotype RtSpecification.
+*/ 
+operation Element getRelDlOfRtSpecificationAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("RtSpecification"), "relDl");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of absDl of stereotype RtSpecification.
+*/ 
+operation Element getAbsDlOfRtSpecificationAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("RtSpecification"), "absDl");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of boundDl of stereotype RtSpecification.
+*/ 
+operation Element getBoundDlOfRtSpecificationAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("RtSpecification"), "boundDl");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of rdTime of stereotype RtSpecification.
+*/ 
+operation Element getRdTimeOfRtSpecificationAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("RtSpecification"), "rdTime");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of miss of stereotype RtSpecification.
+*/ 
+operation Element getMissOfRtSpecificationAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("RtSpecification"), "miss");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of priority of stereotype RtSpecification.
+*/ 
+operation Element getPriorityOfRtSpecificationAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("RtSpecification"), "priority");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of context of stereotype RtSpecification.
+*/ 
+operation Element getContextOfRtSpecificationAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("RtSpecification"), "context");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property RtSpecification::utility	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@1620161e (name: UtilityType, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setUtilityProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hLAM = Profile.all.selectOne(e|e.name = "HLAM");
+		
+		var stereotype = current_hLAM.getRtSpecificationStereotype();
+		var property = current_hLAM.getUtilityProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property RtSpecification::occKind	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@4e03047e (name: ArrivalPattern, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setOccKindProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hLAM = Profile.all.selectOne(e|e.name = "HLAM");
+		
+		var stereotype = current_hLAM.getRtSpecificationStereotype();
+		var property = current_hLAM.getOccKindProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property RtSpecification::tRef	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@67b0ad5e (name: TimedInstantObservation, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setTRefProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hLAM = Profile.all.selectOne(e|e.name = "HLAM");
+		
+		var stereotype = current_hLAM.getRtSpecificationStereotype();
+		var property = current_hLAM.getTRefProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property RtSpecification::relDl	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setRelDlProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hLAM = Profile.all.selectOne(e|e.name = "HLAM");
+		
+		var stereotype = current_hLAM.getRtSpecificationStereotype();
+		var property = current_hLAM.getRelDlProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property RtSpecification::absDl	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@34c12c7f (name: NFP_DateTime, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setAbsDlProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hLAM = Profile.all.selectOne(e|e.name = "HLAM");
+		
+		var stereotype = current_hLAM.getRtSpecificationStereotype();
+		var property = current_hLAM.getAbsDlProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property RtSpecification::boundDl	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setBoundDlProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hLAM = Profile.all.selectOne(e|e.name = "HLAM");
+		
+		var stereotype = current_hLAM.getRtSpecificationStereotype();
+		var property = current_hLAM.getBoundDlProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property RtSpecification::rdTime	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setRdTimeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hLAM = Profile.all.selectOne(e|e.name = "HLAM");
+		
+		var stereotype = current_hLAM.getRtSpecificationStereotype();
+		var property = current_hLAM.getRdTimeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property RtSpecification::miss	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@5f8b3bac (name: NFP_Percentage, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setMissProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hLAM = Profile.all.selectOne(e|e.name = "HLAM");
+		
+		var stereotype = current_hLAM.getRtSpecificationStereotype();
+		var property = current_hLAM.getMissProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property RtSpecification::priority	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@2ddf45fe (name: NFP_Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setPriorityProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hLAM = Profile.all.selectOne(e|e.name = "HLAM");
+		
+		var stereotype = current_hLAM.getRtSpecificationStereotype();
+		var property = current_hLAM.getPriorityProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property RtSpecification::context	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@51516217 (name: BehavioralFeature, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setContextProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_hLAM = Profile.all.selectOne(e|e.name = "HLAM");
+		
+		var stereotype = current_hLAM.getRtSpecificationStereotype();
+		var property = current_hLAM.getContextProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get utility Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getUtilityPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var utilityProperty = allAttributes.selectOne(s|s.name = "utility");
+	return utilityProperty;
+}
+
+//--get occKind Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getOccKindPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var occKindProperty = allAttributes.selectOne(s|s.name = "occKind");
+	return occKindProperty;
+}
+
+//--get tRef Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getTRefPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var tRefProperty = allAttributes.selectOne(s|s.name = "tRef");
+	return tRefProperty;
+}
+
+//--get relDl Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getRelDlPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var relDlProperty = allAttributes.selectOne(s|s.name = "relDl");
+	return relDlProperty;
+}
+
+//--get absDl Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getAbsDlPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var absDlProperty = allAttributes.selectOne(s|s.name = "absDl");
+	return absDlProperty;
+}
+
+//--get boundDl Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getBoundDlPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var boundDlProperty = allAttributes.selectOne(s|s.name = "boundDl");
+	return boundDlProperty;
+}
+
+//--get rdTime Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getRdTimePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var rdTimeProperty = allAttributes.selectOne(s|s.name = "rdTime");
+	return rdTimeProperty;
+}
+
+//--get miss Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getMissPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var missProperty = allAttributes.selectOne(s|s.name = "miss");
+	return missProperty;
+}
+
+//--get priority Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getPriorityPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var priorityProperty = allAttributes.selectOne(s|s.name = "priority");
+	return priorityProperty;
+}
+
+//--get context Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getContextPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var contextProperty = allAttributes.selectOne(s|s.name = "context");
+	return contextProperty;
+}
+
+
+/*
+Check if a Set of utility of stereotype RtSpecification is empty.
+*/ 
+operation Element isUtilityOfRtSpecificationEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("RtSpecification"), "utility");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of occKind of stereotype RtSpecification is empty.
+*/ 
+operation Element isOccKindOfRtSpecificationEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("RtSpecification"), "occKind");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of tRef of stereotype RtSpecification is empty.
+*/ 
+operation Element isTRefOfRtSpecificationEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("RtSpecification"), "tRef");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of relDl of stereotype RtSpecification is empty.
+*/ 
+operation Element isRelDlOfRtSpecificationEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("RtSpecification"), "relDl");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of absDl of stereotype RtSpecification is empty.
+*/ 
+operation Element isAbsDlOfRtSpecificationEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("RtSpecification"), "absDl");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of boundDl of stereotype RtSpecification is empty.
+*/ 
+operation Element isBoundDlOfRtSpecificationEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("RtSpecification"), "boundDl");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of rdTime of stereotype RtSpecification is empty.
+*/ 
+operation Element isRdTimeOfRtSpecificationEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("RtSpecification"), "rdTime");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of miss of stereotype RtSpecification is empty.
+*/ 
+operation Element isMissOfRtSpecificationEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("RtSpecification"), "miss");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of priority of stereotype RtSpecification is empty.
+*/ 
+operation Element isPriorityOfRtSpecificationEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("RtSpecification"), "priority");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of context of stereotype RtSpecification is empty.
+*/ 
+operation Element isContextOfRtSpecificationEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("RtSpecification"), "context");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

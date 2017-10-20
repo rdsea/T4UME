@@ -1,0 +1,2035 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with PaCommStep.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package PaCommStepsAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isPaCommStep()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with PaCommStep.
+*/ 
+operation Element isPaCommStep() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isPaCommStep() : Boolean in PaCommStep.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "PaCommStep");
+}
+
+
+//getters
+/*
+Returns a Set of noSync of stereotype PaCommStep.
+*/ 
+operation Element getNoSyncOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "noSync");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of extOpDemand of stereotype PaCommStep.
+*/ 
+operation Element getExtOpDemandOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "extOpDemand");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of extOpCount of stereotype PaCommStep.
+*/ 
+operation Element getExtOpCountOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "extOpCount");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of behavDemand of stereotype PaCommStep.
+*/ 
+operation Element getBehavDemandOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "behavDemand");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of behavCount of stereotype PaCommStep.
+*/ 
+operation Element getBehavCountOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "behavCount");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isAtomic of stereotype PaCommStep.
+*/ 
+operation Element getIsAtomicOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "isAtomic");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of blockT of stereotype PaCommStep.
+*/ 
+operation Element getBlockTOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "blockT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of rep of stereotype PaCommStep.
+*/ 
+operation Element getRepOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "rep");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of prob of stereotype PaCommStep.
+*/ 
+operation Element getProbOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "prob");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of priority of stereotype PaCommStep.
+*/ 
+operation Element getPriorityOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "priority");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of concurRes of stereotype PaCommStep.
+*/ 
+operation Element getConcurResOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "concurRes");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of host of stereotype PaCommStep.
+*/ 
+operation Element getHostOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "host");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of servDemand of stereotype PaCommStep.
+*/ 
+operation Element getServDemandOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "servDemand");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of servCount of stereotype PaCommStep.
+*/ 
+operation Element getServCountOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "servCount");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of selfDelay of stereotype PaCommStep.
+*/ 
+operation Element getSelfDelayOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "selfDelay");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of scenario of stereotype PaCommStep.
+*/ 
+operation Element getScenarioOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "scenario");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of childScenario of stereotype PaCommStep.
+*/ 
+operation Element getChildScenarioOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "childScenario");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of cause of stereotype PaCommStep.
+*/ 
+operation Element getCauseOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "cause");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of hostDemand of stereotype PaCommStep.
+*/ 
+operation Element getHostDemandOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "hostDemand");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of hostDemandOps of stereotype PaCommStep.
+*/ 
+operation Element getHostDemandOpsOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "hostDemandOps");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of interOccT of stereotype PaCommStep.
+*/ 
+operation Element getInterOccTOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "interOccT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of throughput of stereotype PaCommStep.
+*/ 
+operation Element getThroughputOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "throughput");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of respT of stereotype PaCommStep.
+*/ 
+operation Element getRespTOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "respT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of utilization of stereotype PaCommStep.
+*/ 
+operation Element getUtilizationOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "utilization");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of utilizationOnHost of stereotype PaCommStep.
+*/ 
+operation Element getUtilizationOnHostOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "utilizationOnHost");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of root of stereotype PaCommStep.
+*/ 
+operation Element getRootOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "root");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of timing of stereotype PaCommStep.
+*/ 
+operation Element getTimingOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "timing");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of steps of stereotype PaCommStep.
+*/ 
+operation Element getStepsOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "steps");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of parentStep of stereotype PaCommStep.
+*/ 
+operation Element getParentStepOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "parentStep");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of execTime of stereotype PaCommStep.
+*/ 
+operation Element getExecTimeOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "execTime");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of allocatedMemory of stereotype PaCommStep.
+*/ 
+operation Element getAllocatedMemoryOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "allocatedMemory");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of usedMemory of stereotype PaCommStep.
+*/ 
+operation Element getUsedMemoryOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "usedMemory");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of powerPeak of stereotype PaCommStep.
+*/ 
+operation Element getPowerPeakOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "powerPeak");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of energy of stereotype PaCommStep.
+*/ 
+operation Element getEnergyOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "energy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of subUsage of stereotype PaCommStep.
+*/ 
+operation Element getSubUsageOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "subUsage");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of usedResources of stereotype PaCommStep.
+*/ 
+operation Element getUsedResourcesOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "usedResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of msgSize of stereotype PaCommStep.
+*/ 
+operation Element getMsgSizeOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "msgSize");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of duration of stereotype PaCommStep.
+*/ 
+operation Element getDurationOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "duration");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of start of stereotype PaCommStep.
+*/ 
+operation Element getStartOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "start");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of finish of stereotype PaCommStep.
+*/ 
+operation Element getFinishOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "finish");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of on of stereotype PaCommStep.
+*/ 
+operation Element getOnOfPaCommStepAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("PaCommStep"), "on");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property PaCommStep::noSync	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@2fba6b4b (name: NFP_Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setNoSyncProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getNoSyncProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::extOpDemand	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@270530c6 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setExtOpDemandProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getExtOpDemandProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::extOpCount	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setExtOpCountProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getExtOpCountProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::behavDemand	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@580fca37 (name: GaScenario, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setBehavDemandProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getBehavDemandProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::behavCount	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setBehavCountProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getBehavCountProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::isAtomic	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@2fba6b4b (name: NFP_Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsAtomicProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getIsAtomicProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::blockT	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setBlockTProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getBlockTProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::rep	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setRepProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getRepProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::prob	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setProbProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getProbProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::priority	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@2ddf45fe (name: NFP_Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setPriorityProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getPriorityProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::concurRes	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@326fe4b0 (name: SchedulableResource, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setConcurResProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getConcurResProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::host	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@c40ffd7 (name: GaExecHost, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setHostProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getHostProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::servDemand	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@5f00a6e2 (name: GaRequestedService, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setServDemandProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getServDemandProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::servCount	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setServCountProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getServCountProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::selfDelay	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setSelfDelayProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getSelfDelayProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::scenario	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@580fca37 (name: GaScenario, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setScenarioProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getScenarioProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::childScenario	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@580fca37 (name: GaScenario, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setChildScenarioProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getChildScenarioProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::cause	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@38c2feeb (name: GaWorkloadEvent, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setCauseProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getCauseProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::hostDemand	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setHostDemandProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getHostDemandProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::hostDemandOps	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setHostDemandOpsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getHostDemandOpsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::interOccT	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setInterOccTProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getInterOccTProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::throughput	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@582547c6 (name: NFP_Frequency, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setThroughputProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getThroughputProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::respT	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setRespTProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getRespTProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::utilization	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setUtilizationProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getUtilizationProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::utilizationOnHost	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@48ab5c5e (name: NFP_Real, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setUtilizationOnHostProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getUtilizationOnHostProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::root	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@23e40814 (name: GaStep, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setRootProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getRootProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::timing	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@5a9bf62a (name: GaTimedObs, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setTimingProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getTimingProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::steps	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@23e40814 (name: GaStep, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setStepsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getStepsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::parentStep	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@23e40814 (name: GaStep, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setParentStepProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getParentStepProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::execTime	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@3cb960f1 (name: NFP_Duration, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setExecTimeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getExecTimeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::allocatedMemory	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@7fd8cbd9 (name: NFP_DataSize, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setAllocatedMemoryProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getAllocatedMemoryProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::usedMemory	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@7fd8cbd9 (name: NFP_DataSize, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setUsedMemoryProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getUsedMemoryProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::powerPeak	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@367bc2b5 (name: NFP_Power, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setPowerPeakProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getPowerPeakProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::energy	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@7c7866c (name: NFP_Energy, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setEnergyProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getEnergyProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::subUsage	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@11261c05 (name: ResourceUsage, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setSubUsageProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getSubUsageProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::usedResources	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@1dd9e9d8 (name: Resource, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setUsedResourcesProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getUsedResourcesProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::msgSize	
+// org.eclipse.uml2.uml.internal.impl.DataTypeImpl@7fd8cbd9 (name: NFP_DataSize, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setMsgSizeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getMsgSizeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::duration	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@74a062c6 (name: ValueSpecification, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setDurationProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getDurationProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::start	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@5150ff0c (name: Event, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setStartProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getStartProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::finish	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@5150ff0c (name: Event, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setFinishProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getFinishProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property PaCommStep::on	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@181ca2d4 (name: Clock, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setOnProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_pAM = Profile.all.selectOne(e|e.name = "PAM");
+		
+		var stereotype = current_pAM.getPaCommStepStereotype();
+		var property = current_pAM.getOnProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get noSync Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getNoSyncPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var noSyncProperty = allAttributes.selectOne(s|s.name = "noSync");
+	return noSyncProperty;
+}
+
+//--get extOpDemand Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getExtOpDemandPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var extOpDemandProperty = allAttributes.selectOne(s|s.name = "extOpDemand");
+	return extOpDemandProperty;
+}
+
+//--get extOpCount Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getExtOpCountPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var extOpCountProperty = allAttributes.selectOne(s|s.name = "extOpCount");
+	return extOpCountProperty;
+}
+
+//--get behavDemand Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getBehavDemandPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var behavDemandProperty = allAttributes.selectOne(s|s.name = "behavDemand");
+	return behavDemandProperty;
+}
+
+//--get behavCount Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getBehavCountPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var behavCountProperty = allAttributes.selectOne(s|s.name = "behavCount");
+	return behavCountProperty;
+}
+
+//--get isAtomic Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsAtomicPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isAtomicProperty = allAttributes.selectOne(s|s.name = "isAtomic");
+	return isAtomicProperty;
+}
+
+//--get blockT Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getBlockTPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var blockTProperty = allAttributes.selectOne(s|s.name = "blockT");
+	return blockTProperty;
+}
+
+//--get rep Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getRepPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var repProperty = allAttributes.selectOne(s|s.name = "rep");
+	return repProperty;
+}
+
+//--get prob Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getProbPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var probProperty = allAttributes.selectOne(s|s.name = "prob");
+	return probProperty;
+}
+
+//--get priority Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getPriorityPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var priorityProperty = allAttributes.selectOne(s|s.name = "priority");
+	return priorityProperty;
+}
+
+//--get concurRes Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getConcurResPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var concurResProperty = allAttributes.selectOne(s|s.name = "concurRes");
+	return concurResProperty;
+}
+
+//--get host Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getHostPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var hostProperty = allAttributes.selectOne(s|s.name = "host");
+	return hostProperty;
+}
+
+//--get servDemand Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getServDemandPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var servDemandProperty = allAttributes.selectOne(s|s.name = "servDemand");
+	return servDemandProperty;
+}
+
+//--get servCount Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getServCountPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var servCountProperty = allAttributes.selectOne(s|s.name = "servCount");
+	return servCountProperty;
+}
+
+//--get selfDelay Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSelfDelayPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var selfDelayProperty = allAttributes.selectOne(s|s.name = "selfDelay");
+	return selfDelayProperty;
+}
+
+//--get scenario Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getScenarioPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var scenarioProperty = allAttributes.selectOne(s|s.name = "scenario");
+	return scenarioProperty;
+}
+
+//--get childScenario Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getChildScenarioPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var childScenarioProperty = allAttributes.selectOne(s|s.name = "childScenario");
+	return childScenarioProperty;
+}
+
+//--get cause Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getCausePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var causeProperty = allAttributes.selectOne(s|s.name = "cause");
+	return causeProperty;
+}
+
+//--get hostDemand Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getHostDemandPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var hostDemandProperty = allAttributes.selectOne(s|s.name = "hostDemand");
+	return hostDemandProperty;
+}
+
+//--get hostDemandOps Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getHostDemandOpsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var hostDemandOpsProperty = allAttributes.selectOne(s|s.name = "hostDemandOps");
+	return hostDemandOpsProperty;
+}
+
+//--get interOccT Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getInterOccTPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var interOccTProperty = allAttributes.selectOne(s|s.name = "interOccT");
+	return interOccTProperty;
+}
+
+//--get throughput Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getThroughputPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var throughputProperty = allAttributes.selectOne(s|s.name = "throughput");
+	return throughputProperty;
+}
+
+//--get respT Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getRespTPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var respTProperty = allAttributes.selectOne(s|s.name = "respT");
+	return respTProperty;
+}
+
+//--get utilization Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getUtilizationPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var utilizationProperty = allAttributes.selectOne(s|s.name = "utilization");
+	return utilizationProperty;
+}
+
+//--get utilizationOnHost Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getUtilizationOnHostPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var utilizationOnHostProperty = allAttributes.selectOne(s|s.name = "utilizationOnHost");
+	return utilizationOnHostProperty;
+}
+
+//--get root Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getRootPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var rootProperty = allAttributes.selectOne(s|s.name = "root");
+	return rootProperty;
+}
+
+//--get timing Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getTimingPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var timingProperty = allAttributes.selectOne(s|s.name = "timing");
+	return timingProperty;
+}
+
+//--get steps Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getStepsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var stepsProperty = allAttributes.selectOne(s|s.name = "steps");
+	return stepsProperty;
+}
+
+//--get parentStep Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getParentStepPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var parentStepProperty = allAttributes.selectOne(s|s.name = "parentStep");
+	return parentStepProperty;
+}
+
+//--get execTime Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getExecTimePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var execTimeProperty = allAttributes.selectOne(s|s.name = "execTime");
+	return execTimeProperty;
+}
+
+//--get allocatedMemory Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getAllocatedMemoryPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var allocatedMemoryProperty = allAttributes.selectOne(s|s.name = "allocatedMemory");
+	return allocatedMemoryProperty;
+}
+
+//--get usedMemory Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getUsedMemoryPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var usedMemoryProperty = allAttributes.selectOne(s|s.name = "usedMemory");
+	return usedMemoryProperty;
+}
+
+//--get powerPeak Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getPowerPeakPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var powerPeakProperty = allAttributes.selectOne(s|s.name = "powerPeak");
+	return powerPeakProperty;
+}
+
+//--get energy Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getEnergyPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var energyProperty = allAttributes.selectOne(s|s.name = "energy");
+	return energyProperty;
+}
+
+//--get subUsage Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getSubUsagePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var subUsageProperty = allAttributes.selectOne(s|s.name = "subUsage");
+	return subUsageProperty;
+}
+
+//--get usedResources Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getUsedResourcesPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var usedResourcesProperty = allAttributes.selectOne(s|s.name = "usedResources");
+	return usedResourcesProperty;
+}
+
+//--get msgSize Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getMsgSizePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var msgSizeProperty = allAttributes.selectOne(s|s.name = "msgSize");
+	return msgSizeProperty;
+}
+
+//--get duration Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDurationPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var durationProperty = allAttributes.selectOne(s|s.name = "duration");
+	return durationProperty;
+}
+
+//--get start Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getStartPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var startProperty = allAttributes.selectOne(s|s.name = "start");
+	return startProperty;
+}
+
+//--get finish Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getFinishPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var finishProperty = allAttributes.selectOne(s|s.name = "finish");
+	return finishProperty;
+}
+
+//--get on Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getOnPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var onProperty = allAttributes.selectOne(s|s.name = "on");
+	return onProperty;
+}
+
+
+/*
+Check if a Set of noSync of stereotype PaCommStep is empty.
+*/ 
+operation Element isNoSyncOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "noSync");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of extOpDemand of stereotype PaCommStep is empty.
+*/ 
+operation Element isExtOpDemandOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "extOpDemand");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of extOpCount of stereotype PaCommStep is empty.
+*/ 
+operation Element isExtOpCountOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "extOpCount");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of behavDemand of stereotype PaCommStep is empty.
+*/ 
+operation Element isBehavDemandOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "behavDemand");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of behavCount of stereotype PaCommStep is empty.
+*/ 
+operation Element isBehavCountOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "behavCount");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isAtomic of stereotype PaCommStep is empty.
+*/ 
+operation Element isIsAtomicOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "isAtomic");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of blockT of stereotype PaCommStep is empty.
+*/ 
+operation Element isBlockTOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "blockT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of rep of stereotype PaCommStep is empty.
+*/ 
+operation Element isRepOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "rep");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of prob of stereotype PaCommStep is empty.
+*/ 
+operation Element isProbOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "prob");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of priority of stereotype PaCommStep is empty.
+*/ 
+operation Element isPriorityOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "priority");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of concurRes of stereotype PaCommStep is empty.
+*/ 
+operation Element isConcurResOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "concurRes");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of host of stereotype PaCommStep is empty.
+*/ 
+operation Element isHostOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "host");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of servDemand of stereotype PaCommStep is empty.
+*/ 
+operation Element isServDemandOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "servDemand");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of servCount of stereotype PaCommStep is empty.
+*/ 
+operation Element isServCountOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "servCount");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of selfDelay of stereotype PaCommStep is empty.
+*/ 
+operation Element isSelfDelayOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "selfDelay");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of scenario of stereotype PaCommStep is empty.
+*/ 
+operation Element isScenarioOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "scenario");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of childScenario of stereotype PaCommStep is empty.
+*/ 
+operation Element isChildScenarioOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "childScenario");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of cause of stereotype PaCommStep is empty.
+*/ 
+operation Element isCauseOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "cause");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of hostDemand of stereotype PaCommStep is empty.
+*/ 
+operation Element isHostDemandOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "hostDemand");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of hostDemandOps of stereotype PaCommStep is empty.
+*/ 
+operation Element isHostDemandOpsOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "hostDemandOps");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of interOccT of stereotype PaCommStep is empty.
+*/ 
+operation Element isInterOccTOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "interOccT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of throughput of stereotype PaCommStep is empty.
+*/ 
+operation Element isThroughputOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "throughput");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of respT of stereotype PaCommStep is empty.
+*/ 
+operation Element isRespTOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "respT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of utilization of stereotype PaCommStep is empty.
+*/ 
+operation Element isUtilizationOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "utilization");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of utilizationOnHost of stereotype PaCommStep is empty.
+*/ 
+operation Element isUtilizationOnHostOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "utilizationOnHost");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of root of stereotype PaCommStep is empty.
+*/ 
+operation Element isRootOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "root");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of timing of stereotype PaCommStep is empty.
+*/ 
+operation Element isTimingOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "timing");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of steps of stereotype PaCommStep is empty.
+*/ 
+operation Element isStepsOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "steps");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of parentStep of stereotype PaCommStep is empty.
+*/ 
+operation Element isParentStepOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "parentStep");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of execTime of stereotype PaCommStep is empty.
+*/ 
+operation Element isExecTimeOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "execTime");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of allocatedMemory of stereotype PaCommStep is empty.
+*/ 
+operation Element isAllocatedMemoryOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "allocatedMemory");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of usedMemory of stereotype PaCommStep is empty.
+*/ 
+operation Element isUsedMemoryOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "usedMemory");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of powerPeak of stereotype PaCommStep is empty.
+*/ 
+operation Element isPowerPeakOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "powerPeak");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of energy of stereotype PaCommStep is empty.
+*/ 
+operation Element isEnergyOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "energy");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of subUsage of stereotype PaCommStep is empty.
+*/ 
+operation Element isSubUsageOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "subUsage");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of usedResources of stereotype PaCommStep is empty.
+*/ 
+operation Element isUsedResourcesOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "usedResources");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of msgSize of stereotype PaCommStep is empty.
+*/ 
+operation Element isMsgSizeOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "msgSize");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of duration of stereotype PaCommStep is empty.
+*/ 
+operation Element isDurationOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "duration");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of start of stereotype PaCommStep is empty.
+*/ 
+operation Element isStartOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "start");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of finish of stereotype PaCommStep is empty.
+*/ 
+operation Element isFinishOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "finish");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of on of stereotype PaCommStep is empty.
+*/ 
+operation Element isOnOfPaCommStepEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("PaCommStep"), "on");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

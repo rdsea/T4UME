@@ -1,0 +1,163 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with TimedValueSpecification.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package TimedValueSpecificationsAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isTimedValueSpecification()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with TimedValueSpecification.
+*/ 
+operation Element isTimedValueSpecification() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isTimedValueSpecification() : Boolean in TimedValueSpecification.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "TimedValueSpecification");
+}
+
+
+//getters
+/*
+Returns a Set of interpretation of stereotype TimedValueSpecification.
+*/ 
+operation Element getInterpretationOfTimedValueSpecificationAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("TimedValueSpecification"), "interpretation");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of on of stereotype TimedValueSpecification.
+*/ 
+operation Element getOnOfTimedValueSpecificationAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("TimedValueSpecification"), "on");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property TimedValueSpecification::interpretation	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@7d107dcd (name: TimeInterpretationKind, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setInterpretationProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_time = Profile.all.selectOne(e|e.name = "Time");
+		
+		var stereotype = current_time.getTimedValueSpecificationStereotype();
+		var property = current_time.getInterpretationProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property TimedValueSpecification::on	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@181ca2d4 (name: Clock, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setOnProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_time = Profile.all.selectOne(e|e.name = "Time");
+		
+		var stereotype = current_time.getTimedValueSpecificationStereotype();
+		var property = current_time.getOnProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get interpretation Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getInterpretationPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var interpretationProperty = allAttributes.selectOne(s|s.name = "interpretation");
+	return interpretationProperty;
+}
+
+//--get on Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getOnPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var onProperty = allAttributes.selectOne(s|s.name = "on");
+	return onProperty;
+}
+
+
+/*
+Check if a Set of interpretation of stereotype TimedValueSpecification is empty.
+*/ 
+operation Element isInterpretationOfTimedValueSpecificationEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("TimedValueSpecification"), "interpretation");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of on of stereotype TimedValueSpecification is empty.
+*/ 
+operation Element isOnOfTimedValueSpecificationEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("TimedValueSpecification"), "on");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

@@ -1,0 +1,241 @@
+[%
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+//import "../eol/library/gen/profiles/InfrastructureCPSProfile.eol";
+//import "../eol/library/gen/profiles/InfrastructureUncertaintyProfile.eol";
+//import "../eol/library/gen/profiles/CoreProfile.eol";
+//import "../eol/library/gen/profiles/InternalUProfileLibrary.eol";
+
+var profiles : Set();
+
+var infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+var infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+var internalUProfileLibrary = Profile.all.selectOne(e|e.name = "InternalUProfileLibrary");
+var coreProfile = Profile.all.selectOne(e|e.name = "CoreProfile");
+
+profiles.add(infrastructureUncertaintyProfile);
+profiles.add(infrastructureCPSProfile);
+profiles.add(internalUProfileLibrary);
+profiles.add(coreProfile);
+
+
+var stereotypes : Set();
+
+var infrastructureUncertaintyStereotypes = infrastructureUncertaintyProfile.getOwnedStereotypes();
+var infrastructureCPSStereotypes = infrastructureCPSProfile.getOwnedStereotypes();
+var internalUProfileLibraryStereotypes = internalUProfileLibrary.getOwnedStereotypes();
+var coreProfileStereotypes = coreProfile.getOwnedStereotypes();
+
+for (elem in infrastructureUncertaintyStereotypes) { 
+	stereotypes.add(elem);
+}
+for (elem in infrastructureCPSStereotypes) { 
+	stereotypes.add(elem);
+}
+for (elem in internalUProfileLibraryStereotypes) { 
+	stereotypes.add(elem);
+}
+for (elem in coreProfileStereotypes) { 
+	stereotypes.add(elem);
+}
+
+
+var enumerations : Set();
+
+var infrastructureUncertaintyEnumerations = infrastructureUncertaintyProfile.getOwnedTypes().select(e|e.isTypeOf(Enumeration));// = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+var infrastructureCPSEnumerations = infrastructureCPSProfile.getOwnedTypes().select(e|e.isTypeOf(Enumeration));// = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+var internalUProfileLibraryEnumerations = internalUProfileLibrary.getOwnedTypes().select(e|e.isTypeOf(Enumeration));// = Profile.all.selectOne(e|e.name = "InternalUProfileLibrary");
+var coreProfileEnumerations = coreProfile.getOwnedTypes().select(e|e.isTypeOf(Enumeration));// = Profile.all.selectOne(e|e.name = "CoreProfile");
+
+
+for (elem in infrastructureUncertaintyEnumerations) { 
+	enumerations.add(elem);
+}
+for (elem in infrastructureCPSEnumerations) { 
+	enumerations.add(elem);
+}
+for (elem in internalUProfileLibraryEnumerations) { 
+	enumerations.add(elem);
+}
+for (elem in coreProfileEnumerations) { 
+	enumerations.add(elem);
+}
+
+var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+var UMLUtil = plugin.getUMLUtil();
+%]
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+/*
+Autogenerated Applied Profile Metrics Library.
+
+This library calculates the metrics:
+"# of elements annotated with"
+
+
+the following stereotypes: 
+[%
+
+for (elem in stereotypes) {
+%]
+[%=elem.getQualifiedName()%];
+[%	
+}
+%]
+*/
+
+
+[%
+for (profile in profiles) {
+%]
+import	"../profiles/[%=profile.getName()%].eol";
+[%	
+}
+%]
+// Profile Level Metric
+[%
+for (profile in profiles) {
+	var curr_stereotypes : Set();
+	curr_stereotypes = profile.getOwnedStereotypes();
+%]
+
+
+/*
+* Returns a Set of Sets of annotated model elements. 
+* Applied profile is [%=profile.getQualifiedName()%].
+* All applications from stereotypes defined in [%=profile.getQualifiedName()%].
+* The annotated element is instance of any UML metaclass.
+* The intersection of the resulting Sets is empty if no elements exist with multiple 
+* stereotype applications from stereotypes belonging to [%=profile.getQualifiedName()%].
+*/
+@cached
+operation Package getSterotypeApplicationSetOf[%=profile.getName()%]() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+	var [%=profile.getName().firstToLowerCase()%] = Profile.all.selectOne(e|e.name = "[%=profile.getName()%]");
+	var stereotypes = [%=profile.getName().firstToLowerCase()%].getOwnedStereotypes();
+	var all_elements = self.allOwnedElements();
+	var return_set : new Set();
+[%
+	for (stereo in curr_stereotypes) {
+%]
+	//Creating Set of [%=stereo.getName()%] stereotype applications.
+	var [%=stereo.getName().firstToLowerCase()%]_set = self.get[%=stereo.getName()%]SetOf[%=profile.getName()%]();
+	return_set.add([%=stereo.getName().firstToLowerCase()%]_set);
+[%	
+	}
+%]
+[%	
+	// Return variable
+%]	
+	return return_set;
+}
+[%	
+}
+%]
+
+// Stereotype Level Metric
+[%
+for (profile in profiles) {
+	var curr_stereotypes : Set();
+	curr_stereotypes = profile.getOwnedStereotypes();
+	for (stereo in curr_stereotypes) {
+%]
+
+/*
+* Returns a Set of annotated model elements. 
+* Applied profile is [%=profile.getQualifiedName()%].
+* Applied stereotype is [%=stereo.getQualifiedName()%].
+* The annotated element is instance of any UML metaclass.
+* A stereotype can be applied at most once to the same model element.
+* Therefore, the result of this query is always a set of model elements
+* with stereotype [%=stereo.getQualifiedName()%] applied.
+*/
+@cached
+operation Package get[%=profile.getName()%][%=stereo.getName()%]Set() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+	//Creating Set of [%=stereo.getName()%] stereotype applications.
+	var [%=stereo.getName().firstToLowerCase()%]_set = self.get[%=stereo.name%]Set();
+	return [%=stereo.getName().firstToLowerCase()%]_set;
+}
+[%	
+	}
+}
+%]
+// Stereotype Level Metric - Distinct Set for different Metaclasses
+[%
+for (profile in profiles) {
+	var curr_stereotypes : Set();
+	curr_stereotypes = profile.getOwnedStereotypes();
+	
+	for (stereo in stereotypes) {
+		var all_extended_metaclasses = stereo.getAllExtendedMetaclasses();
+		for (metaclass in all_extended_metaclasses) {
+%]
+
+/*
+* Returns a Set of annotated model elements.
+* Applied profile is [%=profile.getQualifiedName()%].
+* Applied stereotype is [%=stereo.getQualifiedName()%].
+* The annotated element is of type [%=metaclass.getQualifiedName()%].
+* A stereotype can be applied at most once to the same model element.
+* Therefore, the result of this query is always a set of distinct [%=metaclass.getQualifiedName()%]
+* with stereotype [%=stereo.getQualifiedName()%] applied.
+*/
+@cached
+operation Package get[%=profile.getName()%][%=stereo.getName()%][%=metaclass.getName()%]Set() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+	
+	//Creating Set of [%=stereo.getName()%] stereotype applications.
+	var [%=stereo.getName().firstToLowerCase()%]_set = self.get[%=stereo.name%]Set("[%=metaclass.name%]");
+	
+	//Selecting only the stereotype applications to UML base element instances of metaclass [%=metaclass.getName()%]
+	//[%=stereo.getName().firstToLowerCase()%]_set = [%=stereo.getName().firstToLowerCase()%]_set.select(e|e.getType().getName()="[%=metaclass.getName()%]");
+	
+	return [%=stereo.getName().firstToLowerCase()%]_set;
+}
+
+[%	
+		}
+	}
+}
+%]
+
+

@@ -1,0 +1,198 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+import "../../../../../eol/library/utilities.eol";
+
+import "../../../../../eol/library/gen/profiles/InfrastructureCPSProfile.eol";
+//import "../../../../../eol/library/gen/profiles/InfrastructureUncertaintyProfile.eol";
+//import "../../../../../eol/library/gen/profiles/CoreProfile.eol";
+//import "../../../../../eol/library/gen/profiles/InternalUProfileLibrary.eol";	
+
+
+wizard ApplyPeriodicTriggertoTrigger {
+
+	// The wizard applies when a Trigger is selected
+	guard : self.isTypeOf(Trigger) and self.isStereotypeApplicable("PeriodicTrigger") and not self.isStereotypeApplied("PeriodicTrigger")  
+
+	title : "Apply PeriodicTrigger to " + self.name 
+
+	do {
+		transaction {
+			var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+			var UMLUtil = plugin.getUMLUtil();
+			var ModelerAgent = plugin.getModelerAgent();	
+	
+			//var infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+			//var infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+			//var internalUProfileLibrary = Profile.all.selectOne(e|e.name = "InternalUProfileLibrary");
+			//var coreProfile = Profile.all.selectOne(e|e.name = "CoreProfile");
+			
+			var infrastructureCPSProfile_current = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+			var stereotype = infrastructureCPSProfile_current.getPeriodicTriggerStereotype();
+			self.applyStereotype(stereotype);
+			
+			var stereotype_attributes = stereotype.allAttributes();
+			stereotype_attributes = stereotype_attributes.reject(e|e.getName().startsWith("base_"));
+			var stereotype_attribute_names = stereotype_attributes.collect(e|e.getName());
+		/*
+			// Prompt the user for confirmation of the rename
+			
+			while (UserInput.confirm
+				("Do you want to specify <<PeriodicTrigger>> properties' values?")) {
+				// Choose the properties to be set
+				var propertymap : Map();
+				for (attr in stereotype_attributes) {
+					var key =  attr.getName() + attr.type().asString();
+					propertymap.put(attr.getName(), attr);
+				}
+				var stop : String = "END...";
+				propertymap.put("END...",stop);
+				var property_choice = UserInput.choose("Select the property you want to set:", propertymap.KeySet());
+				if(property_choice= "END..."){
+					break; // stop the insertion of new property values;
+				}
+				//I get the chosen Stereotype Property
+				var selected_property = propertymap.get(property_choice);
+				var property_type =	selected_property.getType();
+				UserInput.inform("The chosen selected_property.getType() is: " + property_type.asString());
+				var name = property_type.getName();
+				UserInput.inform("The chosen selected_property.getType().getName() is: " + name);
+				var model = self.getModel();
+				var ownedElements = self.getOwnedElements();
+			}
+		*/
+		}
+	}
+}	
+
+wizard ApplyPeriodicTriggertoInstanceSpecification {
+
+	// The wizard applies when a InstanceSpecification is selected
+	guard : self.isTypeOf(InstanceSpecification) and self.isStereotypeApplicable("PeriodicTrigger") and not self.isStereotypeApplied("PeriodicTrigger")  
+
+	title : "Apply PeriodicTrigger to " + self.name 
+
+	do {
+		transaction {
+			var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+			var UMLUtil = plugin.getUMLUtil();
+			var ModelerAgent = plugin.getModelerAgent();	
+	
+			//var infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+			//var infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+			//var internalUProfileLibrary = Profile.all.selectOne(e|e.name = "InternalUProfileLibrary");
+			//var coreProfile = Profile.all.selectOne(e|e.name = "CoreProfile");
+			
+			var infrastructureCPSProfile_current = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+			var stereotype = infrastructureCPSProfile_current.getPeriodicTriggerStereotype();
+			self.applyStereotype(stereotype);
+			
+			var stereotype_attributes = stereotype.allAttributes();
+			stereotype_attributes = stereotype_attributes.reject(e|e.getName().startsWith("base_"));
+			var stereotype_attribute_names = stereotype_attributes.collect(e|e.getName());
+		/*
+			// Prompt the user for confirmation of the rename
+			
+			while (UserInput.confirm
+				("Do you want to specify <<PeriodicTrigger>> properties' values?")) {
+				// Choose the properties to be set
+				var propertymap : Map();
+				for (attr in stereotype_attributes) {
+					var key =  attr.getName() + attr.type().asString();
+					propertymap.put(attr.getName(), attr);
+				}
+				var stop : String = "END...";
+				propertymap.put("END...",stop);
+				var property_choice = UserInput.choose("Select the property you want to set:", propertymap.KeySet());
+				if(property_choice= "END..."){
+					break; // stop the insertion of new property values;
+				}
+				//I get the chosen Stereotype Property
+				var selected_property = propertymap.get(property_choice);
+				var property_type =	selected_property.getType();
+				UserInput.inform("The chosen selected_property.getType() is: " + property_type.asString());
+				var name = property_type.getName();
+				UserInput.inform("The chosen selected_property.getType().getName() is: " + name);
+				var model = self.getModel();
+				var ownedElements = self.getOwnedElements();
+			}
+		*/
+		}
+	}
+}	
+
+wizard ApplyPeriodicTriggertoClass {
+
+	// The wizard applies when a Class is selected
+	guard : self.isTypeOf(Class) and self.isStereotypeApplicable("PeriodicTrigger") and not self.isStereotypeApplied("PeriodicTrigger")  
+
+	title : "Apply PeriodicTrigger to " + self.name 
+
+	do {
+		transaction {
+			var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+			var UMLUtil = plugin.getUMLUtil();
+			var ModelerAgent = plugin.getModelerAgent();	
+	
+			//var infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+			//var infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+			//var internalUProfileLibrary = Profile.all.selectOne(e|e.name = "InternalUProfileLibrary");
+			//var coreProfile = Profile.all.selectOne(e|e.name = "CoreProfile");
+			
+			var infrastructureCPSProfile_current = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+			var stereotype = infrastructureCPSProfile_current.getPeriodicTriggerStereotype();
+			self.applyStereotype(stereotype);
+			
+			var stereotype_attributes = stereotype.allAttributes();
+			stereotype_attributes = stereotype_attributes.reject(e|e.getName().startsWith("base_"));
+			var stereotype_attribute_names = stereotype_attributes.collect(e|e.getName());
+		/*
+			// Prompt the user for confirmation of the rename
+			
+			while (UserInput.confirm
+				("Do you want to specify <<PeriodicTrigger>> properties' values?")) {
+				// Choose the properties to be set
+				var propertymap : Map();
+				for (attr in stereotype_attributes) {
+					var key =  attr.getName() + attr.type().asString();
+					propertymap.put(attr.getName(), attr);
+				}
+				var stop : String = "END...";
+				propertymap.put("END...",stop);
+				var property_choice = UserInput.choose("Select the property you want to set:", propertymap.KeySet());
+				if(property_choice= "END..."){
+					break; // stop the insertion of new property values;
+				}
+				//I get the chosen Stereotype Property
+				var selected_property = propertymap.get(property_choice);
+				var property_type =	selected_property.getType();
+				UserInput.inform("The chosen selected_property.getType() is: " + property_type.asString());
+				var name = property_type.getName();
+				UserInput.inform("The chosen selected_property.getType().getName() is: " + name);
+				var model = self.getModel();
+				var ownedElements = self.getOwnedElements();
+			}
+		*/
+		}
+	}
+}	
+	
+
+
+

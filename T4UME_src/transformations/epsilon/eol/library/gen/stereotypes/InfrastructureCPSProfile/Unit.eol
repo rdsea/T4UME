@@ -1,0 +1,451 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with Unit.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package UnitsAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isUnit()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with Unit.
+*/ 
+operation Element isUnit() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isUnit() : Boolean in Unit.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "Unit");
+}
+
+
+//getters
+/*
+Returns a Set of id of stereotype Unit.
+*/ 
+operation Element getIdOfUnitAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Unit"), "id");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of location of stereotype Unit.
+*/ 
+operation Element getLocationOfUnitAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Unit"), "location");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of description of stereotype Unit.
+*/ 
+operation Element getDescriptionOfUnitAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Unit"), "description");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of ownedUnits of stereotype Unit.
+*/ 
+operation Element getOwnedUnitsOfUnitAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Unit"), "ownedUnits");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of hasTimestampMechanism of stereotype Unit.
+*/ 
+operation Element getHasTimestampMechanismOfUnitAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Unit"), "hasTimestampMechanism");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of timestampMaxLatency of stereotype Unit.
+*/ 
+operation Element getTimestampMaxLatencyOfUnitAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Unit"), "timestampMaxLatency");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isSafetyCritical of stereotype Unit.
+*/ 
+operation Element getIsSafetyCriticalOfUnitAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Unit"), "isSafetyCritical");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of infrastructureInterface of stereotype Unit.
+*/ 
+operation Element getInfrastructureInterfaceOfUnitAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("Unit"), "infrastructureInterface");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property Unit::id	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@36654c22 (name: Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIdProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getUnitStereotype();
+		var property = current_infrastructureCPSProfile.getIdProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Unit::location	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@5d5204e7 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setLocationProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getUnitStereotype();
+		var property = current_infrastructureCPSProfile.getLocationProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Unit::description	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@5d5204e7 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setDescriptionProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getUnitStereotype();
+		var property = current_infrastructureCPSProfile.getDescriptionProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Unit::ownedUnits	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@22b001da (name: Unit, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setOwnedUnitsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getUnitStereotype();
+		var property = current_infrastructureCPSProfile.getOwnedUnitsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Unit::hasTimestampMechanism	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@7016a6d1 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setHasTimestampMechanismProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getUnitStereotype();
+		var property = current_infrastructureCPSProfile.getHasTimestampMechanismProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Unit::timestampMaxLatency	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@5d5204e7 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setTimestampMaxLatencyProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getUnitStereotype();
+		var property = current_infrastructureCPSProfile.getTimestampMaxLatencyProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Unit::isSafetyCritical	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@7016a6d1 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsSafetyCriticalProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getUnitStereotype();
+		var property = current_infrastructureCPSProfile.getIsSafetyCriticalProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property Unit::infrastructureInterface	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@4bc7dfab (name: InfrastructureInterface, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setInfrastructureInterfaceProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getUnitStereotype();
+		var property = current_infrastructureCPSProfile.getInfrastructureInterfaceProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get id Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIdPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var idProperty = allAttributes.selectOne(s|s.name = "id");
+	return idProperty;
+}
+
+//--get location Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getLocationPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var locationProperty = allAttributes.selectOne(s|s.name = "location");
+	return locationProperty;
+}
+
+//--get description Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDescriptionPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var descriptionProperty = allAttributes.selectOne(s|s.name = "description");
+	return descriptionProperty;
+}
+
+//--get ownedUnits Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getOwnedUnitsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var ownedUnitsProperty = allAttributes.selectOne(s|s.name = "ownedUnits");
+	return ownedUnitsProperty;
+}
+
+//--get hasTimestampMechanism Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getHasTimestampMechanismPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var hasTimestampMechanismProperty = allAttributes.selectOne(s|s.name = "hasTimestampMechanism");
+	return hasTimestampMechanismProperty;
+}
+
+//--get timestampMaxLatency Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getTimestampMaxLatencyPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var timestampMaxLatencyProperty = allAttributes.selectOne(s|s.name = "timestampMaxLatency");
+	return timestampMaxLatencyProperty;
+}
+
+//--get isSafetyCritical Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsSafetyCriticalPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isSafetyCriticalProperty = allAttributes.selectOne(s|s.name = "isSafetyCritical");
+	return isSafetyCriticalProperty;
+}
+
+//--get infrastructureInterface Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getInfrastructureInterfacePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var infrastructureInterfaceProperty = allAttributes.selectOne(s|s.name = "infrastructureInterface");
+	return infrastructureInterfaceProperty;
+}
+
+
+/*
+Check if a Set of id of stereotype Unit is empty.
+*/ 
+operation Element isIdOfUnitEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Unit"), "id");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of location of stereotype Unit is empty.
+*/ 
+operation Element isLocationOfUnitEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Unit"), "location");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of description of stereotype Unit is empty.
+*/ 
+operation Element isDescriptionOfUnitEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Unit"), "description");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of ownedUnits of stereotype Unit is empty.
+*/ 
+operation Element isOwnedUnitsOfUnitEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Unit"), "ownedUnits");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of hasTimestampMechanism of stereotype Unit is empty.
+*/ 
+operation Element isHasTimestampMechanismOfUnitEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Unit"), "hasTimestampMechanism");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of timestampMaxLatency of stereotype Unit is empty.
+*/ 
+operation Element isTimestampMaxLatencyOfUnitEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Unit"), "timestampMaxLatency");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isSafetyCritical of stereotype Unit is empty.
+*/ 
+operation Element isIsSafetyCriticalOfUnitEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Unit"), "isSafetyCritical");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of infrastructureInterface of stereotype Unit is empty.
+*/ 
+operation Element isInfrastructureInterfaceOfUnitEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("Unit"), "infrastructureInterface");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

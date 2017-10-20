@@ -1,0 +1,1363 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with MonitoringDataUncertainty.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package MonitoringDataUncertaintysAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isMonitoringDataUncertainty()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with MonitoringDataUncertainty.
+*/ 
+operation Element isMonitoringDataUncertainty() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isMonitoringDataUncertainty() : Boolean in MonitoringDataUncertainty.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "MonitoringDataUncertainty");
+}
+
+
+//getters
+/*
+Returns a Set of description of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getDescriptionOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "description");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of cause_type of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getCause_typeOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "cause_type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of effect_propagation_type of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getEffect_propagation_typeOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "effect_propagation_type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of functional_dimensionality_type of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getFunctional_dimensionality_typeOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "functional_dimensionality_type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of locality_type of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getLocality_typeOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "locality_type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of non_functional_dimensionality_type of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getNon_functional_dimensionality_typeOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "non_functional_dimensionality_type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of observation_time_type of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getObservation_time_typeOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "observation_time_type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of temporal_manifestation_type of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getTemporal_manifestation_typeOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "temporal_manifestation_type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of cause of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getCauseOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "cause");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of effect of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getEffectOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "effect");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of field of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getFieldOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "field");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of from of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getFromOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "from");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of kind of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getKindOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "kind");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of lifeTime of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getLifeTimeOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "lifeTime");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of locality of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getLocalityOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "locality");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of pattern of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getPatternOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "pattern");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of referredCause of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getReferredCauseOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "referredCause");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of referredEffect of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getReferredEffectOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "referredEffect");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of referredIndeterminacySource of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getReferredIndeterminacySourceOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "referredIndeterminacySource");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of referredLifeTime of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getReferredLifeTimeOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "referredLifeTime");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of referredPattern of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getReferredPatternOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "referredPattern");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of risk of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getRiskOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "risk");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of riskInDT of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getRiskInDTOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "riskInDT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of riskInDTViaClass of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getRiskInDTViaClassOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "riskInDTViaClass");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of riskLevel of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getRiskLevelOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "riskLevel");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of uncertaintyMeasurement of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getUncertaintyMeasurementOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "uncertaintyMeasurement");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of indeterminacySource of stereotype MonitoringDataUncertainty.
+*/ 
+operation Element getIndeterminacySourceOfMonitoringDataUncertaintyAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "indeterminacySource");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property MonitoringDataUncertainty::description	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@27941790 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setDescriptionProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getDescriptionProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::cause_type	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@74c40b18 (name: CauseType, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setCause_typeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getCause_typeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::effect_propagation_type	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@17537863 (name: EffectPropagationType, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setEffect_propagation_typeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getEffect_propagation_typeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::functional_dimensionality_type	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@35841c39 (name: FunctionalDimensionalityType, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setFunctional_dimensionality_typeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getFunctional_dimensionality_typeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::locality_type	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@4da4aa34 (name: LocationType, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setLocality_typeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getLocality_typeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::non_functional_dimensionality_type	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@c6302b9 (name: NonFunctionalDimensionalityType, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setNon_functional_dimensionality_typeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getNon_functional_dimensionality_typeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::observation_time_type	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@494b95a5 (name: ObservationTimeType, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setObservation_time_typeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getObservation_time_typeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::temporal_manifestation_type	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@61451e8e (name: TemporalManifestationType, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setTemporal_manifestation_typeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getTemporal_manifestation_typeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::cause	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@27941790 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setCauseProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getCauseProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::effect	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@27941790 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setEffectProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getEffectProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::field	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@16311a49 (name: TimeField, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setFieldProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getFieldProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::from	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@27941790 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setFromProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getFromProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::kind	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@b6ab2b1 (name: UncertaintyKind, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setKindProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getKindProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::lifeTime	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@27941790 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setLifeTimeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getLifeTimeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::locality	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@27941790 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setLocalityProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getLocalityProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::pattern	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@27941790 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setPatternProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getPatternProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::referredCause	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@2ae96a42 (name: Element, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setReferredCauseProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getReferredCauseProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::referredEffect	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@2ae96a42 (name: Element, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setReferredEffectProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getReferredEffectProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::referredIndeterminacySource	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@23558d8f (name: Classifier, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setReferredIndeterminacySourceProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getReferredIndeterminacySourceProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::referredLifeTime	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@2ae96a42 (name: Element, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setReferredLifeTimeProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getReferredLifeTimeProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::referredPattern	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@2ae96a42 (name: Element, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setReferredPatternProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getReferredPatternProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::risk	
+// org.eclipse.uml2.uml.internal.impl.EnumerationImpl@741dcf5c (name: RiskLevel, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setRiskProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getRiskProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::riskInDT	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@5a79faeb (name: DataType, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setRiskInDTProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getRiskInDTProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::riskInDTViaClass	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@a815a40 (name: Class, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setRiskInDTViaClassProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getRiskInDTViaClassProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::riskLevel	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@27941790 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setRiskLevelProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getRiskLevelProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::uncertaintyMeasurement	
+// org.eclipse.uml2.uml.internal.impl.ClassImpl@5b82089a (name: MeasurementClass, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setUncertaintyMeasurementProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getUncertaintyMeasurementProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property MonitoringDataUncertainty::indeterminacySource	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@1ee0870a (name: IndeterminacySource, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setIndeterminacySourceProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureUncertaintyProfile = Profile.all.selectOne(e|e.name = "InfrastructureUncertaintyProfile");
+		
+		var stereotype = current_infrastructureUncertaintyProfile.getMonitoringDataUncertaintyStereotype();
+		var property = current_infrastructureUncertaintyProfile.getIndeterminacySourceProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get description Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDescriptionPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var descriptionProperty = allAttributes.selectOne(s|s.name = "description");
+	return descriptionProperty;
+}
+
+//--get cause_type Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getCause_typePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var cause_typeProperty = allAttributes.selectOne(s|s.name = "cause_type");
+	return cause_typeProperty;
+}
+
+//--get effect_propagation_type Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getEffect_propagation_typePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var effect_propagation_typeProperty = allAttributes.selectOne(s|s.name = "effect_propagation_type");
+	return effect_propagation_typeProperty;
+}
+
+//--get functional_dimensionality_type Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getFunctional_dimensionality_typePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var functional_dimensionality_typeProperty = allAttributes.selectOne(s|s.name = "functional_dimensionality_type");
+	return functional_dimensionality_typeProperty;
+}
+
+//--get locality_type Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getLocality_typePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var locality_typeProperty = allAttributes.selectOne(s|s.name = "locality_type");
+	return locality_typeProperty;
+}
+
+//--get non_functional_dimensionality_type Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getNon_functional_dimensionality_typePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var non_functional_dimensionality_typeProperty = allAttributes.selectOne(s|s.name = "non_functional_dimensionality_type");
+	return non_functional_dimensionality_typeProperty;
+}
+
+//--get observation_time_type Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getObservation_time_typePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var observation_time_typeProperty = allAttributes.selectOne(s|s.name = "observation_time_type");
+	return observation_time_typeProperty;
+}
+
+//--get temporal_manifestation_type Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getTemporal_manifestation_typePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var temporal_manifestation_typeProperty = allAttributes.selectOne(s|s.name = "temporal_manifestation_type");
+	return temporal_manifestation_typeProperty;
+}
+
+//--get cause Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getCausePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var causeProperty = allAttributes.selectOne(s|s.name = "cause");
+	return causeProperty;
+}
+
+//--get effect Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getEffectPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var effectProperty = allAttributes.selectOne(s|s.name = "effect");
+	return effectProperty;
+}
+
+//--get field Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getFieldPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var fieldProperty = allAttributes.selectOne(s|s.name = "field");
+	return fieldProperty;
+}
+
+//--get from Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getFromPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var fromProperty = allAttributes.selectOne(s|s.name = "from");
+	return fromProperty;
+}
+
+//--get kind Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getKindPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var kindProperty = allAttributes.selectOne(s|s.name = "kind");
+	return kindProperty;
+}
+
+//--get lifeTime Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getLifeTimePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var lifeTimeProperty = allAttributes.selectOne(s|s.name = "lifeTime");
+	return lifeTimeProperty;
+}
+
+//--get locality Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getLocalityPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var localityProperty = allAttributes.selectOne(s|s.name = "locality");
+	return localityProperty;
+}
+
+//--get pattern Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getPatternPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var patternProperty = allAttributes.selectOne(s|s.name = "pattern");
+	return patternProperty;
+}
+
+//--get referredCause Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getReferredCausePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var referredCauseProperty = allAttributes.selectOne(s|s.name = "referredCause");
+	return referredCauseProperty;
+}
+
+//--get referredEffect Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getReferredEffectPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var referredEffectProperty = allAttributes.selectOne(s|s.name = "referredEffect");
+	return referredEffectProperty;
+}
+
+//--get referredIndeterminacySource Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getReferredIndeterminacySourcePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var referredIndeterminacySourceProperty = allAttributes.selectOne(s|s.name = "referredIndeterminacySource");
+	return referredIndeterminacySourceProperty;
+}
+
+//--get referredLifeTime Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getReferredLifeTimePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var referredLifeTimeProperty = allAttributes.selectOne(s|s.name = "referredLifeTime");
+	return referredLifeTimeProperty;
+}
+
+//--get referredPattern Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getReferredPatternPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var referredPatternProperty = allAttributes.selectOne(s|s.name = "referredPattern");
+	return referredPatternProperty;
+}
+
+//--get risk Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getRiskPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var riskProperty = allAttributes.selectOne(s|s.name = "risk");
+	return riskProperty;
+}
+
+//--get riskInDT Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getRiskInDTPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var riskInDTProperty = allAttributes.selectOne(s|s.name = "riskInDT");
+	return riskInDTProperty;
+}
+
+//--get riskInDTViaClass Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getRiskInDTViaClassPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var riskInDTViaClassProperty = allAttributes.selectOne(s|s.name = "riskInDTViaClass");
+	return riskInDTViaClassProperty;
+}
+
+//--get riskLevel Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getRiskLevelPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var riskLevelProperty = allAttributes.selectOne(s|s.name = "riskLevel");
+	return riskLevelProperty;
+}
+
+//--get uncertaintyMeasurement Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getUncertaintyMeasurementPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var uncertaintyMeasurementProperty = allAttributes.selectOne(s|s.name = "uncertaintyMeasurement");
+	return uncertaintyMeasurementProperty;
+}
+
+//--get indeterminacySource Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIndeterminacySourcePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var indeterminacySourceProperty = allAttributes.selectOne(s|s.name = "indeterminacySource");
+	return indeterminacySourceProperty;
+}
+
+
+/*
+Check if a Set of description of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isDescriptionOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "description");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of cause_type of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isCause_typeOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "cause_type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of effect_propagation_type of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isEffect_propagation_typeOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "effect_propagation_type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of functional_dimensionality_type of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isFunctional_dimensionality_typeOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "functional_dimensionality_type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of locality_type of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isLocality_typeOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "locality_type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of non_functional_dimensionality_type of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isNon_functional_dimensionality_typeOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "non_functional_dimensionality_type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of observation_time_type of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isObservation_time_typeOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "observation_time_type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of temporal_manifestation_type of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isTemporal_manifestation_typeOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "temporal_manifestation_type");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of cause of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isCauseOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "cause");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of effect of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isEffectOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "effect");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of field of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isFieldOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "field");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of from of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isFromOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "from");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of kind of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isKindOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "kind");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of lifeTime of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isLifeTimeOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "lifeTime");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of locality of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isLocalityOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "locality");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of pattern of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isPatternOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "pattern");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of referredCause of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isReferredCauseOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "referredCause");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of referredEffect of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isReferredEffectOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "referredEffect");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of referredIndeterminacySource of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isReferredIndeterminacySourceOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "referredIndeterminacySource");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of referredLifeTime of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isReferredLifeTimeOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "referredLifeTime");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of referredPattern of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isReferredPatternOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "referredPattern");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of risk of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isRiskOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "risk");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of riskInDT of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isRiskInDTOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "riskInDT");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of riskInDTViaClass of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isRiskInDTViaClassOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "riskInDTViaClass");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of riskLevel of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isRiskLevelOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "riskLevel");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of uncertaintyMeasurement of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isUncertaintyMeasurementOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "uncertaintyMeasurement");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of indeterminacySource of stereotype MonitoringDataUncertainty is empty.
+*/ 
+operation Element isIndeterminacySourceOfMonitoringDataUncertaintyEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("MonitoringDataUncertainty"), "indeterminacySource");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}

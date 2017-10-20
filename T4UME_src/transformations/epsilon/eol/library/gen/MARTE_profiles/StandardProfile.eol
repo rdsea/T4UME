@@ -1,0 +1,2503 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+import "../../utilities.eol";
+
+//stereotype libraries
+import	"../stereotypes/StandardProfile/Auxiliary.eol";
+import	"../stereotypes/StandardProfile/Call.eol";
+import	"../stereotypes/StandardProfile/Create.eol";
+import	"../stereotypes/StandardProfile/Derive.eol";
+import	"../stereotypes/StandardProfile/Destroy.eol";
+import	"../stereotypes/StandardProfile/Document.eol";
+import	"../stereotypes/StandardProfile/Entity.eol";
+import	"../stereotypes/StandardProfile/Executable.eol";
+import	"../stereotypes/StandardProfile/File.eol";
+import	"../stereotypes/StandardProfile/Focus.eol";
+import	"../stereotypes/StandardProfile/Framework.eol";
+import	"../stereotypes/StandardProfile/Implement.eol";
+import	"../stereotypes/StandardProfile/ImplementationClass.eol";
+import	"../stereotypes/StandardProfile/Instantiate.eol";
+import	"../stereotypes/StandardProfile/Library.eol";
+import	"../stereotypes/StandardProfile/Metaclass.eol";
+import	"../stereotypes/StandardProfile/ModelLibrary.eol";
+import	"../stereotypes/StandardProfile/Process.eol";
+import	"../stereotypes/StandardProfile/Realization.eol";
+import	"../stereotypes/StandardProfile/Refine.eol";
+import	"../stereotypes/StandardProfile/Responsibility.eol";
+import	"../stereotypes/StandardProfile/Script.eol";
+import	"../stereotypes/StandardProfile/Send.eol";
+import	"../stereotypes/StandardProfile/Service.eol";
+import	"../stereotypes/StandardProfile/Source.eol";
+import	"../stereotypes/StandardProfile/Specification.eol";
+import	"../stereotypes/StandardProfile/Subsystem.eol";
+import	"../stereotypes/StandardProfile/Trace.eol";
+import	"../stereotypes/StandardProfile/Type.eol";
+import	"../stereotypes/StandardProfile/Utility.eol";
+import	"../stereotypes/StandardProfile/BuildComponent.eol";
+import	"../stereotypes/StandardProfile/Metamodel.eol";
+import	"../stereotypes/StandardProfile/SystemModel.eol";
+
+
+@cached
+operation Profile getStandardProfile() : Profile {
+	return self;
+}
+
+
+@cached
+operation Profile getEnumerations() : Set {
+	var enumerations = self.getOwnedTypes().select(e|e.isTypeOf(Enumeration));
+	return enumerations;
+}
+
+
+//enumeration operations
+@cached
+operation Profile getConstraintKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConstraintKind");
+	return enum;
+}
+@cached
+operation Profile getAllocationNatureEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AllocationNature");
+	return enum;
+}
+@cached
+operation Profile getAllocationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AllocationKind");
+	return enum;
+}
+@cached
+operation Profile getAllocationEndKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AllocationEndKind");
+	return enum;
+}
+@cached
+operation Profile getAssignmentNatureEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AssignmentNature");
+	return enum;
+}
+@cached
+operation Profile getAssignmentKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AssignmentKind");
+	return enum;
+}
+@cached
+operation Profile getCallConcurrencyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "CallConcurrencyKind");
+	return enum;
+}
+@cached
+operation Profile getPoolMgtPolicyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PoolMgtPolicyKind");
+	return enum;
+}
+@cached
+operation Profile getSynchronizationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "SynchronizationKind");
+	return enum;
+}
+@cached
+operation Profile getExecutionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ExecutionKind");
+	return enum;
+}
+@cached
+operation Profile getConcurrencyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConcurrencyKind");
+	return enum;
+}
+@cached
+operation Profile getISA_TypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ISA_Type");
+	return enum;
+}
+@cached
+operation Profile getPLD_TechnologyEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PLD_Technology");
+	return enum;
+}
+@cached
+operation Profile getPLD_ClassEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PLD_Class");
+	return enum;
+}
+@cached
+operation Profile getRepl_PolicyEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "Repl_Policy");
+	return enum;
+}
+@cached
+operation Profile getWritePolicyEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "WritePolicy");
+	return enum;
+}
+@cached
+operation Profile getCacheTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "CacheType");
+	return enum;
+}
+@cached
+operation Profile getROM_TypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ROM_Type");
+	return enum;
+}
+@cached
+operation Profile getComponentKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ComponentKind");
+	return enum;
+}
+@cached
+operation Profile getConditionTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConditionType");
+	return enum;
+}
+@cached
+operation Profile getComponentStateEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ComponentState");
+	return enum;
+}
+@cached
+operation Profile getInterruptKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "InterruptKind");
+	return enum;
+}
+@cached
+operation Profile getAccessPolicyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AccessPolicyKind");
+	return enum;
+}
+@cached
+operation Profile getQueuePolicyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "QueuePolicyKind");
+	return enum;
+}
+@cached
+operation Profile getMessageResourceKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "MessageResourceKind");
+	return enum;
+}
+@cached
+operation Profile getNotificationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "NotificationKind");
+	return enum;
+}
+@cached
+operation Profile getNotificationResourceKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "NotificationResourceKind");
+	return enum;
+}
+@cached
+operation Profile getMutualExclusionResourceKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "MutualExclusionResourceKind");
+	return enum;
+}
+@cached
+operation Profile getConcurrentAccessProtocolKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConcurrentAccessProtocolKind");
+	return enum;
+}
+@cached
+operation Profile getFlowDirectionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "FlowDirectionKind");
+	return enum;
+}
+@cached
+operation Profile getClientServerKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ClientServerKind");
+	return enum;
+}
+@cached
+operation Profile getPortSpecificationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PortSpecificationKind");
+	return enum;
+}
+@cached
+operation Profile getDataPoolOrderingKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "DataPoolOrderingKind");
+	return enum;
+}
+@cached
+operation Profile getLaxityKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "LaxityKind");
+	return enum;
+}
+@cached
+operation Profile getOptimallityCriterionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "OptimallityCriterionKind");
+	return enum;
+}
+@cached
+operation Profile getVariableDirectionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "VariableDirectionKind");
+	return enum;
+}
+@cached
+operation Profile getContentKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ContentKind");
+	return enum;
+}
+@cached
+operation Profile getFeatureKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "FeatureKind");
+	return enum;
+}
+@cached
+operation Profile getVisibilityKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "VisibilityKind");
+	return enum;
+}
+@cached
+operation Profile getExpansionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ExpansionKind");
+	return enum;
+}
+@cached
+operation Profile getObjectNodeOrderingKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ObjectNodeOrderingKind");
+	return enum;
+}
+@cached
+operation Profile getAggregationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AggregationKind");
+	return enum;
+}
+@cached
+operation Profile getCallConcurrencyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "CallConcurrencyKind");
+	return enum;
+}
+@cached
+operation Profile getParameterDirectionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ParameterDirectionKind");
+	return enum;
+}
+@cached
+operation Profile getParameterEffectKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ParameterEffectKind");
+	return enum;
+}
+@cached
+operation Profile getVisibilityKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "VisibilityKind");
+	return enum;
+}
+@cached
+operation Profile getInteractionOperatorKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "InteractionOperatorKind");
+	return enum;
+}
+@cached
+operation Profile getMessageKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "MessageKind");
+	return enum;
+}
+@cached
+operation Profile getMessageSortEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "MessageSort");
+	return enum;
+}
+@cached
+operation Profile getPseudostateKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PseudostateKind");
+	return enum;
+}
+@cached
+operation Profile getTransitionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TransitionKind");
+	return enum;
+}
+@cached
+operation Profile getConnectorKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConnectorKind");
+	return enum;
+}
+@cached
+operation Profile getTimeUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TimeUnitKind");
+	return enum;
+}
+@cached
+operation Profile getPowerUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PowerUnitKind");
+	return enum;
+}
+@cached
+operation Profile getFrequencyUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "FrequencyUnitKind");
+	return enum;
+}
+@cached
+operation Profile getDataSizeUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "DataSizeUnitKind");
+	return enum;
+}
+@cached
+operation Profile getDataTxRateUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "DataTxRateUnitKind");
+	return enum;
+}
+@cached
+operation Profile getEnergyUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "EnergyUnitKind");
+	return enum;
+}
+@cached
+operation Profile getLengthUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "LengthUnitKind");
+	return enum;
+}
+@cached
+operation Profile getAreaUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AreaUnitKind");
+	return enum;
+}
+@cached
+operation Profile getWeightUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "WeightUnitKind");
+	return enum;
+}
+@cached
+operation Profile getSchedPolicyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "SchedPolicyKind");
+	return enum;
+}
+@cached
+operation Profile getProtectProtocolKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ProtectProtocolKind");
+	return enum;
+}
+@cached
+operation Profile getPeriodicServerKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PeriodicServerKind");
+	return enum;
+}
+@cached
+operation Profile getTransmModeKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TransmModeKind");
+	return enum;
+}
+@cached
+operation Profile getSourceKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "SourceKind");
+	return enum;
+}
+@cached
+operation Profile getDirectionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "DirectionKind");
+	return enum;
+}
+@cached
+operation Profile getStatisticalQualifierKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "StatisticalQualifierKind");
+	return enum;
+}
+@cached
+operation Profile getTimeNatureKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TimeNatureKind");
+	return enum;
+}
+@cached
+operation Profile getTimeInterpretationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TimeInterpretationKind");
+	return enum;
+}
+@cached
+operation Profile getEventKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "EventKind");
+	return enum;
+}
+@cached
+operation Profile getTimeStandardKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TimeStandardKind");
+	return enum;
+}
+@cached
+operation Profile getTUKEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TUK");
+	return enum;
+}
+@cached
+operation Profile getTimeUnitKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "TimeUnitKind");
+	return enum;
+}
+@cached
+operation Profile getLogicalTimeUnitEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "LogicalTimeUnit");
+	return enum;
+}
+@cached
+operation Profile getConstraintKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConstraintKind");
+	return enum;
+}
+@cached
+operation Profile getAllocationNatureEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AllocationNature");
+	return enum;
+}
+@cached
+operation Profile getAllocationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AllocationKind");
+	return enum;
+}
+@cached
+operation Profile getAllocationEndKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AllocationEndKind");
+	return enum;
+}
+@cached
+operation Profile getAssignmentNatureEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AssignmentNature");
+	return enum;
+}
+@cached
+operation Profile getAssignmentKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AssignmentKind");
+	return enum;
+}
+@cached
+operation Profile getCallConcurrencyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "CallConcurrencyKind");
+	return enum;
+}
+@cached
+operation Profile getPoolMgtPolicyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PoolMgtPolicyKind");
+	return enum;
+}
+@cached
+operation Profile getSynchronizationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "SynchronizationKind");
+	return enum;
+}
+@cached
+operation Profile getExecutionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ExecutionKind");
+	return enum;
+}
+@cached
+operation Profile getConcurrencyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConcurrencyKind");
+	return enum;
+}
+@cached
+operation Profile getISA_TypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ISA_Type");
+	return enum;
+}
+@cached
+operation Profile getPLD_TechnologyEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PLD_Technology");
+	return enum;
+}
+@cached
+operation Profile getPLD_ClassEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PLD_Class");
+	return enum;
+}
+@cached
+operation Profile getRepl_PolicyEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "Repl_Policy");
+	return enum;
+}
+@cached
+operation Profile getWritePolicyEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "WritePolicy");
+	return enum;
+}
+@cached
+operation Profile getCacheTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "CacheType");
+	return enum;
+}
+@cached
+operation Profile getROM_TypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ROM_Type");
+	return enum;
+}
+@cached
+operation Profile getComponentKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ComponentKind");
+	return enum;
+}
+@cached
+operation Profile getConditionTypeEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConditionType");
+	return enum;
+}
+@cached
+operation Profile getComponentStateEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ComponentState");
+	return enum;
+}
+@cached
+operation Profile getInterruptKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "InterruptKind");
+	return enum;
+}
+@cached
+operation Profile getAccessPolicyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "AccessPolicyKind");
+	return enum;
+}
+@cached
+operation Profile getQueuePolicyKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "QueuePolicyKind");
+	return enum;
+}
+@cached
+operation Profile getMessageResourceKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "MessageResourceKind");
+	return enum;
+}
+@cached
+operation Profile getNotificationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "NotificationKind");
+	return enum;
+}
+@cached
+operation Profile getNotificationResourceKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "NotificationResourceKind");
+	return enum;
+}
+@cached
+operation Profile getMutualExclusionResourceKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "MutualExclusionResourceKind");
+	return enum;
+}
+@cached
+operation Profile getConcurrentAccessProtocolKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ConcurrentAccessProtocolKind");
+	return enum;
+}
+@cached
+operation Profile getFlowDirectionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "FlowDirectionKind");
+	return enum;
+}
+@cached
+operation Profile getClientServerKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "ClientServerKind");
+	return enum;
+}
+@cached
+operation Profile getPortSpecificationKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "PortSpecificationKind");
+	return enum;
+}
+@cached
+operation Profile getDataPoolOrderingKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "DataPoolOrderingKind");
+	return enum;
+}
+@cached
+operation Profile getLaxityKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "LaxityKind");
+	return enum;
+}
+@cached
+operation Profile getOptimallityCriterionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "OptimallityCriterionKind");
+	return enum;
+}
+@cached
+operation Profile getVariableDirectionKindEnumeration() : Enumeration {
+	var enum = self.getOwnedTypes().selectOne(e|e.name = "VariableDirectionKind");
+	return enum;
+}
+
+//stereotype operations
+
+@cached
+operation Profile getAuxiliaryStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var auxiliaryStereotype = ownedStereotypes.selectOne(s|s.name = "Auxiliary");
+	return auxiliaryStereotype;
+}
+
+@cached
+operation Profile getCallStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var callStereotype = ownedStereotypes.selectOne(s|s.name = "Call");
+	return callStereotype;
+}
+
+@cached
+operation Profile getCreateStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var createStereotype = ownedStereotypes.selectOne(s|s.name = "Create");
+	return createStereotype;
+}
+
+@cached
+operation Profile getDeriveStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var deriveStereotype = ownedStereotypes.selectOne(s|s.name = "Derive");
+	return deriveStereotype;
+}
+
+@cached
+operation Profile getDestroyStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var destroyStereotype = ownedStereotypes.selectOne(s|s.name = "Destroy");
+	return destroyStereotype;
+}
+
+@cached
+operation Profile getDocumentStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var documentStereotype = ownedStereotypes.selectOne(s|s.name = "Document");
+	return documentStereotype;
+}
+
+@cached
+operation Profile getEntityStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var entityStereotype = ownedStereotypes.selectOne(s|s.name = "Entity");
+	return entityStereotype;
+}
+
+@cached
+operation Profile getExecutableStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var executableStereotype = ownedStereotypes.selectOne(s|s.name = "Executable");
+	return executableStereotype;
+}
+
+@cached
+operation Profile getFileStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var fileStereotype = ownedStereotypes.selectOne(s|s.name = "File");
+	return fileStereotype;
+}
+
+@cached
+operation Profile getFocusStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var focusStereotype = ownedStereotypes.selectOne(s|s.name = "Focus");
+	return focusStereotype;
+}
+
+@cached
+operation Profile getFrameworkStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var frameworkStereotype = ownedStereotypes.selectOne(s|s.name = "Framework");
+	return frameworkStereotype;
+}
+
+@cached
+operation Profile getImplementStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var implementStereotype = ownedStereotypes.selectOne(s|s.name = "Implement");
+	return implementStereotype;
+}
+
+@cached
+operation Profile getImplementationClassStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var implementationClassStereotype = ownedStereotypes.selectOne(s|s.name = "ImplementationClass");
+	return implementationClassStereotype;
+}
+
+@cached
+operation Profile getInstantiateStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var instantiateStereotype = ownedStereotypes.selectOne(s|s.name = "Instantiate");
+	return instantiateStereotype;
+}
+
+@cached
+operation Profile getLibraryStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var libraryStereotype = ownedStereotypes.selectOne(s|s.name = "Library");
+	return libraryStereotype;
+}
+
+@cached
+operation Profile getMetaclassStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var metaclassStereotype = ownedStereotypes.selectOne(s|s.name = "Metaclass");
+	return metaclassStereotype;
+}
+
+@cached
+operation Profile getModelLibraryStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var modelLibraryStereotype = ownedStereotypes.selectOne(s|s.name = "ModelLibrary");
+	return modelLibraryStereotype;
+}
+
+@cached
+operation Profile getProcessStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var processStereotype = ownedStereotypes.selectOne(s|s.name = "Process");
+	return processStereotype;
+}
+
+@cached
+operation Profile getRealizationStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var realizationStereotype = ownedStereotypes.selectOne(s|s.name = "Realization");
+	return realizationStereotype;
+}
+
+@cached
+operation Profile getRefineStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var refineStereotype = ownedStereotypes.selectOne(s|s.name = "Refine");
+	return refineStereotype;
+}
+
+@cached
+operation Profile getResponsibilityStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var responsibilityStereotype = ownedStereotypes.selectOne(s|s.name = "Responsibility");
+	return responsibilityStereotype;
+}
+
+@cached
+operation Profile getScriptStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var scriptStereotype = ownedStereotypes.selectOne(s|s.name = "Script");
+	return scriptStereotype;
+}
+
+@cached
+operation Profile getSendStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var sendStereotype = ownedStereotypes.selectOne(s|s.name = "Send");
+	return sendStereotype;
+}
+
+@cached
+operation Profile getServiceStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var serviceStereotype = ownedStereotypes.selectOne(s|s.name = "Service");
+	return serviceStereotype;
+}
+
+@cached
+operation Profile getSourceStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var sourceStereotype = ownedStereotypes.selectOne(s|s.name = "Source");
+	return sourceStereotype;
+}
+
+@cached
+operation Profile getSpecificationStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var specificationStereotype = ownedStereotypes.selectOne(s|s.name = "Specification");
+	return specificationStereotype;
+}
+
+@cached
+operation Profile getSubsystemStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var subsystemStereotype = ownedStereotypes.selectOne(s|s.name = "Subsystem");
+	return subsystemStereotype;
+}
+
+@cached
+operation Profile getTraceStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var traceStereotype = ownedStereotypes.selectOne(s|s.name = "Trace");
+	return traceStereotype;
+}
+
+@cached
+operation Profile getTypeStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var typeStereotype = ownedStereotypes.selectOne(s|s.name = "Type");
+	return typeStereotype;
+}
+
+@cached
+operation Profile getUtilityStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var utilityStereotype = ownedStereotypes.selectOne(s|s.name = "Utility");
+	return utilityStereotype;
+}
+
+@cached
+operation Profile getBuildComponentStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var buildComponentStereotype = ownedStereotypes.selectOne(s|s.name = "BuildComponent");
+	return buildComponentStereotype;
+}
+
+@cached
+operation Profile getMetamodelStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var metamodelStereotype = ownedStereotypes.selectOne(s|s.name = "Metamodel");
+	return metamodelStereotype;
+}
+
+@cached
+operation Profile getSystemModelStereotype() : Stereotype {
+	var ownedStereotypes = self.getOwnedStereotypes();
+	var systemModelStereotype = ownedStereotypes.selectOne(s|s.name = "SystemModel");
+	return systemModelStereotype;
+}
+
+
+	
+operation Package getAuxiliarySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Auxiliary")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getAuxiliarySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Auxiliary")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Class annotated with Auxiliary.
+*/ 
+operation Package getAuxiliaryClassSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Auxiliary")){
+			if(son.type.getName()="Class"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getCallSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Call")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getCallSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Call")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Usage annotated with Call.
+*/ 
+operation Package getCallUsageSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Call")){
+			if(son.type.getName()="Usage"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getCreateSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Create")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getCreateSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Create")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of BehavioralFeature annotated with Create.
+*/ 
+operation Package getCreateBehavioralFeatureSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Create")){
+			if(son.type.getName()="BehavioralFeature"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Usage annotated with Create.
+*/ 
+operation Package getCreateUsageSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Create")){
+			if(son.type.getName()="Usage"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getDeriveSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Derive")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getDeriveSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Derive")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Abstraction annotated with Derive.
+*/ 
+operation Package getDeriveAbstractionSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Derive")){
+			if(son.type.getName()="Abstraction"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getDestroySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Destroy")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getDestroySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Destroy")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of BehavioralFeature annotated with Destroy.
+*/ 
+operation Package getDestroyBehavioralFeatureSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Destroy")){
+			if(son.type.getName()="BehavioralFeature"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getDocumentSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Document")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getDocumentSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Document")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Artifact annotated with Document.
+*/ 
+operation Package getDocumentArtifactSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Document")){
+			if(son.type.getName()="Artifact"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getEntitySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Entity")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getEntitySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Entity")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Component annotated with Entity.
+*/ 
+operation Package getEntityComponentSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Entity")){
+			if(son.type.getName()="Component"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getExecutableSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Executable")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getExecutableSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Executable")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Artifact annotated with Executable.
+*/ 
+operation Package getExecutableArtifactSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Executable")){
+			if(son.type.getName()="Artifact"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getFileSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("File")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getFileSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("File")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Artifact annotated with File.
+*/ 
+operation Package getFileArtifactSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("File")){
+			if(son.type.getName()="Artifact"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getFocusSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Focus")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getFocusSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Focus")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Class annotated with Focus.
+*/ 
+operation Package getFocusClassSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Focus")){
+			if(son.type.getName()="Class"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getFrameworkSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Framework")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getFrameworkSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Framework")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Package annotated with Framework.
+*/ 
+operation Package getFrameworkPackageSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Framework")){
+			if(son.type.getName()="Package"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getImplementSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Implement")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getImplementSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Implement")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Component annotated with Implement.
+*/ 
+operation Package getImplementComponentSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Implement")){
+			if(son.type.getName()="Component"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getImplementationClassSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("ImplementationClass")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getImplementationClassSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("ImplementationClass")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Class annotated with ImplementationClass.
+*/ 
+operation Package getImplementationClassClassSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("ImplementationClass")){
+			if(son.type.getName()="Class"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getInstantiateSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Instantiate")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getInstantiateSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Instantiate")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Usage annotated with Instantiate.
+*/ 
+operation Package getInstantiateUsageSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Instantiate")){
+			if(son.type.getName()="Usage"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getLibrarySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Library")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getLibrarySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Library")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Artifact annotated with Library.
+*/ 
+operation Package getLibraryArtifactSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Library")){
+			if(son.type.getName()="Artifact"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getMetaclassSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Metaclass")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getMetaclassSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Metaclass")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Class annotated with Metaclass.
+*/ 
+operation Package getMetaclassClassSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Metaclass")){
+			if(son.type.getName()="Class"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getModelLibrarySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("ModelLibrary")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getModelLibrarySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("ModelLibrary")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Package annotated with ModelLibrary.
+*/ 
+operation Package getModelLibraryPackageSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("ModelLibrary")){
+			if(son.type.getName()="Package"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getProcessSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Process")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getProcessSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Process")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Component annotated with Process.
+*/ 
+operation Package getProcessComponentSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Process")){
+			if(son.type.getName()="Component"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getRealizationSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Realization")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getRealizationSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Realization")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Classifier annotated with Realization.
+*/ 
+operation Package getRealizationClassifierSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Realization")){
+			if(son.type.getName()="Classifier"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getRefineSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Refine")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getRefineSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Refine")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Abstraction annotated with Refine.
+*/ 
+operation Package getRefineAbstractionSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Refine")){
+			if(son.type.getName()="Abstraction"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getResponsibilitySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Responsibility")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getResponsibilitySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Responsibility")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Usage annotated with Responsibility.
+*/ 
+operation Package getResponsibilityUsageSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Responsibility")){
+			if(son.type.getName()="Usage"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getScriptSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Script")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getScriptSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Script")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Artifact annotated with Script.
+*/ 
+operation Package getScriptArtifactSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Script")){
+			if(son.type.getName()="Artifact"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getSendSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Send")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getSendSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Send")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Usage annotated with Send.
+*/ 
+operation Package getSendUsageSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Send")){
+			if(son.type.getName()="Usage"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getServiceSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Service")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getServiceSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Service")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Component annotated with Service.
+*/ 
+operation Package getServiceComponentSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Service")){
+			if(son.type.getName()="Component"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getSourceSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Source")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getSourceSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Source")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Artifact annotated with Source.
+*/ 
+operation Package getSourceArtifactSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Source")){
+			if(son.type.getName()="Artifact"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getSpecificationSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Specification")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getSpecificationSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Specification")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Classifier annotated with Specification.
+*/ 
+operation Package getSpecificationClassifierSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Specification")){
+			if(son.type.getName()="Classifier"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getSubsystemSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Subsystem")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getSubsystemSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Subsystem")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Component annotated with Subsystem.
+*/ 
+operation Package getSubsystemComponentSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Subsystem")){
+			if(son.type.getName()="Component"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getTraceSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Trace")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getTraceSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Trace")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Abstraction annotated with Trace.
+*/ 
+operation Package getTraceAbstractionSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Trace")){
+			if(son.type.getName()="Abstraction"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getTypeSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Type")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getTypeSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Type")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Class annotated with Type.
+*/ 
+operation Package getTypeClassSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Type")){
+			if(son.type.getName()="Class"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getUtilitySet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Utility")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getUtilitySet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Utility")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Class annotated with Utility.
+*/ 
+operation Package getUtilityClassSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Utility")){
+			if(son.type.getName()="Class"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getBuildComponentSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("BuildComponent")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getBuildComponentSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("BuildComponent")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Component annotated with BuildComponent.
+*/ 
+operation Package getBuildComponentComponentSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("BuildComponent")){
+			if(son.type.getName()="Component"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getMetamodelSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("Metamodel")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getMetamodelSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Metamodel")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Model annotated with Metamodel.
+*/ 
+operation Package getMetamodelModelSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("Metamodel")){
+			if(son.type.getName()="Model"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+	
+operation Package getSystemModelSet() : Set {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	var returnValue = new Set();
+	
+	for(son in owned_elements){
+		if(son.hasStereotype("SystemModel")){
+			returnValue.add(son);		
+		}
+	}
+	return returnValue;
+}
+
+operation Package getSystemModelSet( metaclass_name : String) : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("SystemModel")){
+			if(son.type.getName()=metaclass_name){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+/*
+Returns a Set of Model annotated with SystemModel.
+*/ 
+operation Package getSystemModelModelSet() : Set {
+	var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	var UMLUtil = plugin.getUMLUtil();
+
+	var returnValue = new Set();
+	var owned_elements = self.allOwnedElements();
+	for(son in owned_elements){
+		if(son.hasStereotype("SystemModel")){
+			if(son.type.getName()="Model"){
+				returnValue.add(son);		
+			}
+		}
+	}
+	return returnValue;
+}
+
+
+
+
+
+

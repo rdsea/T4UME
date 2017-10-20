@@ -1,0 +1,643 @@
+/*
+__author__ = "TU Wien, Distributed System's Group", http://dsg.tuwien.ac.at/
+__copyright__ = "Copyright 2017, TU Wien, Distributed Systems Group"
+__license__   = EULA currently in development. Current terms of usage below.
+__license_body__ We grant the right to use this software and create derivative work based on it for all non-commercial non-profit education purposes. 
+__license_body__ For any commercial-related or profit-related usage of this software please contact 
+__license_body__ Hong-Linh Truong truong@dsg.tuwien.ac.at
+__license_body__ 
+__license_body__ Warranty:
+__license_body__ The software is provided "AS IS", without warranty of any kind, express or implied,
+__license_body__ including but not limited to the warranties of merchantability, fitness for a
+__license_body__ particular purpose and noninfringement. in no event shall the authors or copyright
+__license_body__ holders be liable for any claim, damages or other liability, whether in an action of
+__license_body__ contract, tort or otherwise, arising from, out of or in connection with the software or
+__license_body__ the use or other dealings in the software.
+__maintainer__ = "Luca Berardinelli"
+__email__ = "luca.berardinelli@tuwien.ac.at"
+__social__ = "https://www.linkedin.com/in/lucaberardinelli/"
+*/
+
+
+import "../../../utilities.eol";
+
+//do not import the profile library to avoid circular dependencies
+
+
+/*
+Returns a Set of Element annotated with VirtualGateway.
+TODO: Currently the method does not distinguish between different UML Model Elements. All the methods SetOf* are equal.
+*/ 
+
+operation Package VirtualGatewaysAsSet() : Set {
+	var returnValue = new Set;
+	for(son in self.getPackagedElements()){
+		if(son.isVirtualGateway()){
+			returnValue.add(son);
+		}
+	} 
+	return returnValue;
+}
+ 
+
+/*
+Check if the element is annotated with VirtualGateway.
+*/ 
+operation Element isVirtualGateway() : Boolean {
+	//var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+	//var UMLUtil = plugin.getUMLUtil();
+	//var ModelerAgent = plugin.getModelerAgent();	
+	
+	/*
+	if(self.isUndefined() or self.getAppliedStereotypes().isUndefined() ){
+		("the element is undefined").println();
+		showError("Method: isVirtualGateway() : Boolean in VirtualGateway.eol");
+	}
+	*/
+	return self.getAppliedStereotypes()->exists(s | s.name = "VirtualGateway");
+}
+
+
+//getters
+/*
+Returns a Set of virtualActuators of stereotype VirtualGateway.
+*/ 
+operation Element getVirtualActuatorsOfVirtualGatewayAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "virtualActuators");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of virtualSensors of stereotype VirtualGateway.
+*/ 
+operation Element getVirtualSensorsOfVirtualGatewayAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "virtualSensors");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of ownedVirtualUnits of stereotype VirtualGateway.
+*/ 
+operation Element getOwnedVirtualUnitsOfVirtualGatewayAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "ownedVirtualUnits");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of deployedOn of stereotype VirtualGateway.
+*/ 
+operation Element getDeployedOnOfVirtualGatewayAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "deployedOn");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of id of stereotype VirtualGateway.
+*/ 
+operation Element getIdOfVirtualGatewayAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "id");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of location of stereotype VirtualGateway.
+*/ 
+operation Element getLocationOfVirtualGatewayAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "location");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of description of stereotype VirtualGateway.
+*/ 
+operation Element getDescriptionOfVirtualGatewayAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "description");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of ownedUnits of stereotype VirtualGateway.
+*/ 
+operation Element getOwnedUnitsOfVirtualGatewayAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "ownedUnits");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of hasTimestampMechanism of stereotype VirtualGateway.
+*/ 
+operation Element getHasTimestampMechanismOfVirtualGatewayAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "hasTimestampMechanism");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of timestampMaxLatency of stereotype VirtualGateway.
+*/ 
+operation Element getTimestampMaxLatencyOfVirtualGatewayAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "timestampMaxLatency");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of isSafetyCritical of stereotype VirtualGateway.
+*/ 
+operation Element getIsSafetyCriticalOfVirtualGatewayAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "isSafetyCritical");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+/*
+Returns a Set of infrastructureInterface of stereotype VirtualGateway.
+*/ 
+operation Element getInfrastructureInterfaceOfVirtualGatewayAsSet() : Set {
+	var returnValues = new Set;
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "infrastructureInterface");
+	for(value in values){
+		returnValues.add(value);
+	}
+	return returnValues;
+}
+
+
+
+
+//setters
+// -- Setter for Property VirtualGateway::virtualActuators	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@41a14d44 (name: VirtualActuator, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setVirtualActuatorsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getVirtualGatewayStereotype();
+		var property = current_infrastructureCPSProfile.getVirtualActuatorsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property VirtualGateway::virtualSensors	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@f55da9 (name: VirtualSensor, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setVirtualSensorsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getVirtualGatewayStereotype();
+		var property = current_infrastructureCPSProfile.getVirtualSensorsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property VirtualGateway::ownedVirtualUnits	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@769db018 (name: VirtualUnit, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setOwnedVirtualUnitsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getVirtualGatewayStereotype();
+		var property = current_infrastructureCPSProfile.getOwnedVirtualUnitsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property VirtualGateway::deployedOn	
+// 
+operation Element setDeployedOnProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getVirtualGatewayStereotype();
+		var property = current_infrastructureCPSProfile.getDeployedOnProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property VirtualGateway::id	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@36654c22 (name: Integer, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIdProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getVirtualGatewayStereotype();
+		var property = current_infrastructureCPSProfile.getIdProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property VirtualGateway::location	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@5d5204e7 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setLocationProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getVirtualGatewayStereotype();
+		var property = current_infrastructureCPSProfile.getLocationProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property VirtualGateway::description	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@5d5204e7 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setDescriptionProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getVirtualGatewayStereotype();
+		var property = current_infrastructureCPSProfile.getDescriptionProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property VirtualGateway::ownedUnits	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@22b001da (name: Unit, visibility: <unset>) (isLeaf: false, isAbstract: true, isFinalSpecialization: false) (isActive: false)
+operation Element setOwnedUnitsProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getVirtualGatewayStereotype();
+		var property = current_infrastructureCPSProfile.getOwnedUnitsProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property VirtualGateway::hasTimestampMechanism	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@7016a6d1 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setHasTimestampMechanismProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getVirtualGatewayStereotype();
+		var property = current_infrastructureCPSProfile.getHasTimestampMechanismProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property VirtualGateway::timestampMaxLatency	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@5d5204e7 (name: String, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setTimestampMaxLatencyProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getVirtualGatewayStereotype();
+		var property = current_infrastructureCPSProfile.getTimestampMaxLatencyProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property VirtualGateway::isSafetyCritical	
+// org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl@7016a6d1 (name: Boolean, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+operation Element setIsSafetyCriticalProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getVirtualGatewayStereotype();
+		var property = current_infrastructureCPSProfile.getIsSafetyCriticalProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+// -- Setter for Property VirtualGateway::infrastructureInterface	
+// org.eclipse.uml2.uml.internal.impl.StereotypeImpl@4bc7dfab (name: InfrastructureInterface, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+operation Element setInfrastructureInterfaceProperty( value : Object) {
+		//setStereotypePropertyValue(NamedElement namedElement, Stereotype stereotype, Property property, Object value) {
+		
+		var plugin : new Native("at.ac.tuwien.dsg.T4UME");
+		var UMLUtil = plugin.getUMLUtil();
+		var ModelerAgent = plugin.getModelerAgent();	
+		
+		var current_infrastructureCPSProfile = Profile.all.selectOne(e|e.name = "InfrastructureCPSProfile");
+		
+		var stereotype = current_infrastructureCPSProfile.getVirtualGatewayStereotype();
+		var property = current_infrastructureCPSProfile.getInfrastructureInterfaceProperty();
+		ModelerAgent.setStereotypePropertyValue(self, stereotype, property, value);
+}
+
+//getters of Property Definitions
+//--get virtualActuators Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getVirtualActuatorsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var virtualActuatorsProperty = allAttributes.selectOne(s|s.name = "virtualActuators");
+	return virtualActuatorsProperty;
+}
+
+//--get virtualSensors Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getVirtualSensorsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var virtualSensorsProperty = allAttributes.selectOne(s|s.name = "virtualSensors");
+	return virtualSensorsProperty;
+}
+
+//--get ownedVirtualUnits Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getOwnedVirtualUnitsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var ownedVirtualUnitsProperty = allAttributes.selectOne(s|s.name = "ownedVirtualUnits");
+	return ownedVirtualUnitsProperty;
+}
+
+//--get deployedOn Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDeployedOnPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var deployedOnProperty = allAttributes.selectOne(s|s.name = "deployedOn");
+	return deployedOnProperty;
+}
+
+//--get id Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIdPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var idProperty = allAttributes.selectOne(s|s.name = "id");
+	return idProperty;
+}
+
+//--get location Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getLocationPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var locationProperty = allAttributes.selectOne(s|s.name = "location");
+	return locationProperty;
+}
+
+//--get description Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getDescriptionPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var descriptionProperty = allAttributes.selectOne(s|s.name = "description");
+	return descriptionProperty;
+}
+
+//--get ownedUnits Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getOwnedUnitsPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var ownedUnitsProperty = allAttributes.selectOne(s|s.name = "ownedUnits");
+	return ownedUnitsProperty;
+}
+
+//--get hasTimestampMechanism Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getHasTimestampMechanismPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var hasTimestampMechanismProperty = allAttributes.selectOne(s|s.name = "hasTimestampMechanism");
+	return hasTimestampMechanismProperty;
+}
+
+//--get timestampMaxLatency Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getTimestampMaxLatencyPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var timestampMaxLatencyProperty = allAttributes.selectOne(s|s.name = "timestampMaxLatency");
+	return timestampMaxLatencyProperty;
+}
+
+//--get isSafetyCritical Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getIsSafetyCriticalPropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var isSafetyCriticalProperty = allAttributes.selectOne(s|s.name = "isSafetyCritical");
+	return isSafetyCriticalProperty;
+}
+
+//--get infrastructureInterface Property Definition. It does not change then it is cached.
+@cache
+operation Stereotype getInfrastructureInterfacePropertyDefinition() : Property {
+	var allAttributes = self.getAllAttributes();
+	var infrastructureInterfaceProperty = allAttributes.selectOne(s|s.name = "infrastructureInterface");
+	return infrastructureInterfaceProperty;
+}
+
+
+/*
+Check if a Set of virtualActuators of stereotype VirtualGateway is empty.
+*/ 
+operation Element isVirtualActuatorsOfVirtualGatewayEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "virtualActuators");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of virtualSensors of stereotype VirtualGateway is empty.
+*/ 
+operation Element isVirtualSensorsOfVirtualGatewayEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "virtualSensors");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of ownedVirtualUnits of stereotype VirtualGateway is empty.
+*/ 
+operation Element isOwnedVirtualUnitsOfVirtualGatewayEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "ownedVirtualUnits");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of deployedOn of stereotype VirtualGateway is empty.
+*/ 
+operation Element isDeployedOnOfVirtualGatewayEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "deployedOn");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of id of stereotype VirtualGateway is empty.
+*/ 
+operation Element isIdOfVirtualGatewayEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "id");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of location of stereotype VirtualGateway is empty.
+*/ 
+operation Element isLocationOfVirtualGatewayEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "location");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of description of stereotype VirtualGateway is empty.
+*/ 
+operation Element isDescriptionOfVirtualGatewayEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "description");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of ownedUnits of stereotype VirtualGateway is empty.
+*/ 
+operation Element isOwnedUnitsOfVirtualGatewayEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "ownedUnits");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of hasTimestampMechanism of stereotype VirtualGateway is empty.
+*/ 
+operation Element isHasTimestampMechanismOfVirtualGatewayEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "hasTimestampMechanism");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of timestampMaxLatency of stereotype VirtualGateway is empty.
+*/ 
+operation Element isTimestampMaxLatencyOfVirtualGatewayEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "timestampMaxLatency");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of isSafetyCritical of stereotype VirtualGateway is empty.
+*/ 
+operation Element isIsSafetyCriticalOfVirtualGatewayEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "isSafetyCritical");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
+/*
+Check if a Set of infrastructureInterface of stereotype VirtualGateway is empty.
+*/ 
+operation Element isInfrastructureInterfaceOfVirtualGatewayEmpty() : Boolean{
+	var returnValues = new Set();
+	var values = self.getValue(self.getStereotype("VirtualGateway"), "infrastructureInterface");
+	for(value in values){
+		returnValues.add(value);
+	}
+	var empty = returnValues.isEmpty();
+	return empty;
+}
