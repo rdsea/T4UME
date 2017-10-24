@@ -7,14 +7,16 @@ UME and T4UME are partially supported by the U-Test H2020 project http://www.u-t
 T4UME implements the following capabilities
 -	U-Detection (coming soon).
 -	U-Refactoring (coming soon).
--	U-Detection / U-Refactoring Adaptation (coming soon).
+-	T4UME Adaptation (coming soon).
 -	UML2JSON.
 
 ## U-Detection 
 
 ## U-Refactoring
 
-## UML2JSON Step
+## T4UME Adaptation
+
+## UML2JSON 
 T4UME includes a two-step UML2JSON - JSON2Java transformation engine.
 The design rationales of the UML2JSON Step are 
 - full control on UML2JSON transformation rules
