@@ -4,6 +4,15 @@ Tool for Uncertainty Modeling and Evaluation (T4UME) is a tool for modeling unce
 It supports the Uncertainty Modeling and Evaluation (UME) methodology.
 UME and T4UME are partially supported by the U-Test H2020 project http://www.u-test.eu/.
 
+T4UME implements the following capabilities
+-	U-Detection (coming soon).
+-	U-Refactoring (coming soon).
+-	U-Detection / U-Refactoring Adaptation (coming soon).
+-	UML2JSON.
+
+## U-Detection 
+
+## U-Refactoring
 
 ## UML2JSON Step
 T4UME includes a two-step UML2JSON - JSON2Java transformation engine.
