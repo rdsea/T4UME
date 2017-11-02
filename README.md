@@ -4,6 +4,11 @@ Tool for Uncertainty Modeling and Evaluation (T4UME) is a tool for modeling unce
 It supports the Uncertainty Modeling and Evaluation (UME) methodology.
 UME and T4UME are partially supported by the U-Test H2020 project http://www.u-test.eu/.
 
+Further information can be found in the following presentations links:
+-	https://www.researchgate.net/project/Testing-uncertainties-for-CPS-IoT
+-	https://www.slideshare.net/berardinelli/uncertaintywise-engineering-of-iot-cloud-systems
+-	https://www.slideshare.net/berardinelli/combining-modeldriven-engineering-and-elastic-execution-for-testing-uncertainty-in-cps
+
 T4UME implements the following capabilities
 -	U-Detection (coming soon).
 -	U-Refactoring (coming soon).
@@ -20,16 +25,14 @@ T4UME implements the following capabilities
 T4UME includes a two-step UML2JSON - JSON2Java transformation engine.
 The design rationales of the UML2JSON Step are 
 - full control on UML2JSON transformation rules
-- generation of POJO Java classes to instantiate runtime objects with a simple structure to obtain a easy-to-read serialization in JSON.
+- generation of POJO Java classes to instantiate runtime objects with a simple structure to obtain an easy-to-read serialization in JSON.
 
-Alternative, existing solution (e.g., EMF2JSON https://github.com/emfjson/emfjson-jackson), that serialize EMF-based Java Objects, generate a complex JSON structure resulting in very limited customization and reuse of the resulting JSON output.
+UML2JSON generates a JAVA source code and APIs (UML2Java step) that import the Google GSON library. 
+The resulting Java program can be executed and generates a JSON representation of the input UML Model in the IDE console.
 
-It generates a JAVA source code and APIs (UML2Java step) that is further extended with Google GSON library. The resulting Java file can be executed to invoke GSON and obtain the JSON representation of the input UML Model.
-
-In particular, T4UME extracts information in JSON from of UML Classes and InstanceSpecifications (depicted on Class Diagrams). 
-Domain-specific information introduced via applied UML Profile are also extracted. Indeed T4UME is capable to read stereotypes applied to Classes and InstanceSpecifications model elements. 
-
+In particular, UML2JSON transforms UML Classes and InstanceSpecifications into JSON. 
 The tool ia designed to work with UML and to adapt to different domains brought by applied UML Profiles.
+Indeed, UML2JSON is capable to read stereotypes applied to Classes and InstanceSpecifications model elements so that domain-specific information introduced via applied UML Profiles are also extracted. 
 
 This work is partially funded by the H2020 Project U-Test http://www.u-test.eu/.
 U-Test aims at enabling Model-Based Testing (MBT) of IoT Cloud Cyber-Physical Systems under uncertainty.
@@ -54,6 +57,7 @@ Generate JSON representation of an input UML Model that representa an IoT Cloud 
 *Output (generated)*
 -	JSON representation of IoT Cloud resource types (from UML Classes) and instances (from UML InstanceSpecification). Thanks to **Google GSON Library**, the runtime objects are correctly serialized in JSON.
 
+Alternative existing solution is EMF2JSON (https://github.com/emfjson/emfjson-jackson), which serializes any kind of EMF-based Java Objects. However, it generates a more complex JSON structure without explicit customization capabilities.
 
 ## Contact
 Luca Berardinelli 
