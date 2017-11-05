@@ -75,7 +75,7 @@ It is an higher-order transformation that automatically adapts T4UME to detect n
 Figure 6 shows the detailed design of the T4UME Adaptation step as instantiation of the generic design pattern in Figure 2.
 
 
-<img src="https://github.com/rdsea/T4UME/blob/master/documents/images/pattern_adaptiation.png" style="width: 800px;"/>
+<img src="https://github.com/rdsea/T4UME/blob/master/documents/images/pattern_adaptation.png" style="width: 800px;"/>
 </br>
 Figure 6: Design of T4UME Adapdation step.
 </br>
