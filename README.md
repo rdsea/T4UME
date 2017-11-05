@@ -88,7 +88,7 @@ The design rationales of the UML2JSON Step are
 
 Figure 7 shows the detailed design of the UML2JSON step as instantiation of the generic design pattern in Figure 2.
 
-<img src="https://github.com/rdsea/T4UME/blob/master/documents/images/pattern_UML2JSON.png" style="width: 800px;"/>
+<img src="https://github.com/rdsea/T4UME/blob/master/documents/images/pattern_uml2json.png" style="width: 800px;"/>
 </br>
 Figure 7: Design of UML2JSON.
 </br>
