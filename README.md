@@ -28,8 +28,11 @@ T4UME is a tool for model-driven engineering built following model-driven engine
 In particular, Figure 2 shows a recurrent design pattern for model-driven engineering tasks.
 U-Detection, U-Refactoring, and T4UME Adaptation are implemented by instantiating this design pattern on top of EPSILON.
 
-![N|Solid](https://github.com/rdsea/T4UME/blob/master/documents/images/pattern.png)
+
+<img src="https://github.com/rdsea/T4UME/blob/master/documents/images/pattern.png" style="width: 800px;"/>
+</br>
 Figure 2: Generic pattern for model-driven engineering task.
+</br>
 
 Further information can be found in the following presentations links:
 -	https://www.researchgate.net/project/Testing-uncertainties-for-CPS-IoT
@@ -47,24 +50,35 @@ Figure 3 shows a Papyrus screenshot where potential uncertainties caused by miss
 
 Figure 4 shows a Papyrus screenshot of the generated model elements after the execution of the refactoring action.
 
-![N|Solid](https://github.com/rdsea/T4UME/blob/master/documents/images/udetection.png)
-Figure 3: U-Detection example.
 
-![N|Solid](https://github.com/rdsea/T4UME/blob/master/documents/images/urefactoring.png)
+<img src="https://github.com/rdsea/T4UME/blob/master/documents/images/udetection.png" style="width: 800px;"/>
+</br>
+Figure 3: U-Detection example.
+</br>
+
+
+<img src="https://github.com/rdsea/T4UME/blob/master/documents/images/urefactoring.png" style="width: 800px;"/>
+</br>
 Figure 4: U-Refactoring example.
+</br>
 
 Figure 5 shows the detailed design of the U-Detection and U-Refactoring steps combined as instantiation of the generic design pattern in Figure 2.
 
-![N|Solid](https://github.com/rdsea/T4UME/blob/master/documents/images/pattern_udetection_urefactoring.png)
+<img src="https://github.com/rdsea/T4UME/blob/master/documents/images/pattern_udetection_urefactoring.png" style="width: 800px;"/>
+</br>
 Figure 5: Design of U-Detection and U-Refactoring steps.
+</br>
 
 ## T4UME Adaptation
 It is an higher-order transformation that automatically adapts T4UME to detect new sources of potential uncertainties caused by changes in applied UML profiles. New executable detection and refactoring routines are generated if changes happen in the definition of applied UML profiles
 
 Figure 6 shows the detailed design of the T4UME Adaptation step as instantiation of the generic design pattern in Figure 2.
 
-![N|Solid](https://github.com/rdsea/T4UME/blob/master/documents/images/pattern_adaptiation.png)
+
+<img src="https://github.com/rdsea/T4UME/blob/master/documents/images/pattern_adaptiation.png" style="width: 800px;"/>
+</br>
 Figure 6: Design of T4UME Adapdation step.
+</br>
 
 ## UML2JSON 
 T4UME includes a two-step UML2JSON - JSON2Java transformation engine.
@@ -74,8 +88,10 @@ The design rationales of the UML2JSON Step are
 
 Figure 7 shows the detailed design of the UML2JSON step as instantiation of the generic design pattern in Figure 2.
 
-![N|Solid](https://github.com/rdsea/T4UME/blob/master/documents/images/pattern_UML2JSON.png)
+<img src="https://github.com/rdsea/T4UME/blob/master/documents/images/pattern_UML2JSON.png" style="width: 800px;"/>
+</br>
 Figure 7: Design of UML2JSON.
+</br>
 
 UML2JSON generates a JAVA source code and APIs (UML2Java step) that import the Google GSON library. 
 The resulting Java program can be executed and generates a JSON representation of the input UML Model in the IDE console.
