@@ -126,9 +126,11 @@ Generate JSON representation of an input UML Model that representa an IoT Cloud 
 Alternative existing solution is EMF2JSON (https://github.com/emfjson/emfjson-jackson), which serializes any kind of EMF-based Java Objects. However, it generates a more complex JSON structure without explicit customization capabilities.
 
 ## Contact
+
 Luca Berardinelli 
 luca.berardinelli@tuwien.ac.at
 https://www.linkedin.com/in/lucaberardinelli/
 
-Hong-Linh Truong
-truong@tuwien.ac.at
+Hong-Linh Truong hong-linh.truong@tuwien.ac.at
+
+The work is supported by H2020 U-test Project. Contact Hong-Linh Truong hong-linh.truong@tuwien.ac.at for further information about U-test in TU Wien.
