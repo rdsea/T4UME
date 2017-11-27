@@ -133,6 +133,8 @@ For technical work, contact:
 Luca Berardinelli 
 luca.berardinelli@tuwien.ac.at
 https://www.linkedin.com/in/lucaberardinelli/
+http://www.infosys.tuwien.ac.at/staff/lberardinelli
+
 
 Hong-Linh Truong
 hong-linh.truong@tuwien.ac.at
