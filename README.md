@@ -159,5 +159,5 @@ http://www.infosys.tuwien.ac.at/staff/lberardinelli
 
 
 Hong-Linh Truong
-hong-linh.truong@tuwien.ac.at
-http://www.infosys.tuwien.ac.at/staff/truong
+linh.truong@aalto.fi
+https://users.aalto.fi/~truongh4/
